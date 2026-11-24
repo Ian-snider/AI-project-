@@ -424,6 +424,68 @@ a:focus-visible {
   .instrument-panel .ctl { min-width: 100%; }
   .project-team { grid-template-columns: 1fr; }
 }
+
+[hidden] { display:none !important; }
+.section-body .scroll { overflow-x:auto; }
+.section-body .scroll table { background:#fafbf7; }
+.section-body .eq h3 { margin:0 0 7px; }
+.section-body .eq .formula, .validation-grid .formula { font: .86rem/1.75 var(--data-face); overflow-wrap:anywhere; }
+.section-body .decision-list li { margin:0 0 10px; }
+.section-button, .zac-workspace button, .zac-dialog button { border:1px solid #44555b; border-radius:2px; background:#253339; color:#eef5f2; padding:8px 12px; font:600 .8rem/1.25 system-ui,sans-serif; cursor:pointer; }
+.section-button:hover, .zac-workspace button:hover, .zac-dialog button:hover { background:#35484e; }
+.zac-workspace button.active, .zac-workspace button[aria-pressed="true"], .zac-workspace .primary, .zac-dialog .primary { background:#e2ce9e; color:#151e23; border-color:#e2ce9e; }
+.zac-workspace button.active:hover, .zac-workspace .primary:hover, .zac-dialog .primary:hover { background:#f4e4bc; }
+.zac-workspace :is(button,input,select,summary):focus-visible, .zac-dialog :is(button,input,select):focus-visible, .section-button:focus-visible { outline:2px solid #e0ba77; outline-offset:2px; }
+.zac-workspace :is(.top,.row,.cardhead,.tabs,.actions,.tools,.legend) { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.zac-workspace :is(.top,.row,.cardhead) { justify-content:space-between; }
+.zac-workspace .top { margin-bottom:17px; }
+.zac-workspace .top h2 { margin:0; padding:0; border:0; }
+.zac-workspace .top p { color:var(--muted); }
+.zac-workspace .layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(225px,280px); align-items:start; gap:12px; }
+.zac-workspace .card, .validation-grid article { min-width:0; border:1px solid #34454c; background:var(--panel); color:#e5eef0; }
+.zac-workspace .card :is(h2,h3), .validation-grid h3 { margin:0; padding:0; border:0; color:#f0f4f1; }
+.zac-workspace .card h2 { font-size:clamp(1.08rem,2vw,1.35rem); }
+.zac-workspace .cardhead, .zac-workspace .pad, .validation-grid article { padding:14px 16px; }
+.zac-workspace .cardhead { border-bottom:1px solid #34454c; }
+.zac-workspace .canvas { position:relative; background:#20282d radial-gradient(#49585f 1px,transparent 1px) 0 0/18px 18px; }
+.zac-workspace .canvas svg { display:block; width:100%; height:clamp(270px,37vw,460px); touch-action:none; user-select:none; }
+.zac-workspace .corner { position:absolute; left:14px; top:10px; color:#bfd2d4; font:.72rem var(--data-face); pointer-events:none; }
+.zac-workspace .zoom { position:absolute; right:10px; bottom:10px; display:flex; gap:4px; }
+.zac-workspace .zoom button { min-width:35px; }
+.zac-workspace :is(.tools,.bottom) { padding:10px 14px; }
+.zac-workspace .bottom { border-top:1px solid #34454c; }
+.zac-workspace .legend { font-size:.78rem; }
+.zac-workspace .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; }
+.zac-workspace .side { display:grid; gap:12px; }
+.zac-workspace .side h2 { margin-bottom:10px; }
+.zac-workspace .side :is(select,#run) { width:100%; }
+.zac-workspace label, .zac-dialog label { display:grid; gap:4px; font-size:.8rem; font-weight:600; }
+.zac-workspace :is(input,select), .zac-dialog :is(input,select) { min-width:0; min-height:33px; color:#eef5f2; background:#10181d; border:1px solid #46595f; border-radius:2px; padding:5px 7px; font: .8rem system-ui,sans-serif; }
+.zac-workspace input[type=number] { width:94px; font-family:var(--data-face); }
+.zac-workspace .data { display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px solid #34454c; font-size:.8rem; }
+.zac-workspace .data b, .zac-workspace #results td { color:#b8ddde; font-family:var(--data-face); }
+.zac-workspace .note, .zac-workspace small, .zac-workspace .status { color:#b6c8cb; font-size:.78rem; }
+.zac-workspace .status { padding:0; background:none; border:0; }
+.zac-workspace .status.warn { color:#f1c378; }
+.zac-workspace #badge { display:inline-block; background:#264739; color:#cdf0d4; padding:4px 7px; font: .72rem var(--data-face); border-radius:2px; }
+.zac-workspace .section { margin-top:14px; }
+.zac-workspace .scroll table { background:var(--panel); margin:0; }
+.zac-workspace .scroll :is(th,td) { border-color:#34454c; white-space:nowrap; }
+.zac-workspace .scroll th { background:#223039; color:#d8e8e9; font-size:.75rem; }
+.zac-workspace details { border-top:1px solid #34454c; padding:9px 0; }
+.zac-workspace summary { cursor:pointer; }
+.zac-workspace .formula { white-space:normal; overflow-wrap:anywhere; background:#1d2b31; padding:9px 11px; font:.78rem/1.7 var(--data-face); }
+.zac-dialog { margin:auto; width:min(440px,calc(100% - 28px)); border:1px solid #495a60; background:var(--panel); color:#eef5f2; padding:20px; }
+.zac-dialog::backdrop { background:#0b1319c9; }
+.zac-dialog form { display:grid; gap:12px; }
+.zac-dialog h2 { margin:0; color:#eef5f2; border-color:#495a60; }
+.zac-dialog .actions { display:flex; gap:8px; flex-wrap:wrap; }
+.validation-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:12px; }
+.validation-grid article .top { display:flex; justify-content:space-between; gap:10px; }
+.validation-grid .ok { color:#98e2ae; }
+.validation-grid .warn { color:#f1c378; }
+@media(max-width:860px) { .zac-workspace .layout { grid-template-columns:minmax(0,1fr); } .zac-workspace .side { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:580px) { .zac-workspace .side,.validation-grid { grid-template-columns:minmax(0,1fr); } .zac-workspace .canvas svg { height:250px; } }
 </style>
 </head>
 <body>
@@ -445,7 +507,7 @@ a:focus-visible {
       <div class="cover-inner">
         <p class="eyebrow">University of Cincinnati · Fluid Mechanics · Fall 2026</p>
         <h1 id="home-title" tabindex="-1">Pipe Network<br>Flow Simulator</h1>
-        <p class="cover-summary">A student-directed AI project for modelling steady-state flow through interconnected pipes, pumps, and tanks.</p>
+        <p class="cover-summary">A student-directed AI project for modelling steady-state flow through pipes with pressure and flow boundaries at different elevations.</p>
         <a class="cover-action" href="#application">Open simulator <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -485,216 +547,64 @@ a:focus-visible {
     <div class="section-header art-application">
       <div class="page-width section-header-inner">
         <h1 id="application-title" tabindex="-1">Application</h1>
-        <p>Build a steady-state liquid network and see how pipe geometry, pump speed, and tank elevations shape the operating point.</p>
+        <p>Build and solve a passive piping network. Explore how pressure, physical elevation, and pipe geometry affect flow.</p>
         <a class="section-action" href="#network-builder">Open network builder <span aria-hidden="true">↓</span></a>
       </div>
     </div>
     <nav class="section-nav" aria-label="Application topics"><div class="page-width">
-      <a href="#network-builder">Network builder</a><a href="#network-results">Flow results</a><a href="#tank-fill">Tank filling</a>
+      <a href="#network-builder">Network builder</a><a href="#network-results">Flow results</a><a href="#calculation-breakdown">Worked calculation</a>
     </div></nav>
     <div class="page-width section-body">
-    <dl class="spec-strip" aria-label="Simulator limits and cases">
-      <div><dt>Preset cases</dt><dd>6</dd></div><div><dt>Max. nodes</dt><dd>12</dd></div>
-      <div><dt>Max. pipes</dt><dd>10</dd></div><div><dt>Max. pumps</dt><dd>4</dd></div>
-    </dl>
-    <div id="sim">
-      <div class="dark instrument-panel">
-      <h2 id="network-builder" data-topic tabindex="-1">Network builder</h2>
-      <p class="panel-intro">Load a preset or edit the node and pipe tables. The diagram and results update as you make changes.</p>
-      <div class="controls">
-        <div class="ctl"><label for="exampleSel">Use case</label><select id="exampleSel"></select></div>
-        <div class="ctl"><label for="fluidSel">Fluid</label><select id="fluidSel"></select></div>
-        <div class="ctl"><label>Working copy</label><button class="btn" id="resetBtn" style="width:100%">Reset this example</button></div>
-      </div>
-      <p id="exBlurb" style="font-size:14px"></p>
-      <div class="lesson" id="exLesson"></div>
-      <div class="diagram" style="margin:12px 0">
-        <div id="diagram"></div>
-        <p class="figlabel">Diagram generated from the tables below. Arrows show the solved flow direction; a pipe whose flow solves backward is drawn red with its arrow flipped.</p>
-      </div>
-      <div class="status" id="status">Solving…</div>
-      <div class="warnbox hidden" id="warnings"></div>
-
-      <h3>Nodes</h3>
-      <p class="panel-intro">Sources and sinks hold a fixed head. Junction heads are solved.</p>
-      <div style="overflow-x:auto">
-      <table id="nodeTable">
-        <tr><th>Name</th><th>Type</th><th class="num">Head, H (m)</th><th></th></tr>
-      </table>
-      </div>
-      <button class="btn" id="addNodeBtn">Add node</button>
-      <span style="font-size:12.5px;color:#a9bfd0" id="nodeCount"></span>
-
-      <h3>Pipes</h3>
-      <p class="panel-intro">All pipes use commercial steel roughness <sup class="cite">[R5]</sup>.</p>
-      <div style="overflow-x:auto">
-      <table id="pipeTable">
-        <tr><th>Name</th><th>From</th><th>To</th><th class="num">D (m)</th><th class="num">L (m)</th><th class="num">K total</th><th>Pump</th><th class="num">Speed, s</th><th></th></tr>
-      </table>
-      </div>
-      <button class="btn" id="addPipeBtn">Add pipe</button>
-      <span style="font-size:12.5px;color:#a9bfd0" id="pipeCount"></span>
-      <p style="font-size:12.5px;color:#a9bfd0">Building a K total from fittings <sup class="cite">[R4]</sup>: sharp entrance 0.5; gate valve, fully open, 0.15; 90° flanged elbow 0.3; swing check valve 2.5; tee, branch flow, 1.8. Add the values for the fittings on that pipe.</p>
-      </div>
-
-      <div class="dark instrument-panel">
-      <h2 id="network-results" data-topic tabindex="-1">Flow results</h2>
-      <div class="chips" id="totals"></div>
-      <h3>Node heads</h3>
-      <div class="chips" id="headChips"></div>
-      <h3>Pipe flows</h3>
-      <div style="overflow-x:auto">
-      <table id="results">
-        <tr><th>Pipe</th><th>From → To</th><th class="num">Q (m³/s)</th><th class="num">Q (m³/h)</th><th class="num">V (m/s)</th><th class="num">Re</th><th>Regime</th><th class="num">f<sub>F</sub></th><th class="num">h<sub>L</sub> (m)</th><th class="num">L<sub>eq</sub> (m)</th><th>Notes</th></tr>
-      </table>
-      </div>
-      </div>
-
-      <div class="dark instrument-panel">
-      <h2 id="tank-fill" data-topic tabindex="-1">Tank filling</h2>
-      <p style="font-size:13px;color:#b9c9d6">Enter the tank bottom and discharge elevations in metres relative to the same datum. The discharge elevation sets the selected sink’s fixed head H and updates the network flow. Start and max fill levels are measured from the tank bottom and determine the volume to add. Keep the max liquid elevation below the discharge.</p>
-      <div class="controls">
-        <div class="ctl"><label for="fillTank">Receiving tank (a sink node)</label><select id="fillTank"></select></div>
-        <div class="ctl"><label for="fillMode">Solve for</label><select id="fillMode">
-          <option value="time">Fill time, from the solved flow</option>
-          <option value="required">Flow required for a target time</option>
-          <option value="diameter">Diameter for a target velocity</option>
-        </select></div>
-        <div class="ctl"><label for="fillTankD">Tank diameter, D<sub>t</sub> (m)</label><input id="fillTankD" type="number" step="any" value="3"></div>
-        <div class="ctl"><label for="fillBottom">Tank bottom elevation, z<sub>bottom</sub> (m)</label><input id="fillBottom" type="number" step="any" value="15"></div>
-        <div class="ctl"><label for="fillDischarge">Discharge elevation (m)</label><input id="fillDischarge" type="number" step="any"></div>
-        <div class="ctl"><label for="fillStart">Start level, h<sub>start</sub> (m)</label><input id="fillStart" type="number" step="any" value="1"></div>
-        <div class="ctl"><label for="fillMax">Max fill level, h<sub>max</sub> (m)</label><input id="fillMax" type="number" step="any" value="5.2"></div>
-        <div class="ctl"><label for="fillTargetTime">Target time, t<sub>target</sub> (min)</label><input id="fillTargetTime" type="number" step="any" value="20"></div>
-        <div class="ctl"><label for="fillTargetVel">Target velocity, V<sub>target</sub> (m/s)</label><input id="fillTargetVel" type="number" step="any" value="2"></div>
-      </div>
-      <div class="chips" id="fillOut"></div>
-      <p style="font-size:12.5px;color:#a9bfd0" id="fillNote"></p>
-      </div>
-    </div>
-    <p style="font-size:13px;color:var(--muted)">Every preset value in the examples is a stated demo preset <sup class="cite">[R7]</sup>, not plant data. Fitting values come from the standard table <sup class="cite">[R4]</sup>; fluid properties and roughness from the standard tables <sup class="cite">[R5]</sup>, except the two stated fluid presets. The theory behind every number is on the Theory and Math tab.</p>
-    </div>
-  </section>
-
-  <!-- ================= TAB 2: THEORY AND MATH ================= -->
-  <section class="tab" id="tab-theory" aria-labelledby="theory-title">
+<dl class="spec-strip spec-pair" aria-label="Workspace capabilities"><div><dt>Boundary inputs</dt><dd><small>Pressure or flow</small></dd></div><div><dt>Network visualization</dt><dd><small>2D plan and 3D elevation</small></dd></div></dl>
+<div class="zac-workspace" id="sim"><div class="top"><div><h2 id="network-builder" data-topic tabindex="-1">Network workspace</h2><p>Build a piping network and explore how pressure, elevation and friction drive flow.</p></div><div class="actions"><button id="example">Load example</button><button id="clear">Clear network</button></div></div><div class="layout"><div class="card"><div class="cardhead"><h2>Network view</h2><div class="tabs"><button id="plan">2D plan</button><button id="space">3D elevation</button></div></div><div class="canvas"><span class="corner" id="viewLabel"></span><svg id="drawing" viewBox="-330 -155 660 310" aria-label="Interactive pipe network"></svg><div class="zoom"><button id="minus" aria-label="Zoom out">−</button><button id="plus" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></div><div class="tools"><button id="addNode">+ Add Node</button><button id="connect">+ Add Pipe</button><button id="pause">Pause motion</button><select id="width" aria-label="Pipe width encoding"><option value="diameter">Width by diameter</option><option value="flow">Width by flow</option></select></div><div class="bottom"><div class="legend"><span><i class="dot" style="background:#39c4a4"></i>Inlet</span><span><i class="dot" style="background:#e8ac4f"></i>Junction</span><span><i class="dot" style="background:#6db9f3"></i>Outlet</span></div><p class="note" id="hint" aria-live="polite"></p></div></div>
+<div class="side"><div class="card pad"><h2>Fluid properties</h2><label>Liquid<select id="fluid"></select></label><div id="properties"></div><small>Constant-property liquid presets</small></div><div class="card pad"><h2>Solution</h2><span id="badge" class="tag"></span><div id="summary"></div><p class="status" id="message" aria-live="polite"></p><button id="run" class="primary" style="margin-top:12px">Calculate Network</button></div></div></div>
+<div class="section card"><div class="cardhead"><h2>Network inputs</h2><div class="tabs" id="edTabs"></div></div><div class="scroll" id="editor"></div></div>
+<div class="section card"><div class="cardhead"><h2 id="network-results" data-topic tabindex="-1">Calculated results</h2><div class="tabs" id="resTabs"></div></div><div class="scroll" id="results"></div><section id="calculation-breakdown" data-topic tabindex="-1" aria-label="Worked pipe calculation"><div class="pad" id="work"></div></section></div></div>
+</div></section>
+<section class="tab" id="tab-theory" aria-labelledby="theory-title">
     <div class="section-header art-theory">
       <div class="page-width section-header-inner">
         <h1 id="theory-title" tabindex="-1">Theory &amp; Math</h1>
-        <p>Follow the equations that connect continuity, friction losses, and pump head to the computed network flows.</p>
+        <p>Follow the equations that connect pressure, elevation, and wall friction to the computed network flows.</p>
         <a class="section-action" href="#governing-equations">View equations <span aria-hidden="true">↓</span></a>
       </div>
     </div>
     <nav class="section-nav" aria-label="Theory topics"><div class="page-width">
-      <a href="#symbol-key">Symbol key</a><a href="#course-connections">Course connections</a><a href="#governing-equations">Equations</a><a href="#theory-references">References</a>
+      <a href="#symbol-key">Symbols</a><a href="#governing-equations">Equations</a><a href="#course-connections">Solver method</a><a href="#verification">Validation</a><a href="#theory-references">References</a>
     </div></nav>
     <div class="page-width section-body reading-width">
-    <h2 id="symbol-key" data-topic tabindex="-1">Symbol key</h2>
-    <p>Every symbol used on this site is defined here, before its first use elsewhere, with SI units.</p>
-    <table>
-      <tr><th>Symbol</th><th>Meaning</th><th>SI unit</th></tr>
-      <tr><td>H</td><td>Total head at a node: the elevation of the liquid surface in a tank, or the total head required at a unit inlet, measured above one shared datum</td><td>metre, m</td></tr>
-      <tr><td>Q</td><td>Volumetric flow rate in a pipe, signed positive from its start node to its end node</td><td>cubic metre per second, m³/s</td></tr>
-      <tr><td>D</td><td>Pipe inside diameter</td><td>metre, m</td></tr>
-      <tr><td>L</td><td>Pipe length</td><td>metre, m</td></tr>
-      <tr><td>A</td><td>Pipe cross-section area, from the diameter: A = π D² / 4, where π is the mathematical constant pi</td><td>square metre, m²</td></tr>
-      <tr><td>ε (epsilon)</td><td>Pipe wall roughness</td><td>metre, m</td></tr>
-      <tr><td>K</td><td>Sum of the minor-loss coefficients of one pipe's fittings</td><td>dimensionless</td></tr>
-      <tr><td>ρ (rho)</td><td>Fluid density</td><td>kilogram per cubic metre, kg/m³</td></tr>
-      <tr><td>μ (mu)</td><td>Fluid dynamic viscosity</td><td>pascal second, Pa·s</td></tr>
-      <tr><td>V</td><td>Mean velocity of the fluid in a pipe</td><td>metre per second, m/s</td></tr>
-      <tr><td>Re</td><td>Reynolds number, the ratio of inertial to viscous effects in the flow</td><td>dimensionless</td></tr>
-      <tr><td>f<sub>F</sub></td><td>Fanning friction factor</td><td>dimensionless</td></tr>
-      <tr><td>h<sub>L</sub></td><td>Head loss in a pipe, from friction and fittings</td><td>metre, m</td></tr>
-      <tr><td>L<sub>eq</sub></td><td>Equivalent length: the length of straight pipe that would give the same loss as a pipe's fittings</td><td>metre, m</td></tr>
-      <tr><td>H<sub>0</sub></td><td>Pump shutoff head, the head a pump gives at zero flow and reference speed</td><td>metre, m</td></tr>
-      <tr><td>k<sub>p</sub></td><td>Pump curve coefficient, setting how fast pump head falls as flow rises</td><td>second squared per metre to the fifth, s²/m⁵</td></tr>
-      <tr><td>s</td><td>Pump speed ratio, actual speed divided by reference speed</td><td>dimensionless</td></tr>
-      <tr><td>η (eta)</td><td>Pump efficiency</td><td>dimensionless</td></tr>
-      <tr><td>P</td><td>Pump shaft power</td><td>watt, W (shown in kilowatts, kW)</td></tr>
-      <tr><td>g</td><td>Gravitational acceleration, 9.81</td><td>metre per second squared, m/s²</td></tr>
-      <tr><td>D<sub>t</sub></td><td>Receiving tank inside diameter (tank-fill panel)</td><td>metre, m</td></tr>
-      <tr><td>A<sub>t</sub></td><td>Receiving tank cross-section area, from its diameter: A<sub>t</sub> = π D<sub>t</sub>² / 4</td><td>square metre, m²</td></tr>
-      <tr><td>h</td><td>Liquid level in a tank, measured as a height above that tank's bottom; h<sub>start</sub> is the level at the start of a fill and h<sub>max</sub> is the tank's max fill level</td><td>metre, m</td></tr>
-      <tr><td>Vol</td><td>Volume of liquid to add in a fill: Vol = A<sub>t</sub> (h<sub>max</sub> − h<sub>start</sub>)</td><td>cubic metre, m³</td></tr>
-      <tr><td>t</td><td>Time; t<sub>target</sub> is a target fill time set by the user</td><td>second, s (shown in minutes, min)</td></tr>
-      <tr><td>z</td><td>Elevation of a point above the shared datum; z<sub>bottom</sub> is a tank's bottom elevation</td><td>metre, m</td></tr>
-    </table>
-
-    <h2 id="course-connections" data-topic tabindex="-1">Course connections</h2>
-    <table>
-      <tr><th>What the tool uses</th><th>Where it came from in the course</th><th>Where it shows up in the tool</th></tr>
-      <tr><td>Engineering Bernoulli equation in head form, with a frictional heating term</td><td>Weeks 10–11 lectures <sup class="cite">[R1]</sup></td><td>The head balance solved in every pipe</td></tr>
-      <tr><td>Fanning friction factor; laminar result f<sub>F</sub> = 16 / Re derived from Hagen–Poiseuille</td><td>HW4; Weeks 5–7 and 11 <sup class="cite">[R1]</sup><sup class="cite">[R2]</sup></td><td>Every pipe's friction; Example 5 is built to be checked against it by hand</td></tr>
-      <tr><td>Moody diagram and the Churchill correlation; Darcy factor = 4 × Fanning factor</td><td>Week 11 <sup class="cite">[R1]</sup><sup class="cite">[R3]</sup></td><td>Turbulent friction in every pipe</td></tr>
-      <tr><td>Continuity: flow in equals flow out at a junction</td><td>Weeks 5–6 <sup class="cite">[R1]</sup></td><td>The balance condition that couples pipes into a network</td></tr>
-      <tr><td>Tank filling at a constant flow: volume is area times level rise, and time is volume divided by flow</td><td>Continuity, Weeks 5–6 <sup class="cite">[R1]</sup></td><td>The tank-fill panel under the results, demonstrated by Example 6 (two source tanks, over-the-top discharge, fill to max level)</td></tr>
-      <tr><td>Pump head and shaft power from flow, head gain, and efficiency</td><td>Week 11 examples <sup class="cite">[R1]</sup></td><td>Pump pipes: head gain and power columns</td></tr>
-      <tr><td>Fitting loss coefficients K and equivalent length</td><td>Week 13, Day 1 <sup class="cite">[R1]</sup>, values from the standard table <sup class="cite">[R4]</sup></td><td>The K column of the pipe table and the equivalent-length results</td></tr>
-      <tr><td>Optimal pipe diameter, total annual cost, economic velocity near 2 m/s for liquids</td><td>Week 12; HW5 <sup class="cite">[R1]</sup><sup class="cite">[R2]</sup></td><td>The velocity design check on the Economics tab</td></tr>
-      <tr><td>Solving all pipes at once by iteration (node-head method); pump speed scaling</td><td>Not taught as named methods: built from the class pieces above</td><td>Listed in the extension box below and learned by the team as new material</td></tr>
-    </table>
-
-    <h2 id="governing-equations" data-topic tabindex="-1">Governing equations</h2>
-    <p>Every pipe in the network obeys the same course equation. The network is solved by requiring that equation to hold in every pipe at the same time, with one shared head at each junction. The unknowns are exactly two sets: the head H at each junction, and the flow Q in each pipe. Everything reported is derived from those.</p>
-
-    <div class="eq"><span class="tag class devnote">CLASS-W10/W11</span><sup class="cite">[R1]</sup>
-      <div class="formula">H<sub>start</sub> − H<sub>end</sub> + H<sub>pump</sub> = h<sub>L</sub></div>
-      The engineering form of the Bernoulli equation, in head form, between the two ends of one pipe: the head given up between the ends, plus any head the pump adds, is exactly the head the pipe loses. H<sub>pump</sub> is zero in every pipe without a pump.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W11</span><span class="tag hw devnote">CLASS-HW4</span><span class="tag class devnote">CLASS-W13</span><sup class="cite">[R1]</sup><sup class="cite">[R2]</sup><sup class="cite">[R4]</sup>
-      <div class="formula">h<sub>L</sub> = ( 4 f<sub>F</sub> L/D + K ) · V|V| / (2g)</div>
-      Head loss in a pipe: a friction term built from the Fanning friction factor f<sub>F</sub>, the length-to-diameter ratio L/D, plus the fittings term K, all multiplying the velocity head. The product V|V| keeps the loss pointing against the flow when a pipe runs backward.
-    </div>
-    <div class="eq"><span class="tag hw devnote">CLASS-HW4</span><span class="tag class devnote">CLASS-W11</span><sup class="cite">[R2]</sup><sup class="cite">[R3]</sup>
-      <div class="formula">Laminar: f<sub>F</sub> = 16 / Re&emsp;&emsp;Turbulent: f<sub>F</sub> from the Churchill correlation, with Darcy factor = 4 f<sub>F</sub></div>
-      The laminar result is derived in class from the Hagen-Poiseuille profile. The turbulent value uses the Churchill correlation, which covers all regimes and is stated in the Darcy form, so the page divides by 4 to work in the Fanning form the course uses.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W11</span><sup class="cite">[R1]</sup><sup class="cite">[R5]</sup>
-      <div class="formula">Re = ρ V D / μ&emsp;&emsp;V = Q / A</div>
-      The Reynolds number sets the regime: laminar below 2300, transitional from 2300 to 4000, turbulent above 4000, the standard textbook convention.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W5/W6</span><sup class="cite">[R1]</sup>
-      <div class="formula">At every junction: sum of Q flowing in = sum of Q flowing out</div>
-      Continuity. This, plus one shared head per junction, is all that couples the pipes into a network.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W5/W6</span><sup class="cite">[R1]</sup>
-      <div class="formula">Vol = A<sub>t</sub> (h<sub>max</sub> − h<sub>start</sub>)&emsp;t = Vol / Q<sub>fill</sub>&emsp;Q<sub>required</sub> = Vol / t<sub>target</sub>&emsp;D = √( 4 Q<sub>required</sub> / (π V<sub>target</sub>) )</div>
-      Tank filling, the solve-for panel's arithmetic. A<sub>t</sub> is the tank cross-section area, h<sub>max</sub> and h<sub>start</sub> are the max fill level and start level as heights above the tank bottom, Vol is the volume to add, Q<sub>fill</sub> is the flow the network delivers into the tank, t<sub>target</sub> is a target fill time, V<sub>target</sub> is a target mean velocity, and π is the mathematical constant pi. The fill flow is constant because Example 6 discharges over the top of an open tank at a fixed elevation: the discharge point is the top of the tank, so the rising level never pushes back on the pipe. The last relation is continuity solved for a diameter, the same sizing idea as HW5 <sup class="cite">[R2]</sup>.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W11</span><span class="tag new devnote">NEW-EXT speed scaling</span><sup class="cite">[R1]</sup><sup class="cite">[R7]</sup>
-      <div class="formula">H<sub>pump</sub> = s² H<sub>0</sub> − k<sub>p</sub> Q|Q|&emsp;&emsp;P = ρ g Q H<sub>pump</sub> / η</div>
-      The pump gives head that falls as flow rises, along a stated preset curve. Raising the speed ratio s raises the curve by the affinity scaling. Shaft power follows from the flow, the head gained, and the efficiency.
-    </div>
-    <div class="eq"><span class="tag class devnote">CLASS-W13</span><sup class="cite">[R1]</sup>
-      <div class="formula">L<sub>eq</sub> = K D / (4 f<sub>F</sub>)</div>
-      Equivalent length: the fittings on a pipe destroy the same head as this much extra straight pipe. The course notes are explicit that K itself is experimental, supplied by manufacturers and tables, which is why every K on this site carries a table citation.
-    </div>
-
-    <div class="eq" style="border-left-color:var(--warn)">
-      <b>Beyond the course — extension list.</b> <span class="tag new devnote">NEW-EXT</span> These items were not taught as named methods in this course. They are built from the class pieces above, and the team is learning them as new material before presenting:
-      <br>1. Solving all pipes at once by iteration (the node-head method): guess the junction heads, compute every pipe's flow, adjust the heads until flow balances at every junction. The reference implementation uses library root-finders <sup class="cite">[R6]</sup>; the page solver is cross-checked against it.
-      <br>2. Pump speed scaling by the affinity relations, used by the pump speed inputs.
-    </div>
-
-    <h2 id="theory-references" data-topic tabindex="-1">References</h2>
-    <ol class="refs">
-      <li id="R1"><b>[R1]</b> Course material: Fluid Mechanics lecture notes, University of Cincinnati, Fall 2026 (the team's merged course notes) — Week 10 and Week 11, energy balance, engineering Bernoulli equation, frictional heating, Fanning and Darcy friction factors, Moody diagram and Churchill equation, pump power examples; Week 12, head form and optimal diameter; Week 13, Day 1, pipe fittings, equivalent length and loss coefficients.</li>
-      <li id="R2"><b>[R2]</b> Course homeworks: HW4, derivation of the Fanning friction factor for laminar flow, f<sub>F</sub> = 16 / Re; HW5, total annual cost and optimal pipe velocity.</li>
-      <li id="R3"><b>[R3]</b> Churchill, S. W. (1977). "Friction-factor equation spans all fluid-flow regimes." Chemical Engineering, 84(24), 91–92.</li>
-      <li id="R4"><b>[R4]</b> Minor-loss coefficients for fittings (sharp entrance 0.5; gate valve, fully open, 0.15; 90° flanged elbow 0.3; swing check valve 2.5; tee, branch flow, 1.8): standard textbook table of minor loss coefficients, as tabulated in White, F. M., Fluid Mechanics, and in Çengel, Y. A. and Cimbala, J. M., Fluid Mechanics: Fundamentals and Applications. The course notes teach the method and state that the values are experimental and manufacturer-supplied; the notes contain no numeric table, so the numbers come from these tables.</li>
-      <li id="R5"><b>[R5]</b> Property and roughness values: water at 20 °C (density 998 kg/m³, viscosity 0.001002 Pa·s) and commercial steel roughness (0.045 mm), from the standard property and roughness tables in Çengel and Cimbala, Fluid Mechanics: Fundamentals and Applications, and White, Fluid Mechanics. Flow-regime thresholds (laminar below Re 2300, turbulent above Re 4000) follow the convention in the same texts.</li>
-      <li id="R6"><b>[R6]</b> Numerical methods: SciPy reference documentation, scalar and multivariate root finding (brentq and fsolve), used by the Python reference implementation that verifies the numbers on this page. SciPy 1.11.</li>
-      <li id="R7"><b>[R7]</b> Stated demo presets, chosen by the project team and labelled as presets wherever they appear: crude oil density 850 kg/m³ and viscosity 0.008 Pa·s; viscous oil density 900 kg/m³ and viscosity 0.35 Pa·s; node heads and elevations in every example; the five pump curves (shutoff head H<sub>0</sub> and coefficient k<sub>p</sub>) and the constant pump efficiency η = 0.75. These are illustrative values for a teaching demo. They are not manufacturer data and not operating data from any real refinery.</li>
-    </ol>
-    </div>
-  </section>
-
-  <section class="tab" id="tab-economics" aria-labelledby="economics-title">
+<h2 id="symbol-key" data-topic tabindex="-1">Symbols and units</h2>
+<p>The workspace models steady flow of a single, incompressible Newtonian liquid through full, circular pipes. All elevations use the same datum. Plan coordinates arrange the drawing. The 3D view uses the physical elevation <i>z</i>.</p>
+<div class="scroll"><table><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">Unit</th></tr></thead><tbody>
+<tr><th scope="row"><i>H</i>, <i>z</i>, <i>h</i><sub>f</sub></th><td>Piezometric head, physical elevation, friction head-loss magnitude</td><td>m</td></tr>
+<tr><th scope="row"><i>p</i><sub>g</sub>, <i>ρ</i>, <i>g</i>, <i>μ</i></th><td>Gauge pressure, density, gravitational acceleration, dynamic viscosity</td><td>Pa, kg/m³, m/s², Pa·s</td></tr>
+<tr><th scope="row"><i>L</i>, <i>D</i>, <i>ε</i>, <i>A</i></th><td>Pipe length, inside diameter, absolute roughness, cross-sectional area</td><td>m, m, m, m²</td></tr>
+<tr><th scope="row"><i>Q</i>, <i>v</i>, <i>S</i></th><td>Signed pipe flow, signed mean velocity, signed external injection at a node</td><td>m³/s, m/s, m³/s</td></tr>
+<tr><th scope="row">Re, <i>f</i><sub>F</sub></th><td>Reynolds number, Fanning friction factor</td><td>Dimensionless</td></tr>
+</tbody></table></div>
+<h2 id="governing-equations" data-topic tabindex="-1">Governing equations</h2>
+<div class="eq"><h3>Boundary conditions and continuity</h3><p class="formula"><i>H</i> = <i>z</i> + <i>p</i><sub>g</sub>/(<i>ρg</i>)<br>Σ <i>Q</i><sub>out</sub> − Σ <i>Q</i><sub>in</sub> = <i>S</i></p><p>A pressure boundary fixes the head through elevation and gauge pressure. The workspace converts pressure entered in kPa to Pa. A flow boundary enters a positive magnitude and uses node type to set the sign of <i>S</i>. Junctions have <i>S</i> = 0. Each connected component requires a pressure reference.</p></div>
+<div class="eq"><h3>Pipe resistance and sign convention</h3><p class="formula"><i>A</i> = π<i>D</i>²/4 &nbsp; · &nbsp; <i>v</i> = <i>Q</i>/<i>A</i> &nbsp; · &nbsp; Re = <i>ρ</i>|<i>v</i>|<i>D</i>/<i>μ</i><br><i>H</i><sub>a</sub> − <i>H</i><sub>b</sub> = 4<i>f</i><sub>F</sub> (<i>L</i>/<i>D</i>) <i>v</i>|<i>v</i>|/(2<i>g</i>)</p><p>Positive flow follows the entered direction from endpoint <i>a</i> to <i>b</i>. A negative result reverses the arrows. The results table reports the head-loss magnitude <i>h</i><sub>f</sub>. The model uses <i>g</i> = 9.80665 m/s² and a fixed roughness of 0.000015 m as a model input.</p></div>
+<div class="eq"><h3>Fanning friction factor</h3><p>For flowing pipes at Re below 100, the implementation uses the laminar limit <i>f</i><sub>F</sub> = 16/Re. Otherwise it evaluates Churchill’s correlation, with dimensionless intermediate quantities <i>C</i> and <i>B</i>. The Darcy factor is 4<i>f</i><sub>F</sub>.</p><p class="formula"><i>C</i> = [−2.457 ln((7/Re)<sup>0.9</sup> + 0.27<i>ε</i>/<i>D</i>)]<sup>16</sup><br><i>B</i> = (37530/Re)<sup>16</sup><br><i>f</i><sub>F</sub> = 2[(8/Re)<sup>12</sup> + (<i>C</i> + <i>B</i>)<sup>−3/2</sup>]<sup>1/12</sup></p><p>At zero flow the friction loss is zero and the factor is undefined. See <a href="https://files.engineering.com/files/85c0f3a6-a102-4a22-9d35-f15858c0dd2b/CEM_-_Friction-factor_equation_%281977%29.pdf">Churchill’s original paper</a>.</p></div>
+<h2 id="course-connections" data-topic tabindex="-1">Solver method and course connections</h2>
+<p>Bisection determines each signed flow for a trial head drop. Damped Newton iteration adjusts the unknown heads until the largest absolute continuity residual is below 10<sup>−10</sup> m³/s. The live model includes elevation and wall friction. Pump curves, fitting losses, valves, and tank-filling dynamics belong outside this workspace’s calculation scope.</p>
+<div class="scroll"><table><thead><tr><th scope="col">Course topic</th><th scope="col">Where to see it</th></tr></thead><tbody>
+<tr><td>Continuity and energy balance (Weeks 10–11)</td><td>Compare prescribed boundaries with solved junction heads and the flow residual.</td></tr>
+<tr><td>Fanning friction and laminar flow (HW4)</td><td>Compare Reynolds numbers and review the Hagen–Poiseuille validation case.</td></tr>
+<tr><td>Diameter selection (Week 12 and HW5)</td><td>Change one diameter, then compare the resulting pressure, flow, and velocity in Economics.</td></tr>
+</tbody></table></div>
+<h2 id="verification" data-topic tabindex="-1">Validation checks</h2>
+<p>Run the six built-in cases against the same solver used by the network workspace. Each check reports the expected value, computed value, and tolerance.</p>
+<button type="button" class="section-button" id="retest">Run checks</button>
+<div class="validation-grid" id="checks" aria-live="polite"></div>
+<h2 id="theory-references" data-topic tabindex="-1">References</h2>
+<ol class="refs"><li>University of Cincinnati Fluid Mechanics lecture notes and HW4–HW5, Fall 2026.</li><li>S. W. Churchill, “Friction-factor equation spans all fluid-flow regimes,” <i>Chemical Engineering</i>, 1977.</li><li>Zac’s simulator source for fluid presets, roughness, solver tolerances, and the built-in validation cases.</li></ol>
+</div></section>
+<section class="tab" id="tab-economics" aria-labelledby="economics-title">
     <div class="section-header art-economics">
       <div class="page-width section-header-inner">
         <h1 id="economics-title" tabindex="-1">Economics</h1>
-        <p>Use the solved pipe velocities to screen diameter choices and set up a cost comparison.</p>
+        <p>Use the solved pipe velocities to screen diameter choices.</p>
         <a class="section-action" href="#velocity-screening">View velocity screening <span aria-hidden="true">↓</span></a>
       </div>
     </div>
@@ -716,11 +626,10 @@ a:focus-visible {
       </table>
     </div>
     <h2 id="diameter-selection" data-topic tabindex="-1">Diameter selection</h2>
-    <p>At a given flow, a larger pipe reduces velocity and friction losses. In the network, changing a diameter can also change the operating point, so compare the new solved flow and pump power after each edit. Annual cost calculations are pending the HW5 cost inputs. <sup class="cite">[R2]</sup></p>
+    <p>At a given flow, a larger pipe reduces velocity and friction losses. In the network, changing a diameter can also change the operating point, so compare the new flow, velocity, and pressure after each edit. Annual cost calculations are pending the HW5 cost inputs. <sup class="cite">[R2]</sup></p>
     </div>
   </section>
-
-  <section class="tab" id="tab-project" aria-labelledby="project-title">
+<section class="tab" id="tab-project" aria-labelledby="project-title">
     <div class="section-header art-project">
       <div class="page-width section-header-inner">
         <h1 id="project-title" tabindex="-1">Project</h1>
@@ -732,397 +641,46 @@ a:focus-visible {
       <a href="#team-workflow">Team and AI</a><a href="#implementation">Implementation</a><a href="#project-decisions">Decisions</a><a href="#presentation-title">Presentation</a>
     </div></nav>
     <div class="page-width section-body reading-width">
-    <h2 id="team-workflow" data-topic tabindex="-1">Team and AI workflow</h2>
-    <p>The team used AI to help plan, implement, and verify a fluid mechanics simulator. Students set the scope, guided the models, and evaluated the engineering decisions against course material and independent checks.</p>
-    <ul class="project-team">
-      <li><strong>Ian Snider</strong>Project lead, initial site with Muse, and assistant presenter</li>
-      <li><strong>Drew Corbitt</strong>Second-model iteration and lead presenter</li>
-      <li><strong>Perry Meredith</strong>Slide deck and video support</li>
-      <li><strong>Zac Neikamp</strong>Video production and narration</li>
-    </ul>
-    <h2 id="implementation" data-topic tabindex="-1">Implementation</h2>
-    <table>
-      <tr><th>File</th><th>What it does</th></tr>
-      <tr><td>index.html</td><td>The builder, theory, economics, project decisions, and presentation material.</td></tr>
-      <tr><td>solver.js</td><td>The calculation that runs in the browser: friction factor, one pipe's flow from its end heads, and the network iteration.</td></tr>
-      <tr><td>examples.js</td><td>The use-case library. Every network is plain data, two tables of nodes and pipes; the solver never knows which example is loaded.</td></tr>
-      <tr><td>core/network.py</td><td>The Python reference implementation of the same physics, written first and kept as the verification standard.</td></tr>
-      <tr><td>tests/</td><td>The checker: known-answer tests for the Python core, and a cross-check that the browser solver reproduces the Python numbers.</td></tr>
-    </table>
-
-    <h2>The code, block by block, with the reasoning</h2>
-
-    <h3>Block 1 — the friction factor</h3>
-    <pre class="code">function fanningF(Re, D, eps) {
-  if (Re &lt;= 0) return 0;
-  if (Re &lt; 2300) return 16 / Re;
-  const a = Math.pow(2.457 * Math.log(1 / (Math.pow(7 / Re, 0.9) + 0.27 * eps / D)), 16);
-  const b = Math.pow(37530 / Re, 16);
-  const fDarcy = 8 * Math.pow(Math.pow(8 / Re, 12) + 1 / Math.pow(a + b, 1.5), 1 / 12);
-  return fDarcy / 4;
-}</pre>
-    <p><b>Reasoning.</b> The course works in the Fanning form, so the whole tool does too, and the one conversion lives in exactly one place: the Churchill correlation <sup class="cite">[R3]</sup> is published in the Darcy form, so its result is divided by 4 on the last line, because the Darcy factor is 4 times the Fanning factor <span class="tag class devnote">CLASS-W11</span>. Below a Reynolds number of 2300 the code returns the laminar result 16 / Re, which is not a correlation: it is derived in class from the Hagen–Poiseuille profile <span class="tag hw devnote">CLASS-HW4</span>. Using Churchill for the turbulent side means one formula covers the transitional band as well, so the solver never jumps between correlations mid-iteration.</p>
-
-    <h3>Block 2 — one pipe: flow from its end heads</h3>
-    <pre class="code">function pipeFlow(dH, p, rho, mu) {
-  const A = Math.PI * p.D * p.D / 4;
-  function resid(Q) {
-    const V = Q / A;
-    const Re = rho * Math.abs(V) * p.D / mu;
-    const fF = fanningF(Math.max(Re, 1e-9), p.D, p.eps);
-    const loss = (4 * fF * p.L / p.D + p.K) * V * Math.abs(V) / (2 * G);
-    let gain = 0;
-    if (p.pump) gain = p.pump.s * p.pump.s * p.pump.H0 - p.pump.kp * Q * Math.abs(Q);
-    return dH + gain - loss;
-  }
-  // bisection on resid(Q) between -3 and 3 cubic metres per second
-}</pre>
-    <p><b>Reasoning.</b> A pipe cannot be solved by a formula, because the friction factor depends on the flow that is being solved for. So the code defines one residual: end-head difference, plus pump gain, minus head loss, all as a function of the flow Q, and finds the Q that makes the residual zero. The loss is written with V times |V|, never V squared: the product carries the sign, so a pipe running backward loses head in the correct direction automatically. That sign is also this project's cautionary tale. The first feasibility version wrote the loss with the wrong sign treatment and most flows silently collapsed to zero; nothing looked broken until a laminar test case with a known answer exposed it. That test now runs before anything is published, and it is why the checker exists.</p>
-
-    <h3>Block 3 — the network: balance at every junction</h3>
-    <pre class="code">function balance(x) {          // x holds the current guess of junction heads
-  const H = heads(x), r = new Array(free.length).fill(0);
-  for (const p of pipes) {
-    const q = pipeFlow(H[p.a] - H[p.b], p, rho, mu).Q;
-    if (p.a in idx) r[idx[p.a]] -= q;   // flow leaving a junction
-    if (p.b in idx) r[idx[p.b]] += q;   // flow arriving at a junction
-  }
-  return r;                      // zero at every junction = solved
-}</pre>
-    <p><b>Reasoning.</b> The unknowns are the junction heads, nothing else. For any guess of those heads, every pipe's flow follows from Block 2, and the imbalance at each junction follows from continuity <span class="tag class devnote">CLASS-W5/W6</span>. A Newton iteration with a numerically built Jacobian, plus a line search that only accepts steps which shrink the worst imbalance, drives every imbalance below 1e-10 cubic metres per second. Solving all pipes at once this way is the one numerical method on the site that was not taught as a named method in class <span class="tag new devnote">NEW-EXT</span>; it is assembled entirely from class pieces. The Python reference core solves the same system with library root-finders instead <sup class="cite">[R6]</sup>, so the two implementations share the physics and nothing else, which is what makes their agreement a real check.</p>
-
-    <h3>Block 4 — why there are two implementations</h3>
-    <p><b>Reasoning.</b> <span class="tag ai devnote">AI-DECISION</span> The Python core was written first, in the course's Fanning form, and frozen as the standard. The browser solver was then written to reproduce it, because the public site must load instantly with no large in-browser Python download on a school network. Before any version is shown, the Python known-answer tests run (a laminar pipe against Hagen–Poiseuille, the preset network's balance and flow ordering, a 10-pipe and 4-pump stress network, a deliberately reversed branch, a water check case, and a hand-solved laminar series network), and then the cross-check requires the browser solver to match the Python numbers on every example in the library. At the time of writing: 22 Python checks and 7 browser cross-checks, all passing.</p>
-
-    <h2 id="project-decisions" data-topic tabindex="-1">Project decisions</h2>
-    <table>
-      <tr><th>Decision</th><th>Reason</th></tr>
-      <tr><td>Build a generic network tool first; the refinery network is Example 1, not the product</td><td><span class="tag ai devnote">AI-DECISION</span> The professor's brief was a table of sources and sinks, not one fixed plant. A generic engine with a use-case library demonstrates the capability and teaches more per example.</td></tr>
-      <tr><td>Caps of 12 nodes, 10 pipes, 4 pumps, enforced with guardrails</td><td>The group's agreed maximum size. The guardrails refuse what cannot be solved: a part of the network with no fixed-head node, a pipe from a node to itself, duplicate names, and non-positive diameters or lengths, each with the reason shown.</td></tr>
-      <tr><td>Work in the Fanning friction form everywhere</td><td>It is the course's form <span class="tag class devnote">CLASS-W11</span>; converting once, inside the friction block, prevents the classic Fanning-versus-Darcy factor-of-4 error everywhere else.</td></tr>
-      <tr><td>The roughly 2 m/s economic velocity is a design check, never a control</td><td>It comes from the optimal-diameter analysis <span class="tag hw devnote">CLASS-HW5</span>. The tool flags pipes far from it; it does not silently resize anything.</td></tr>
-      <tr><td>A correction on fittings: K measures loss, it does not keep flow laminar</td><td>An early group suggestion described fitting coefficients as a way to keep flow laminar. The Reynolds number sets the regime; K only prices the head a fitting destroys <span class="tag class devnote">CLASS-W13</span>. The site teaches it that way.</td></tr>
-      <tr><td>Every technical value carries a reference; preset values are labelled as presets</td><td>This is an academic submission. Course material is cited by week and homework, external values to their paper or textbook table, and invented demo values are declared as stated presets <sup class="cite">[R7]</sup> rather than dressed up as data.</td></tr>
-      <tr><td>Dev labels visible in working builds, removed by one setting in the final build</td><td>The team audits where every statement came from (class, homework, extension, or a logged AI decision) before presenting it as their own work.</td></tr>
-      <tr><td>Process evidence kept in a decision record</td><td>The plan was generated by Muse; a second AI model is producing a parallel iteration for comparison, led by Drew Corbitt; every suggestion is logged with an accept or reject decision and a reason, and the site's process text is written from that record.</td></tr>
-      <tr><td>Final demo case: two source tanks fill one open receiving tank, over the top, to its max fill level</td><td>The team's simplification decision. Discharging above the max fill level at a fixed elevation keeps the fill flow constant, so fill time is an exact continuity calculation; the lift is measured from the network to the top of the tank, and the tank's liquid level is volume bookkeeping only. The fill panel solves for the variable the user does not know: fill time, required flow for a target time (checked honestly against what the pump and network can deliver), or a diameter for a target velocity.</td></tr>
-    </table>
-
-    <h2 id="presentation-title" data-topic tabindex="-1">Presentation materials</h2>
-    <div class="media-grid">
-      <div class="placeholder"><h3>Presentation video</h3><p>The video and its YouTube link will appear here after publication. The YouTube comments will include the practice transcript and its AI critique.</p></div>
-      <div class="placeholder"><h3>Video transcript</h3><p>The complete, unedited YouTube transcript will appear here after publication.</p></div>
-      <div class="placeholder"><h3>Slides</h3><p>The presentation deck will be available here to view and download.</p></div>
-    </div>
-    </div>
-  </section>
-  <div class="page-width">
-  <details class="devkey devnote">
-    <summary>Working build annotation key</summary>
-    <span class="tag class">CLASS-W##</span> Lecture week
-    <span class="tag hw">CLASS-HW#</span> Course homework
-    <span class="tag new">NEW-EXT</span> Extension beyond the course
-    <span class="tag dev">DEV</span> Team note
-    <span class="tag ai">AI-DECISION</span> Project decision record
-  </details>
-  </div>
+<h2 id="team-workflow" data-topic tabindex="-1">Team and AI workflow</h2>
+<p>The team used AI to help build and evaluate a fluid mechanics simulator. The students defined the model scope, tested the resulting calculations, and compared two approaches to the same network problem.</p>
+<ul class="project-team">
+<li><strong>Ian Snider</strong>Project lead, initial refinery build with Muse, and assistant presenter</li>
+<li><strong>Drew Corbitt</strong>Second-model comparison assignment and lead presenter</li>
+<li><strong>Perry Meredith</strong>Slide deck and video support</li>
+<li><strong>Zac Neikamp</strong>Standalone piping simulator, video production, and narration</li>
+</ul>
+<h2 id="implementation" data-topic tabindex="-1">Implementation comparison</h2>
+<div class="scroll"><table><thead><tr><th scope="col">Design choice</th><th scope="col">Earlier refinery build</th><th scope="col">Zac’s live workspace</th></tr></thead><tbody>
+<tr><td>Model scope</td><td>Fixed-head networks with pump-assisted transfer, pipe and fitting losses, and over-the-top fill calculations</td><td>Passive networks with wall friction, physical elevation, and pressure or flow boundaries</td></tr>
+<tr><td>Interaction</td><td>Editable tables and a generated schematic</td><td>Synchronized tables and canvas, with 2D plan and 3D elevation views</td></tr>
+<tr><td>Verification</td><td>Python reference and JavaScript cross-check</td><td>Six built-in browser checks for balances, boundaries, and limiting cases</td></tr>
+</tbody></table></div>
+<p><a href="#verification">Open the live validation checks</a></p>
+<h2 id="project-decisions" data-topic tabindex="-1">Project decisions</h2>
+<ul class="decision-list"><li><strong>Use Zac’s workspace as the live simulator.</strong> Its pressure and flow boundary controls and physical elevation views define the calculation scope.</li><li><strong>Use the Fanning convention throughout.</strong> The equations, worked calculation, and pipe results use the same friction factor.</li><li><strong>Present velocity screening as a design check.</strong> The Economics tab reads the live pipe velocities. Annual cost requires a separate model and inputs.</li></ul>
+<p>The team’s detailed comparison of prompts, model versions, and final conclusions is pending.</p>
+<h2 id="presentation-title" data-topic tabindex="-1">Presentation materials</h2>
+<div class="media-grid">
+<div class="placeholder"><h3>Presentation video</h3><p>The demonstration and its YouTube link will appear here after publication.</p></div>
+<div class="placeholder"><h3>Video transcript</h3><p>The complete, unedited transcript will appear here after publication.</p></div>
+<div class="placeholder"><h3>Slides</h3><p>The presentation deck will be available here to view and download.</p></div>
 </div>
-</main>
-
+</div></section>
+</div></main>
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div><a class="wordmark" href="#home">Pipe Network</a><p>University of Cincinnati · Fluid Mechanics · Fall 2026</p></div>
     <p>Decorative imagery generated with OpenAI ImageGen. Network diagrams come from the simulator.</p>
   </div>
 </footer>
-
+<dialog id="dialog" class="zac-dialog" aria-labelledby="dlgTitle"><form id="form"><h2 id="dlgTitle"></h2><div id="fields" style="display:grid;gap:10px"></div><div class="actions"><button class="primary" type="submit">Apply</button><button type="button" id="cancel">Cancel</button></div></form></dialog>
 <script>
-// Refinery pipe network - browser solver. Iteration 1, November 19, 2026.
-// Mirror of core/network.py; cross-checked against it in tests/crosscheck_js.js.
-// Symbol key (SI units): H total head at a node (m); Q pipe flow (m3/s), signed
-// start node to end node; D diameter (m); L length (m); eps roughness (m);
-// K sum of fitting loss coefficients (dimensionless); rho density (kg/m3);
-// mu viscosity (Pa s); V mean velocity (m/s); Re Reynolds number
-// (dimensionless); fF Fanning friction factor (dimensionless);
-// hL head loss (m); g = 9.81 m/s2; H0 pump shutoff head (m);
-// kp pump curve coefficient (s2/m5); s pump speed ratio (dimensionless);
-// eta pump efficiency (dimensionless).
-"use strict";
-const G = 9.81;
-
-function fanningF(Re, D, eps) {
-  if (Re <= 0) return 0;
-  if (Re < 2300) return 16 / Re;
-  const a = Math.pow(2.457 * Math.log(1 / (Math.pow(7 / Re, 0.9) + 0.27 * eps / D)), 16);
-  const b = Math.pow(37530 / Re, 16);
-  const fDarcy = 8 * Math.pow(Math.pow(8 / Re, 12) + 1 / Math.pow(a + b, 1.5), 1 / 12);
-  return fDarcy / 4;
-}
-
-function pipeFlow(dH, p, rho, mu) {
-  const A = Math.PI * p.D * p.D / 4;
-  function resid(Q) {
-    const V = Q / A;
-    const Re = rho * Math.abs(V) * p.D / mu;
-    const fF = fanningF(Math.max(Re, 1e-9), p.D, p.eps);
-    const loss = (4 * fF * p.L / p.D + p.K) * V * Math.abs(V) / (2 * G);
-    let gain = 0;
-    if (p.pump) gain = p.pump.s * p.pump.s * p.pump.H0 - p.pump.kp * Q * Math.abs(Q);
-    return dH + gain - loss;
-  }
-  let lo = -3, hi = 3, flo = resid(lo), fhi = resid(hi);
-  if (flo === 0) return { Q: lo, ok: true };
-  if (flo * fhi > 0) return { Q: 0, ok: false };
-  for (let i = 0; i < 200; i++) {
-    const mid = (lo + hi) / 2, fm = resid(mid);
-    if (flo * fm <= 0) { hi = mid; } else { lo = mid; flo = fm; }
-    if (hi - lo < 1e-13) break;
-  }
-  return { Q: (lo + hi) / 2, ok: true };
-}
-
-function solveNetwork(nodes, pipes, rho, mu) {
-  // nodes: {name: fixed head (m) or null}; pipes as in core/network.py preset.
-  const names = Object.keys(nodes);
-  const free = names.filter(n => nodes[n] === null);
-  const idx = {}; free.forEach((n, i) => idx[n] = i);
-  const fixedVals = names.filter(n => nodes[n] !== null).map(n => nodes[n]);
-  const meanFixed = fixedVals.reduce((a, b) => a + b, 0) / fixedVals.length;
-
-  function heads(x) {
-    const H = {};
-    names.forEach(n => H[n] = nodes[n] !== null ? nodes[n] : x[idx[n]]);
-    return H;
-  }
-  function balance(x) {
-    const H = heads(x), r = new Array(free.length).fill(0);
-    for (const p of pipes) {
-      const q = pipeFlow(H[p.a] - H[p.b], p, rho, mu).Q;
-      if (p.a in idx) r[idx[p.a]] -= q;
-      if (p.b in idx) r[idx[p.b]] += q;
-    }
-    return r;
-  }
-  function solveLinear(A, b) { // Gaussian elimination, small systems only
-    const n = b.length, M = A.map((row, i) => row.concat(b[i]));
-    for (let c = 0; c < n; c++) {
-      let piv = c;
-      for (let r = c + 1; r < n; r++) if (Math.abs(M[r][c]) > Math.abs(M[piv][c])) piv = r;
-      if (Math.abs(M[piv][c]) < 1e-14) return null;
-      [M[c], M[piv]] = [M[piv], M[c]];
-      for (let r = 0; r < n; r++) {
-        if (r === c) continue;
-        const f = M[r][c] / M[c][c];
-        for (let k = c; k <= n; k++) M[r][k] -= f * M[c][k];
-      }
-    }
-    return M.map((row, i) => row[n] / row[i]);
-  }
-
-  let x = free.map(() => meanFixed), converged = free.length === 0;
-  let r = balance(x);
-  for (let iter = 0; iter < 60 && free.length; iter++) {
-    const maxr = Math.max(...r.map(Math.abs));
-    if (maxr < 1e-10) { converged = true; break; }
-    const J = [];
-    for (let j = 0; j < free.length; j++) {
-      const xj = x.slice(); const h = 1e-6 * Math.max(1, Math.abs(x[j]));
-      xj[j] += h;
-      const rj = balance(xj);
-      J.push(r.map((v, i) => (rj[i] - v) / h));
-    }
-    const Jt = free.map((_, i) => free.map((_, j) => J[j][i])); // transpose to rows
-    const step = solveLinear(Jt, r.map(v => -v));
-    if (!step) break;
-    let t = 1, improved = false;
-    for (let ls = 0; ls < 20; ls++) {
-      const xn = x.map((v, i) => v + t * step[i]);
-      const rn = balance(xn);
-      if (Math.max(...rn.map(Math.abs)) < maxr) { x = xn; r = rn; improved = true; break; }
-      t /= 2;
-    }
-    if (!improved) break;
-  }
-  const maxRes = free.length ? Math.max(...r.map(Math.abs)) : 0;
-  if (free.length && maxRes < 1e-8) converged = true;
-
-  const H = heads(x);
-  const rows = pipes.map(p => {
-    const q = pipeFlow(H[p.a] - H[p.b], p, rho, mu);
-    const A = Math.PI * p.D * p.D / 4, V = q.Q / A;
-    const Re = rho * Math.abs(V) * p.D / mu;
-    const fF = fanningF(Math.max(Re, 1e-9), p.D, p.eps);
-    const hL = (4 * fF * p.L / p.D + p.K) * V * Math.abs(V) / (2 * G);
-    const row = { name: p.name, a: p.a, b: p.b, Q: q.Q, V, Re, fF, hL,
-      reversed: q.Q < 0, solved: q.ok, Leq: fF > 0 ? p.K * p.D / (4 * fF) : 0 };
-    if (p.pump) {
-      const gain = p.pump.s * p.pump.s * p.pump.H0 - p.pump.kp * q.Q * Math.abs(q.Q);
-      row.pump_head = gain;
-      row.pump_power_W = q.Q > 0 ? rho * G * q.Q * gain / p.pump.eta : 0;
-    }
-    return row;
-  });
-  return { converged, max_residual: maxRes, heads: H, pipes: rows };
-}
-
-// ---- Adapter: builder state (examples.js) -> solver inputs ----
-// Nodes arrive as a list with kind and head; junctions become null (free).
-// Pipes arrive with a pump preset name and speed ratio; the solver wants
-// the pump object itself. PUMPS and the examples live in examples.js.
-function buildInputs(nodeList, pipeList) {
-  const nodes = {};
-  for (const n of nodeList) nodes[n.name] = n.kind === "junction" ? null : n.head;
-  const pipes = pipeList.map(p => {
-    let pump = null;
-    if (p.pumpName) {
-      const base = PUMPS[p.pumpName];
-      pump = { H0: base.H0, kp: base.kp, s: p.s || 1, eta: base.eta };
-    }
-    return { name: p.name, a: p.a, b: p.b, D: p.D, L: p.L, eps: p.eps, K: p.K, pump };
-  });
-  return { nodes, pipes };
-}
-if (typeof module !== "undefined") module.exports = { solveNetwork, buildInputs, fanningF };
-</script>
-<script>
-// Use-case library for the generic pipe-network builder. Iteration 2.
-// Every network is data: a list of nodes and a list of pipes. The solver
-// (solver.js) does not know which example is loaded; that is the point.
-// Symbol key (SI units): H total head at a node (m), fixed for sources and
-// sinks, solved for junctions; Q pipe flow (m3/s); D diameter (m);
-// L length (m); eps roughness (m); K fitting loss sum (dimensionless);
-// s pump speed ratio (dimensionless); x, y diagram position (per cent of
-// the diagram width and height, display only, not physics).
-"use strict";
-const STEEL_EPS = 4.5e-5; // commercial steel [R5]
-
-const FLUIDS = {
-  "Crude oil (preset)": { rho: 850, mu: 0.008 },
-  "Water, 20 C (check case)": { rho: 998, mu: 0.001002 },
-  "Viscous oil (preset)": { rho: 900, mu: 0.35 }
-};
-
-// Stated illustrative pump presets [R7], not manufacturer data.
-const PUMPS = {
-  "Pump 1": { H0: 40, kp: 900, eta: 0.75 },
-  "Pump 2": { H0: 55, kp: 1400, eta: 0.75 },
-  "Pump 3": { H0: 30, kp: 600, eta: 0.75 },
-  "Pump W (weak)": { H0: 28, kp: 700, eta: 0.75 },
-  "Pump L (loading)": { H0: 15, kp: 400, eta: 0.75 }
-};
-
-function N(name, kind, head, x, y) { return { name, kind, head, x, y }; }
-function P(name, a, b, D, L, K, pumpName, s) {
-  return { name, a, b, D, L, eps: STEEL_EPS, K, pumpName: pumpName || null, s: s || 1 };
-}
-
-const EXAMPLES = {
-  "refinery": {
-    title: "Example 1 — Refinery transfer network",
-    fluid: "Crude oil (preset)",
-    blurb: "Two crude tanks at different levels feed one header, a pump pushes the combined flow, and the stream splits to two process units at different heights. The original project preset.",
-    lesson: "Watch Pipe 2: the low tank contributes far less than the high tank, and the pump, not gravity, sets the split between the two units.",
-    nodes: [
-      N("Tank A", "source", 25, 8, 16), N("Tank B", "source", 15, 8, 48),
-      N("Junction J", "junction", null, 38, 32), N("Split S", "junction", null, 64, 32),
-      N("Unit 1", "sink", 18, 92, 16), N("Unit 2", "sink", 8, 92, 48)
-    ],
-    pipes: [
-      P("Pipe 1", "Tank A", "Junction J", 0.20, 120, 1.25),
-      P("Pipe 2", "Tank B", "Junction J", 0.20, 90, 0.95),
-      P("Pipe 3", "Junction J", "Split S", 0.25, 200, 2.95, "Pump 1"),
-      P("Pipe 4", "Split S", "Unit 1", 0.15, 150, 2.55),
-      P("Pipe 5", "Split S", "Unit 2", 0.15, 110, 2.25)
-    ]
-  },
-  "parallel": {
-    title: "Example 2 — Two pipes in parallel",
-    fluid: "Water, 20 C (check case)",
-    blurb: "One high tank, one low tank, and two pipes side by side connecting them. No pump, no junction: the simplest network there is, and the split still surprises people.",
-    lesson: "The wide pipe is 1.5 times the diameter, so it has 2.25 times the area, but it carries about 2.85 times the flow: a bigger pipe also loses less head per unit of flow. Area alone does not set the split.",
-    nodes: [
-      N("Tank High", "source", 30, 10, 32), N("Tank Low", "sink", 10, 90, 32)
-    ],
-    pipes: [
-      P("Pipe 1", "Tank High", "Tank Low", 0.10, 100, 1.0),
-      P("Pipe 2", "Tank High", "Tank Low", 0.15, 100, 1.0)
-    ]
-  },
-  "gravity": {
-    title: "Example 3 — Gravity feed, no pump",
-    fluid: "Water, 20 C (check case)",
-    blurb: "A roof tank feeds two outlets at different heights through one junction. Nothing but elevation drives this network.",
-    lesson: "The low outlet draws more than the high outlet even though its pipe run is not the shortest path on the page: what matters is the head difference each branch actually gets.",
-    nodes: [
-      N("Roof Tank", "source", 40, 10, 20), N("Junction J", "junction", null, 50, 32),
-      N("High Outlet", "sink", 15, 90, 16), N("Low Outlet", "sink", 5, 90, 48)
-    ],
-    pipes: [
-      P("Pipe 1", "Roof Tank", "Junction J", 0.12, 60, 1.5),
-      P("Pipe 2", "Junction J", "High Outlet", 0.08, 40, 2.0),
-      P("Pipe 3", "Junction J", "Low Outlet", 0.08, 30, 2.0)
-    ]
-  },
-  "starved": {
-    title: "Example 4 — The starved branch",
-    fluid: "Crude oil (preset)",
-    blurb: "A weak pump lifts crude from a low supply tank to a junction feeding a high unit and a low unit. At full speed the junction head sits just below what the high unit needs.",
-    lesson: "At speed ratio 1.00 the high unit is starved and its pipe runs slightly backward. Drag the pump speed to 1.15, then 1.30, and watch the branch come alive. This is the operating-point lesson: a pump and a network settle together.",
-    nodes: [
-      N("Supply Tank", "source", 10, 10, 32), N("Junction J", "junction", null, 55, 32),
-      N("High Unit", "sink", 34, 90, 16), N("Low Unit", "sink", 12, 90, 48)
-    ],
-    pipes: [
-      P("Pipe 1", "Supply Tank", "Junction J", 0.15, 80, 1.5, "Pump W (weak)"),
-      P("Pipe 2", "Junction J", "High Unit", 0.10, 60, 2.0),
-      P("Pipe 3", "Junction J", "Low Unit", 0.10, 60, 2.0)
-    ]
-  },
-  "laminar": {
-    title: "Example 5 — Laminar flow, viscous oil",
-    fluid: "Viscous oil (preset)",
-    blurb: "A thick oil creeps through two pipes in series. The Reynolds number stays near 18, deep in the laminar regime, so this whole network can also be solved exactly by hand.",
-    lesson: "In laminar flow the head loss grows in direct proportion to the velocity, not its square, and the solver reproduces the hand result from the Hagen-Poiseuille equation. This is the teaching and checking case.",
-    nodes: [
-      N("Tank A", "source", 14, 10, 32), N("Middle M", "junction", null, 50, 32),
-      N("Tank B", "sink", 10, 90, 32)
-    ],
-    pipes: [
-      P("Pipe 1", "Tank A", "Middle M", 0.06, 40, 0.5),
-      P("Pipe 2", "Middle M", "Tank B", 0.06, 60, 0.5)
-    ]
-  },
-  "topfill": {
-    title: "Example 6 — Top fill: two source tanks to one receiving tank",
-    fluid: "Crude oil (preset)",
-    blurb: "The team's final demo case. Two source tanks at different levels feed one junction; a loading pump pushes the combined flow through a fill line that discharges over the top of an open receiving tank, above its max fill level. The receiving tank node's head (21 m) is the discharge elevation at the top of the tank, not the liquid level: the lift is measured from the network up to the top of the tank. Use the tank-fill panel below the results to solve for fill time, for the flow a target time requires, or for a diameter.",
-    lesson: "Because the discharge is over the top at a fixed elevation, the fill flow does not decay as the tank fills: the level never pushes back. The higher source tank contributes about three times what the lower one does, and the fill time is an exact volume-over-flow calculation, not an estimate.",
-    fill: { tank: "Receiving Tank", tankD: 3, bottom: 15, start: 1.0, max: 5.2 },
-    nodes: [
-      N("Source A", "source", 14, 8, 16), N("Source B", "source", 11, 8, 50),
-      N("Junction J", "junction", null, 42, 32),
-      N("Receiving Tank", "sink", 21, 90, 32)
-    ],
-    pipes: [
-      P("A Feed", "Source A", "Junction J", 0.12, 90, 1.2),
-      P("B Feed", "Source B", "Junction J", 0.12, 110, 1.2),
-      P("Fill Line", "Junction J", "Receiving Tank", 0.15, 160, 2.45, "Pump L (loading)")
-    ]
-  }
-};
-
-if (typeof module !== "undefined") module.exports = { EXAMPLES, FLUIDS, PUMPS };
-</script>
-<script>
-"use strict";
-const SHOW_DEV_NOTES = false; // final build: set false and strip .devnote elements
-if (!SHOW_DEV_NOTES) document.querySelectorAll(".devnote").forEach(e => e.remove());
-
 // ---------- Section navigation ----------
 const sectionLinks = [...document.querySelectorAll("#tabbar a")];
 function showRoute(moveFocus = false) {
   const hash = location.hash.slice(1);
-  const target = document.getElementById(hash === "video" ? "presentation-title" : hash);
+  const aliases = new Map([["video","presentation-title"],["validation","verification"],["sim","network-builder"],["ai","implementation"],["docs","team-workflow"]]);
+  const target = document.getElementById(aliases.get(hash) ?? hash);
   const topic = target?.hasAttribute("data-topic") ? target : null;
   const name = topic ? topic.closest(".tab").id.slice(4) : hash === "code" ? "project" : hash;
   const current = sectionLinks.some(link => link.dataset.tab === name) ? name : "home";
@@ -1136,6 +694,7 @@ function showRoute(moveFocus = false) {
     if (topic && link.hash === "#" + topic.id) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   });
+  if (current === "theory" && !document.getElementById("checks").children.length) checks();
   if (topic) {
     if (moveFocus) topic.focus({ preventScroll: true });
     topic.scrollIntoView();
@@ -1146,403 +705,179 @@ function showRoute(moveFocus = false) {
 }
 window.addEventListener("hashchange", () => showRoute(true));
 
-// ---------- Builder ----------
-const CAPS = { nodes: 12, pipes: 10, pumps: 4 };
-let state = null, currentKey = "refinery";
-let lastRes = null, lastDelivered = {};
-const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-const fmt = (x, n) => Number(x).toFixed(n);
-function regime(Re) { return Re < 2300 ? "Laminar" : (Re <= 4000 ? "Transitional" : "Turbulent"); }
 
-const exSel = $("exampleSel"), flSel = $("fluidSel");
-const fillDischarge = $("fillDischarge");
-Object.keys(EXAMPLES).forEach(k => {
-  const o = document.createElement("option"); o.value = k; o.textContent = EXAMPLES[k].title; exSel.appendChild(o);
-});
-Object.keys(FLUIDS).forEach(k => {
-  const o = document.createElement("option"); o.value = k; o.textContent = k; flSel.appendChild(o);
-});
 
-function loadExample(key) {
-  currentKey = key;
-  state = JSON.parse(JSON.stringify(EXAMPLES[key]));
-  flSel.value = EXAMPLES[key].fluid;
-  $("exBlurb").textContent = EXAMPLES[key].blurb;
-  $("exLesson").textContent = "What to notice: " + EXAMPLES[key].lesson;
-  renderTables(); setupFill(); solveAndRender();
+const gravity=9.80665, roughness=0.000015;
+const liquids={Water:[998.2,0.001002],'Crude oil':[850,0.008],Gasoline:[740,0.0006],Diesel:[830,0.003]};
+function node(id,type,x,y,z,value=0,bc='pressure'){return {id,type,x,y,z,value,bc:type==='Junction'?'balance':bc}}
+function pipe(id,a,b,L,D){return {id,a,b,L,D}}
+function example(){return {nodes:[node('N1','Inlet',-225,0,2,160),node('N2','Junction',-55,0,4),node('N3','Outlet',180,-90,10),node('N4','Outlet',180,0,6),node('N5','Outlet',180,90,1)],pipes:[pipe('P1','N1','N2',90,.15),pipe('P2','N2','N3',100,.085),pipe('P3','N2','N4',120,.09),pipe('P4','N2','N5',150,.1)]}}
+function fanning(re,D){
+ if(re===0)return null;
+ if(re<100)return 16/re;
+ const A=(-2.457*Math.log((7/re)**.9+.27*roughness/D))**16,B=(37530/re)**16;
+ return 2*((8/re)**12+(A+B)**-1.5)**(1/12);
 }
-exSel.addEventListener("change", () => loadExample(exSel.value));
-flSel.addEventListener("change", solveAndRender);
-$("resetBtn").addEventListener("click", () => loadExample(currentKey));
-["fillTank", "fillMode", "fillTankD", "fillBottom", "fillStart", "fillMax", "fillTargetTime", "fillTargetVel"]
-  .forEach(id => { $(id).addEventListener("input", renderFill); $(id).addEventListener("change", renderFill); });
-fillDischarge.addEventListener("input", () => {
-  const tank = $("fillTank").value;
-  const i = state.nodes.findIndex(n => n.kind === "sink" && n.name === tank);
-  if (i < 0) return;
-  state.nodes[i].head = fillDischarge.valueAsNumber;
-  $("nodeTable").querySelector(`.n-head[data-i="${i}"]`).value = fillDischarge.value;
-  solveAndRender();
-});
-
-function nodeOptions(sel) {
-  return state.nodes.map(n => `<option ${n.name === sel ? "selected" : ""}>${esc(n.name)}</option>`).join("");
+function hydraulics(p,q,fluid){
+ const [rho,mu]=liquids[fluid],area=Math.PI*p.D**2/4,v=q/area,re=rho*Math.abs(v)*p.D/mu,f=fanning(re,p.D);
+ return {q,v,re,f,area,loss:4*(f||0)*p.L/p.D*v*v/(2*gravity),regime:!q?'Still':re<2300?'Laminar':re<4000?'Transition':'Turbulent'};
 }
-function renderTables() {
-  const nt = $("nodeTable");
-  nt.querySelectorAll("tr.row").forEach(r => r.remove());
-  state.nodes.forEach((n, i) => {
-    const tr = document.createElement("tr"); tr.className = "row";
-    tr.innerHTML =
-      `<td><input class="n-name" data-i="${i}" value="${esc(n.name)}"></td>` +
-      `<td><select class="n-kind" data-i="${i}">` +
-        ["source", "sink", "junction"].map(k => `<option ${k === n.kind ? "selected" : ""}>${k}</option>`).join("") + `</select></td>` +
-      `<td><input class="n-head" data-i="${i}" type="number" step="any" value="${n.head === null ? "" : n.head}" ${n.kind === "junction" ? "disabled" : ""}></td>` +
-      `<td><button class="btn del n-del" data-i="${i}">Remove</button></td>`;
-    nt.appendChild(tr);
-  });
-  const pt = $("pipeTable");
-  pt.querySelectorAll("tr.row").forEach(r => r.remove());
-  state.pipes.forEach((p, i) => {
-    const tr = document.createElement("tr"); tr.className = "row";
-    tr.innerHTML =
-      `<td><input class="p-name" data-i="${i}" value="${esc(p.name)}"></td>` +
-      `<td><select class="p-a" data-i="${i}">${nodeOptions(p.a)}</select></td>` +
-      `<td><select class="p-b" data-i="${i}">${nodeOptions(p.b)}</select></td>` +
-      `<td><input class="p-D" data-i="${i}" type="number" step="any" value="${p.D}"></td>` +
-      `<td><input class="p-L" data-i="${i}" type="number" step="any" value="${p.L}"></td>` +
-      `<td><input class="p-K" data-i="${i}" type="number" step="any" value="${p.K}"></td>` +
-      `<td><select class="p-pump" data-i="${i}"><option value="">None</option>` +
-        Object.keys(PUMPS).map(k => `<option ${k === p.pumpName ? "selected" : ""}>${k}</option>`).join("") + `</select></td>` +
-      `<td><input class="p-s" data-i="${i}" type="number" step="0.01" value="${p.s}" ${p.pumpName ? "" : "disabled"}></td>` +
-      `<td><button class="btn del p-del" data-i="${i}">Remove</button></td>`;
-    pt.appendChild(tr);
-  });
-  $("nodeCount").textContent = state.nodes.length + " of " + CAPS.nodes + " nodes";
-  $("pipeCount").textContent = state.pipes.length + " of " + CAPS.pipes + " pipes, " +
-    state.pipes.filter(p => p.pumpName).length + " of " + CAPS.pumps + " pumps";
-  $("addNodeBtn").disabled = state.nodes.length >= CAPS.nodes;
-  $("addPipeBtn").disabled = state.pipes.length >= CAPS.pipes || state.nodes.length < 2;
-  bindTableEvents();
+function flow(p,dh,fluid){
+ if(!dh)return 0;
+ let lo=0,hi=.001;
+ while(hydraulics(p,hi,fluid).loss<Math.abs(dh)){hi*=2;if(!isFinite(hi))throw Error('Head or geometry exceeds the numerical range. Check the SI inputs.')}
+ for(let i=0;i<62;i++){const mid=(lo+hi)/2;if(hydraulics(p,mid,fluid).loss<Math.abs(dh))lo=mid;else hi=mid}
+ return Math.sign(dh)*(lo+hi)/2;
 }
-
-function bindTableEvents() {
-  document.querySelectorAll(".n-name").forEach(el => el.addEventListener("change", () => {
-    const i = +el.dataset.i, old = state.nodes[i].name, v = el.value.trim();
-    if (!v || v === old) { el.value = old; return; }
-    state.nodes[i].name = v;
-    state.pipes.forEach(p => { if (p.a === old) p.a = v; if (p.b === old) p.b = v; });
-    renderTables(); solveAndRender();
-  }));
-  document.querySelectorAll(".n-kind").forEach(el => el.addEventListener("change", () => {
-    const n = state.nodes[+el.dataset.i]; n.kind = el.value;
-    if (n.kind !== "junction" && (n.head === null || n.head === undefined)) n.head = 10;
-    renderTables(); solveAndRender();
-  }));
-  document.querySelectorAll(".n-head").forEach(el => el.addEventListener("input", () => {
-    state.nodes[+el.dataset.i].head = parseFloat(el.value); solveAndRender();
-  }));
-  document.querySelectorAll(".n-del").forEach(el => el.addEventListener("click", () => {
-    const name = state.nodes[+el.dataset.i].name;
-    state.nodes.splice(+el.dataset.i, 1);
-    state.pipes = state.pipes.filter(p => p.a !== name && p.b !== name);
-    renderTables(); solveAndRender();
-  }));
-  document.querySelectorAll(".p-name").forEach(el => el.addEventListener("change", () => {
-    state.pipes[+el.dataset.i].name = el.value.trim() || state.pipes[+el.dataset.i].name;
-    el.value = state.pipes[+el.dataset.i].name; solveAndRender();
-  }));
-  [["p-a", "a"], ["p-b", "b"]].forEach(([cls, key]) =>
-    document.querySelectorAll("." + cls).forEach(el => el.addEventListener("change", () => {
-      state.pipes[+el.dataset.i][key] = el.value; solveAndRender();
-    })));
-  [["p-D", "D"], ["p-L", "L"], ["p-K", "K"], ["p-s", "s"]].forEach(([cls, key]) =>
-    document.querySelectorAll("." + cls).forEach(el => el.addEventListener("input", () => {
-      state.pipes[+el.dataset.i][key] = parseFloat(el.value); solveAndRender();
-    })));
-  document.querySelectorAll(".p-pump").forEach(el => el.addEventListener("change", () => {
-    state.pipes[+el.dataset.i].pumpName = el.value || null; renderTables(); solveAndRender();
-  }));
-  document.querySelectorAll(".p-del").forEach(el => el.addEventListener("click", () => {
-    state.pipes.splice(+el.dataset.i, 1); renderTables(); solveAndRender();
-  }));
+function linear(a,b){
+ b=b.slice();for(let i=0;i<b.length;i++){let k=i;for(let j=i+1;j<b.length;j++)if(Math.abs(a[j][i])>Math.abs(a[k][i]))k=j;
+ [a[i],a[k]]=[a[k],a[i]];[b[i],b[k]]=[b[k],b[i]];
+ if(!a[i][i])throw Error('Singular network. Check pressure boundaries and pipe connections.');
+ for(let j=i+1;j<b.length;j++){const t=a[j][i]/a[i][i];for(let s=i;s<b.length;s++)a[j][s]-=t*a[i][s];b[j]-=t*b[i]}}
+ for(let i=b.length-1;i>=0;i--){for(let j=i+1;j<b.length;j++)b[i]-=a[i][j]*b[j];b[i]/=a[i][i]}return b;
 }
-$("addNodeBtn").addEventListener("click", () => {
-  let k = state.nodes.length + 1, name = "Node " + k;
-  while (state.nodes.some(n => n.name === name)) name = "Node " + (++k);
-  const i = state.nodes.length;
-  state.nodes.push({ name, kind: "junction", head: null, x: 18 + (i * 14) % 62, y: 16 + (i * 19) % 44 });
-  renderTables(); solveAndRender();
-});
-$("addPipeBtn").addEventListener("click", () => {
-  let k = state.pipes.length + 1, name = "Pipe " + k;
-  while (state.pipes.some(p => p.name === name)) name = "Pipe " + (++k);
-  state.pipes.push({ name, a: state.nodes[0].name, b: state.nodes[1].name, D: 0.1, L: 50, eps: 4.5e-5, K: 1, pumpName: null, s: 1 });
-  renderTables(); solveAndRender();
-});
-
-// ---------- Guardrails ----------
-function validate() {
-  const errors = [], warnings = [];
-  const names = state.nodes.map(n => n.name);
-  if (names.some(n => !n)) errors.push("A node has an empty name.");
-  if (new Set(names).size !== names.length) errors.push("Node names must be unique.");
-  const pnames = state.pipes.map(p => p.name);
-  if (new Set(pnames).size !== pnames.length) errors.push("Pipe names must be unique.");
-  if (state.nodes.length > CAPS.nodes) errors.push("Too many nodes (limit " + CAPS.nodes + ").");
-  if (state.pipes.length > CAPS.pipes) errors.push("Too many pipes (limit " + CAPS.pipes + ").");
-  if (state.pipes.filter(p => p.pumpName).length > CAPS.pumps) errors.push("Too many pumps (limit " + CAPS.pumps + ").");
-  for (const n of state.nodes)
-    if (n.kind !== "junction" && !Number.isFinite(n.head)) errors.push(n.name + ": head is not a number.");
-  for (const p of state.pipes) {
-    if (!names.includes(p.a) || !names.includes(p.b)) errors.push(p.name + ": an end node is missing.");
-    else if (p.a === p.b) errors.push(p.name + ": a pipe cannot run from a node to itself.");
-    if (!(p.D > 0)) errors.push(p.name + ": diameter must be positive.");
-    if (!(p.L > 0)) errors.push(p.name + ": length must be positive.");
-    if (!(p.K >= 0)) errors.push(p.name + ": K cannot be negative.");
-    if (p.pumpName && !(p.s > 0)) errors.push(p.name + ": pump speed must be positive.");
-    if (p.pumpName && (p.s < 0.7 || p.s > 1.3)) warnings.push(p.name + ": speed ratio " + p.s + " is outside the usual 0.7 to 1.3 band.");
-  }
-  // every connected part needs at least one fixed-head node
-  const parent = {}; names.forEach(n => parent[n] = n);
-  const find = x => parent[x] === x ? x : (parent[x] = find(parent[x]));
-  for (const p of state.pipes) if (names.includes(p.a) && names.includes(p.b)) parent[find(p.a)] = find(p.b);
-  const comp = {};
-  for (const p of state.pipes) {
-    if (!names.includes(p.a)) continue;
-    const r = find(p.a); comp[r] = comp[r] || new Set(); comp[r].add(p.a); comp[r].add(p.b);
-  }
-  for (const r of Object.keys(comp)) {
-    const members = [...comp[r]];
-    if (!members.some(m => state.nodes.find(n => n.name === m).kind !== "junction"))
-      errors.push("The part containing " + members.join(", ") + " has no source or sink: nothing sets its head, so it cannot be solved.");
-  }
-  const used = new Set(); state.pipes.forEach(p => { used.add(p.a); used.add(p.b); });
-  state.nodes.filter(n => !used.has(n.name)).forEach(n => warnings.push(n.name + " is not connected to any pipe and takes no part in the solution."));
-  return { errors, warnings };
+function solve(net,fluid){
+ const {nodes,pipes}=net,[rho]=liquids[fluid],target=n=>n.bc==='flow'?n.value*(n.type==='Outlet'?-1:1):0;
+ if(!nodes.length||!pipes.length)throw Error('Add at least two nodes and connect them with a pipe.');
+ const idx=new Map(nodes.map((n,i)=>[n.id,i])),adj=nodes.map(()=>[]);
+ for(const n of nodes)if(!Number.isFinite(n.z)||!Number.isFinite(n.value)||n.bc==='flow'&&n.value<0)throw Error(n.id+' needs a finite elevation and boundary value. Enter flow as a positive magnitude.');
+ for(const p of pipes){if(!idx.has(p.a)||!idx.has(p.b)||p.a===p.b)throw Error(p.id+' needs two different existing endpoints.');if(!(p.L>0&&p.D>0&&isFinite(p.L)&&isFinite(p.D)))throw Error(p.id+' needs positive finite length and diameter in metres.');
+ const a=idx.get(p.a),b=idx.get(p.b);adj[a].push(b);adj[b].push(a)}
+ const h=nodes.map(n=>n.z+n.value*1000/(rho*gravity)),seen=new Set();
+ for(let i=0;i<nodes.length;i++){if(seen.has(i))continue;let group=[i];seen.add(i);
+ for(const j of group)for(const k of adj[j])if(!seen.has(k)){seen.add(k);group.push(k)}
+ if(group.length===1)throw Error(nodes[i].id+' is isolated. Connect it or remove it.');
+ const fixed=group.filter(j=>nodes[j].bc==='pressure');if(!fixed.length)throw Error('The network containing '+nodes[i].id+' needs a pressure boundary. Set an inlet or outlet to fixed pressure.');
+ const avg=fixed.reduce((s,j)=>s+h[j],0)/fixed.length;group.forEach(j=>{if(nodes[j].bc!=='pressure')h[j]=avg})}
+ const free=nodes.map((n,i)=>n.bc==='pressure'?-1:i).filter(i=>i>=0),map=new Map(free.map((j,i)=>[j,i]));
+ function evaluate(H,jac){const netOut=nodes.map(()=>0),J=jac?free.map(()=>free.map(()=>0)):[],qs=[];
+ for(const p of pipes){const a=idx.get(p.a),b=idx.get(p.b),dh=H[a]-H[b],q=flow(p,dh,fluid);qs.push(q);netOut[a]+=q;netOut[b]-=q;
+ if(jac){const step=Math.max(1e-12,Math.abs(q)*1e-5),signed=t=>Math.sign(t)*hydraulics(p,t,fluid).loss,k=2*step/(signed(q+step)-signed(q-step));for(const [j,l] of [[a,b],[b,a]])if(map.has(j)){J[map.get(j)][map.get(j)]+=k;if(map.has(l))J[map.get(j)][map.get(l)]-=k}}}
+ const r=free.map(j=>netOut[j]-target(nodes[j]));return {r,norm:Math.max(0,...r.map(Math.abs)),netOut,qs,J}}
+ for(let iter=0;iter<100;iter++){
+ const e=evaluate(h,true);if(e.norm<1e-10){const details=pipes.map((p,i)=>hydraulics(p,e.qs[i],fluid));if(![...h,...e.netOut,...details.map(d=>d.loss)].every(Number.isFinite))break;return {h,details,out:e.netOut,error:e.norm,iter,pressure:h.map((v,i)=>(v-nodes[i].z)*rho*gravity/1000)}}
+ const delta=linear(e.J,e.r);let accepted=false;
+ for(let t=1;t>1e-9;t/=2){const trial=h.slice();free.forEach((j,i)=>trial[j]-=t*delta[i]);if(evaluate(trial,false).norm<e.norm){trial.forEach((v,i)=>h[i]=v);accepted=true;break}}if(!accepted)break}
+ throw Error('The flow balance did not converge. Check the units, boundary conditions and pipe sizes.');
 }
-
-// ---------- Diagram ----------
-function renderDiagram(res) {
-  const W = 640, H = 400;
-  const px = x => 46 + (x / 100) * (W - 92), py = y => 34 + (y / 62) * (H - 78);
-  const pos = {}; state.nodes.forEach(n => pos[n.name] = { x: px(n.x), y: py(n.y), n });
-  const pairCount = {}, pairIdx = {};
-  state.pipes.forEach(p => { const k = [p.a, p.b].sort().join("|"); pairCount[k] = (pairCount[k] || 0) + 1; });
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto" role="img" aria-label="Generated diagram of the current network">`;
-  s += `<defs><marker id="ah2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#e8862e"/></marker>` +
-       `<marker id="ahR" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#e05d4d"/></marker></defs>`;
-  const flowOf = {}; if (res) res.pipes.forEach(r => flowOf[r.name] = r.Q);
-  for (const p of state.pipes) {
-    const A = pos[p.a], B = pos[p.b]; if (!A || !B) continue;
-    const k = [p.a, p.b].sort().join("|"); pairIdx[k] = (pairIdx[k] || 0) + 1;
-    const off = (pairIdx[k] - (pairCount[k] + 1) / 2) * 30;
-    const mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
-    const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy) || 1;
-    const cx = mx - dy / len * off, cy = my + dx / len * off;
-    const qx = 0.25 * A.x + 0.5 * cx + 0.25 * B.x, qy = 0.25 * A.y + 0.5 * cy + 0.25 * B.y;
-    const rev = res && flowOf[p.name] < 0;
-    const col = rev ? "#e05d4d" : "#1a2430", mk = rev ? "ahR" : "ah2";
-    const from = rev ? B : A, to = rev ? A : B;
-    const trim = pt => pt.n.kind === "junction" ? 19 : 56;
-    const ux = (to.x - from.x) / len, uy = (to.y - from.y) / len;
-    const sx = from.x + ux * trim(from), sy = from.y + uy * trim(from);
-    const ex = to.x - ux * trim(to), ey = to.y - uy * trim(to);
-    s += `<path d="M ${sx} ${sy} Q ${cx} ${cy} ${ex} ${ey}" stroke="${col}" stroke-width="3" fill="none" marker-end="url(#${mk})"/>`;
-    if (p.pumpName) s += `<circle cx="${qx}" cy="${qy}" r="13" fill="#fff" stroke="#e8862e" stroke-width="3"/><text x="${qx}" y="${qy + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2430">P</text>`;
-    s += `<text x="${qx}" y="${qy - 18}" text-anchor="middle" font-size="11" fill="#5a6a7a" style="paint-order:stroke;stroke:#fff;stroke-width:3">${esc(p.name)}</text>`;
-  }
-  for (const n of state.nodes) {
-    const P0 = pos[n.name];
-    const headTxt = n.kind === "junction"
-      ? (res && res.heads[n.name] !== undefined ? "solved: " + fmt(res.heads[n.name], 2) + " m" : "junction")
-      : "H = " + n.head + " m";
-    if (n.kind === "junction") {
-      s += `<circle cx="${P0.x}" cy="${P0.y}" r="15" fill="#fff" stroke="#e8862e" stroke-width="3"/>` +
-           `<text x="${P0.x}" y="${P0.y + 4}" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2430">${esc(n.name.slice(0, 3))}</text>`;
-    } else {
-      s += `<rect x="${P0.x - 52}" y="${P0.y - 20}" width="104" height="40" fill="none" stroke="#1a2430" stroke-width="2"/>` +
-           `<text x="${P0.x}" y="${P0.y + 4}" text-anchor="middle" font-size="11.5" fill="#1a2430">${esc(n.name.length > 15 ? n.name.slice(0, 14) + "…" : n.name)}</text>`;
-    }
-    s += `<text x="${P0.x}" y="${P0.y + 36}" text-anchor="middle" font-size="10.5" fill="#5a6a7a" style="paint-order:stroke;stroke:#fff;stroke-width:3">${esc(n.name)} · ${headTxt}</text>`;
-  }
-  s += "</svg>";
-  $("diagram").innerHTML = s;
-}
-
-// ---------- Tank fill panel ----------
-function setupFill() {
-  const sel = $("fillTank");
-  const sinks = state.nodes.filter(n => n.kind === "sink");
-  sel.innerHTML = sinks.map(n => `<option>${esc(n.name)}</option>`).join("");
-  const f = EXAMPLES[currentKey].fill;
-  if (f) {
-    sel.value = f.tank;
-    $("fillTankD").value = f.tankD; $("fillBottom").value = f.bottom;
-    $("fillStart").value = f.start; $("fillMax").value = f.max;
-  } else if (sinks.length) {
-    $("fillTankD").value = 3; $("fillBottom").value = sinks[0].head - 6;
-    $("fillStart").value = 1; $("fillMax").value = 5.2;
-  }
-}
-
-function renderFill() {
-  const out = $("fillOut"), note = $("fillNote");
-  if (!state) { out.innerHTML = ""; note.textContent = ""; return; }
-  const sel = $("fillTank");
-  const sinkNames = state.nodes.filter(n => n.kind === "sink").map(n => n.name);
-  if ([...sel.options].map(o => o.value).join("|") !== sinkNames.join("|")) {
-    const cur = sel.value;
-    sel.innerHTML = sinkNames.map(n => `<option>${esc(n)}</option>`).join("");
-    if (sinkNames.includes(cur)) sel.value = cur;
-  }
-  const tank = sel.value;
-  const node = state.nodes.find(n => n.kind === "sink" && n.name === tank);
-  fillDischarge.disabled = !node;
-  const discharge = node?.head ?? NaN;
-  if (!Object.is(fillDischarge.valueAsNumber, discharge)) {
-    fillDischarge.value = Number.isFinite(discharge) ? discharge : "";
-  }
-  if (!node || !lastRes) {
-    out.innerHTML = "";
-    note.textContent = node ? "Fill results require a solved network." : "Add a sink node to calculate tank fill.";
-    return;
-  }
-  const Dt = parseFloat($("fillTankD").value), zb = parseFloat($("fillBottom").value);
-  const hs = parseFloat($("fillStart").value), hm = parseFloat($("fillMax").value);
-  const mode = $("fillMode").value;
-  const tankH = discharge - zb, maxLiquidElevation = zb + hm;
-  const problems = [];
-  if (!(Dt > 0)) problems.push("Tank diameter must be positive.");
-  if (!Number.isFinite(zb)) problems.push("Enter a tank bottom elevation.");
-  if (!(hs >= 0)) problems.push("Start level must be at or above the tank bottom.");
-  if (!(hm > hs)) problems.push("Max fill level must be above the start level.");
-  if (tankH <= 0) problems.push("The discharge elevation must be above the tank bottom.");
-  else if (maxLiquidElevation >= discharge) problems.push("Max fill level must stay below the discharge (" + fmt(tankH, 2) + " m above the tank bottom).");
-  if (problems.length) { out.innerHTML = ""; note.textContent = problems.join(" "); return; }
-  const At = Math.PI * Dt * Dt / 4, Vol = At * (hm - hs);
-  const Qfill = lastDelivered[tank] || 0;
-  let chips = `<div class="chip2">Discharge elevation (top of tank): <b>${fmt(node.head, 2)} m</b></div>` +
-    `<div class="chip2">Clearance above max liquid level: <b>${fmt(discharge - maxLiquidElevation, 2)} m</b></div>` +
-    `<div class="chip2">Tank area, A<sub>t</sub>: <b>${fmt(At, 2)} m²</b></div>` +
-    `<div class="chip2">Volume to max fill, Vol: <b>${fmt(Vol, 1)} m³</b></div>`;
-  if (!(Qfill > 0)) {
-    out.innerHTML = chips;
-    note.textContent = "The solved network delivers no net flow into " + tank + ", so no fill time exists for these settings.";
-    return;
-  }
-  chips += `<div class="chip2">Solved fill flow, Q<sub>fill</sub>: <b>${fmt(Qfill, 4)} m³/s</b></div>`;
-  if (mode === "time") {
-    chips += `<div class="chip2">Fill time to max level: <b>${fmt(Vol / Qfill / 60, 1)} min</b></div>`;
-    note.textContent = "The flow is constant for the whole fill because the discharge stays above the liquid at a fixed elevation, so the fill time is exactly the volume divided by the flow.";
-  } else if (mode === "required") {
-    const tt = parseFloat($("fillTargetTime").value);
-    if (!(tt > 0)) { out.innerHTML = chips; note.textContent = "Target time must be positive."; return; }
-    const Qreq = Vol / (tt * 60);
-    chips += `<div class="chip2">Flow required for ${fmt(tt, 0)} min: <b>${fmt(Qreq, 4)} m³/s</b></div>`;
-    note.textContent = Qreq <= Qfill
-      ? "Achievable: the solved network delivers " + fmt(Qfill, 4) + " m³/s, more than required. Throttle the fill line or slow the pump to hold exactly the required flow."
-      : "Not achievable with the current network and pump settings: the requirement is " + fmt(Qreq, 4) + " m³/s and the network delivers " + fmt(Qfill, 4) + " m³/s. Raise the pump speed, enlarge the fill pipe, or allow more time.";
-  } else {
-    const tt = parseFloat($("fillTargetTime").value), Vt = parseFloat($("fillTargetVel").value);
-    if (!(tt > 0) || !(Vt > 0)) { out.innerHTML = chips; note.textContent = "Target time and target velocity must be positive."; return; }
-    const Qreq = Vol / (tt * 60), Dneed = Math.sqrt(4 * Qreq / (Math.PI * Vt));
-    chips += `<div class="chip2">Flow required for ${fmt(tt, 0)} min: <b>${fmt(Qreq, 4)} m³/s</b></div>` +
-      `<div class="chip2">Diameter for ${fmt(Vt, 2)} m/s: <b>${fmt(Dneed, 3)} m</b></div>`;
-    note.textContent = "This is the continuity diameter: the pipe size that carries the required flow at the target velocity. It sizes the pipe only. Put the diameter into the fill pipe's row and re-solve to confirm the pump and network can actually deliver that flow.";
-  }
-  out.innerHTML = chips;
-}
-
-// ---------- Solve and render ----------
-function solveAndRender() {
-  const v = validate();
-  const status = $("status"), warn = $("warnings");
-  const tbl = $("results"); tbl.querySelectorAll("tr.row").forEach(r => r.remove());
-  if (v.errors.length) {
-    status.className = "status bad";
-    status.textContent = "Not solved. " + v.errors.length + " guardrail problem" + (v.errors.length > 1 ? "s" : "") + " to fix:";
-    warn.className = "warnbox"; warn.innerHTML = v.errors.map(esc).join("<br>");
-    $("headChips").innerHTML = ""; $("totals").innerHTML = ""; renderVelocityCheck(null);
-    lastRes = null; lastDelivered = {}; renderFill();
-    renderDiagram(null); return;
-  }
-  const fl = FLUIDS[flSel.value];
-  const inp = buildInputs(state.nodes, state.pipes);
-  const res = solveNetwork(inp.nodes, inp.pipes, fl.rho, fl.mu);
-  const solved = res.converged && res.pipes.every(p => p.solved);
-  const warns = v.warnings.slice();
-  if (solved) {
-    status.className = "status";
-    status.textContent = "Network settled. Flow balance at every junction is smaller than " +
-      res.max_residual.toExponential(1) + " m³/s, effectively zero: what flows in flows out.";
-  } else {
-    status.className = "status bad";
-    status.textContent = "No valid network solution for these settings. The table shows the last computed values.";
-  }
-  $("headChips").innerHTML = state.nodes.map(n => {
-    const solved = n.kind === "junction";
-    return `<div class="chip2">${esc(n.name)}: <b>${res.heads[n.name] !== undefined ? fmt(res.heads[n.name], 2) : "—"} m</b> ${solved ? "(solved)" : "(fixed)"}</div>`;
-  }).join("");
-  let pumpPower = 0;
-  for (const p of res.pipes) {
-    const src = state.pipes.find(x => x.name === p.name);
-    const tr = document.createElement("tr"); tr.className = "row";
-    let notes = "";
-    if (p.pump_head !== undefined) { notes = `pump ${esc(src.pumpName)}: head ${fmt(p.pump_head, 1)} m, power ${fmt(p.pump_power_W / 1000, 1)} kW`; pumpPower += p.pump_power_W; }
-    if (p.reversed) { notes = `<span class="rev">REVERSED FLOW</span> ` + notes; warns.push(p.name + " is running backward: the downstream head is higher than the upstream head for these settings."); }
-    if (!p.solved) warns.push(p.name + " could not be solved for these settings.");
-    tr.innerHTML = `<td>${esc(p.name)}</td><td>${esc(p.a)} → ${esc(p.b)}</td>` +
-      `<td class="num">${fmt(p.Q, 4)}</td><td class="num">${fmt(p.Q * 3600, 0)}</td>` +
-      `<td class="num">${fmt(Math.abs(p.V), 2)}</td><td class="num">${Math.round(p.Re).toLocaleString()}</td>` +
-      `<td>${regime(p.Re)}</td><td class="num">${fmt(p.fF, 4)}</td>` +
-      `<td class="num">${fmt(Math.abs(p.hL), 2)}</td><td class="num">${fmt(p.Leq, 1)}</td><td>${notes}</td>`;
-    tbl.appendChild(tr);
-  }
-  let delivered = 0;
-  lastDelivered = {};
-  for (const p of res.pipes) {
-    const na = state.nodes.find(n => n.name === p.a), nb = state.nodes.find(n => n.name === p.b);
-    if (nb && nb.kind === "sink") { delivered += p.Q; lastDelivered[p.b] = (lastDelivered[p.b] || 0) + p.Q; }
-    if (na && na.kind === "sink") { delivered -= p.Q; lastDelivered[p.a] = (lastDelivered[p.a] || 0) - p.Q; }
-  }
-  lastRes = solved ? res : null;
-  $("totals").innerHTML = solved ?
-    `<div class="chip2">Total flow delivered to sinks: <b>${fmt(delivered, 4)} m³/s</b></div>` +
-    `<div class="chip2">Total pump power: <b>${fmt(pumpPower / 1000, 1)} kW</b></div>` +
-    `<div class="chip2">Nodes: <b>${state.nodes.length}</b> · Pipes: <b>${state.pipes.length}</b> · Pumps: <b>${state.pipes.filter(p => p.pumpName).length}</b></div>` : "";
-  renderVelocityCheck(lastRes);
-  if (warns.length) { warn.className = "warnbox"; warn.innerHTML = warns.map(esc).join("<br>"); }
-  else { warn.className = "warnbox hidden"; warn.textContent = ""; }
-  renderDiagram(lastRes);
-  renderFill();
-}
-
-function renderVelocityCheck(res) {
-  const line = $("checkline");
-  const rows = $("velocity-rows");
-  const pipes = res?.pipes ?? [];
-  $("velocity-table").hidden = !pipes.length;
-  rows.innerHTML = "";
-  if (!pipes.length) {
-    line.textContent = "Solve a network with at least one pipe to check its velocities.";
+const $=id=>document.getElementById(id);
+let net=example(),fluid='Water',solution,error='',ed='Nodes',res='Pipes',selected='P1',three=false,paused=false,connecting=false,first='',scale=1,pan=[0,0],yaw=-.32,pitch=.6,gesture=null,lastTap=null;
+const fmt=(x,n=5)=>x===null?'—':x===0?'0':Math.abs(x)<1e-4?x.toExponential(3):String(+x.toPrecision(n));
+const opts=(values,v)=>values.map(x=>'<option '+(x===v?'selected':'')+'>'+x+'</option>').join('');
+const tab=(text,cb,active)=>{const b=document.createElement('button');b.textContent=text;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(!!active));b.onclick=cb;return b};
+function tabs(el,values,v,cb){$(el).replaceChildren(...values.map(k=>tab(k,()=>cb(k),k===v)))}
+function table(head,rows){return '<table><thead><tr>'+head.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+const num=(key,v,more='')=>'<input aria-label="'+key+'" data-k="'+key+'" type="number" step="any" '+more+' value="'+v+'">';
+const sel=(key,vs,v)=>'<select aria-label="'+key+'" data-k="'+key+'">'+opts(vs,v)+'</select>';
+const bcLabel=n=>n.bc==='balance'?'Continuity':n.bc==='pressure'?'Pressure (kPa g)':'Flow (m³/s)';
+function inputs(){tabs('edTabs',['Nodes','Pipes'],ed,k=>{ed=k;inputs()});const nodes=ed==='Nodes',list=nodes?net.nodes:net.pipes,ids=net.nodes.map(n=>n.id);
+ const remove='<button data-remove aria-label="Remove row">Remove</button>';
+ const rows=list.map(v=>nodes?[v.id,sel('type',['Inlet','Junction','Outlet'],v.type),num('z',v.z),num('x',+v.x.toFixed(2)),num('y',+v.y.toFixed(2)),v.type==='Junction'?'Continuity':sel('bc',['Pressure (kPa g)','Flow (m³/s)'],bcLabel(v)),v.type==='Junction'?'0 m³/s':num('value',v.value),remove]:[v.id,sel('a',ids,v.a),sel('b',ids,v.b),num('L',v.L),num('D',v.D),remove]);
+ $('editor').innerHTML=table(nodes?['Node','Type','Elevation (m)','Plan x (layout)','Plan y (layout)','Boundary','Boundary value','']:['Pipe','From','To','Length (m)','Diameter (m)',''],rows);
+ $('editor').querySelectorAll('tbody tr').forEach((row,i)=>{const v=list[i];row.onchange=e=>{const k=e.target.dataset.k;if(!k)return;const val=e.target.type==='number'?e.target.valueAsNumber:e.target.value;
+ if(k==='type'){v.type=val;v.bc=val==='Junction'?'balance':'pressure';v.value=0}else if(k==='bc'){v.bc=val.startsWith('Flow')?'flow':'pressure';v.value=0}else if((k==='x'||k==='y')&&!Number.isFinite(val)){e.target.value=v[k];return}else v[k]=val;update()};
+ row.querySelector('[data-remove]').onclick=()=>{const act=()=>{list.splice(i,1);if(nodes)net.pipes=net.pipes.filter(p=>p.a!==v.id&&p.b!==v.id);endConnect();update()};confirmAction('Remove '+v.id+'?',nodes?'Connected pipes will also be removed.':'Remove this pipe from the network.',act)}})}
+function data(k,v){return '<div class="data"><span>'+k+'</span><b>'+v+'</b></div>'}
+function update(){try{solution=solve(net,fluid);error=''}catch(e){solution=null;error=e.message}
+ $('properties').innerHTML=data('Density, ρ',liquids[fluid][0]+' kg/m³')+data('Viscosity, μ',liquids[fluid][1]+' Pa·s');
+ $('badge').textContent=solution?'●  Balanced':'○  Awaiting solution';$('badge').style.background=solution?'':'#563a22';
+ $('summary').innerHTML=data('Network',net.nodes.length+' nodes · '+net.pipes.length+' pipes')+(solution?data('Total supply',fmt(solution.out.reduce((s,q)=>s+Math.max(0,q),0))+' m³/s')+data('Max. residual',fmt(solution.error)+' m³/s'):'');
+ const reversed=solution&&net.pipes.filter((p,i)=>solution.details[i].q<0).map(p=>p.id);
+ $('message').textContent=error||(reversed.length?'Reverse flow in '+reversed.join(', ')+'. The arrows follow the solved head gradient.':'Flow and pressure update when inputs change.');$('message').className='status '+(error?'warn':'');inputs();results();draw();renderVelocityCheck()}
+function results(){tabs('resTabs',['Pipes','Nodes'],res,k=>{res=k;results()});if(!solution){$('results').innerHTML='';$('work').textContent=error;return}
+ const s=solution;if(res==='Pipes')$('results').innerHTML=table(['Pipe','Reference','Q (m³/s)','v (m/s)','Re','Regime','Fanning f','Loss (m)'],net.pipes.map((p,i)=>{const d=s.details[i];return [p.id,p.a+' → '+p.b,fmt(d.q),fmt(d.v),fmt(d.re),d.regime,fmt(d.f),fmt(d.loss)]}));else $('results').innerHTML=table(['Node','Type','z (m)','Head (m)','Pressure (kPa g)','Net supply (+) / draw (−), m³/s'],net.nodes.map((n,i)=>[n.id,n.type,n.z,fmt(s.h[i]),fmt(s.pressure[i]),fmt(s.out[i])]));
+ if(!net.pipes.some(p=>p.id===selected))selected=net.pipes[0].id;const i=net.pipes.findIndex(p=>p.id===selected),p=net.pipes[i],d=s.details[i],[rho,mu]=liquids[fluid],head=id=>fmt(s.h[net.nodes.findIndex(n=>n.id===id)]);
+ $('work').innerHTML='<div class="row"><h3>Calculation breakdown</h3><select aria-label="Worked pipe" id="worked">'+opts(net.pipes.map(p=>p.id),selected)+'</select></div><p class="note">'+p.a+' → '+p.b+' · L = '+p.L+' m · D = '+p.D+' m · ε = '+roughness+' m · '+fluid+'</p><details><summary>Governing equations</summary><p class="formula">H = z + p/(ρg) · A = πD²/4 · v = Q/A · Re = ρ|v|D/μ<br>hꜰ = 4 fꜰ (L/D) v²/(2g) · Hₐ − Hᵦ = sign(Q) hꜰ</p></details><details><summary>Substitute network values</summary><p class="formula">ΔH = '+head(p.a)+' − ('+head(p.b)+') = '+fmt(Math.sign(d.q)*d.loss)+' m<br>A = π × '+p.D+'² / 4 = '+fmt(d.area)+' m²<br>v = '+fmt(d.q)+' / '+fmt(d.area)+' = '+fmt(d.v)+' m/s<br>Re = '+rho+' × '+fmt(Math.abs(d.v))+' × '+p.D+' / '+mu+' = '+fmt(d.re)+'<br>ε/D = '+fmt(roughness/p.D)+' · fꜰ = '+fmt(d.f)+'<br>'+(d.q?'hꜰ = 4 × '+fmt(d.f)+' × ('+p.L+'/'+p.D+') × '+fmt(d.v)+'² / (2 × '+gravity+') = '+fmt(d.loss)+' m':'At rest, hꜰ = 0 m.')+'</p></details>';
+ $('worked').onchange=e=>{selected=e.target.value;results()}}
+function newId(prefix,list){let i=1;while(list.some(v=>v.id===prefix+i))i++;return prefix+i}
+function modal(title,html,fn){$('dlgTitle').textContent=title;$('fields').innerHTML=html;$('dialog').showModal();$('form').onsubmit=e=>{e.preventDefault();if(fn()!==false)$('dialog').close()}}
+function confirmAction(t,msg,fn){modal(t,'<p>'+msg+'</p>',fn)}
+$('cancel').onclick=()=>$('dialog').close();
+const field=(label,html)=>'<label>'+label+html+'</label>';
+const input=(name,value,min='')=>'<input required type="number" step="any" id="'+name+'" value="'+(Number.isFinite(value)?value:'')+'" '+(min?'min="'+min+'"':'')+'>';
+function editNode(n){const fresh=!n;
+ if(fresh){let x=0,y=0;for(let k=1;net.nodes.some(v=>Math.hypot(v.x-x,v.y-y)<35);k++){x=Math.cos(k*2.4)*35*Math.sqrt(k);y=Math.sin(k*2.4)*35*Math.sqrt(k)}n=node(newId('N',net.nodes),'Junction',x,y,0)}
+ modal((fresh?'Add ':'Edit ')+n.id,field('Node type','<select id="nt">'+opts(['Inlet','Junction','Outlet'],n.type)+'</select>')+field('Elevation (m)',input('nz',n.z))+field('Boundary','<select id="nb">'+opts(['Pressure (kPa g)','Flow (m³/s)'],bcLabel(n))+'</select>')+field('Boundary value',input('nv',n.value)),()=>{
+ n.type=$('nt').value;n.z=$('nz').valueAsNumber;n.bc=n.type==='Junction'?'balance':$('nb').value.startsWith('Flow')?'flow':'pressure';n.value=n.bc==='balance'?0:$('nv').valueAsNumber;if(fresh)net.nodes.push(n);update()});
+ function mode(){const jun=$('nt').value==='Junction';for(const id of ['nb','nv']){$(id).disabled=jun;$(id).parentElement.hidden=jun}if($('nb').value.startsWith('Flow'))$('nv').min='0';else $('nv').removeAttribute('min')}
+ $('nt').onchange=mode;$('nb').onchange=()=>{$('nv').value=0;mode()};mode()}
+function editPipe(p,a,b){const fresh=!p;p=p||pipe(newId('P',net.pipes),a,b,100,.1);const ids=net.nodes.map(n=>n.id);
+ modal((fresh?'Connect ':'Edit ')+p.id,field('From node','<select id="pa">'+opts(ids,p.a)+'</select>')+field('To node','<select id="pb">'+opts(ids,p.b)+'</select>')+field('Pipe length (m)',input('pl',p.L))+field('Internal diameter (m)',input('pd',p.D)),()=>{
+ for(const id of ['pl','pd'])if(!($(id).valueAsNumber>0)){$(id).setCustomValidity('Enter a positive value.');$(id).reportValidity();return false}
+ if($('pa').value===$('pb').value){$('pb').setCustomValidity('Choose different endpoints.');$('pb').reportValidity();return false}
+ Object.assign(p,{a:$('pa').value,b:$('pb').value,L:$('pl').valueAsNumber,D:$('pd').valueAsNumber});if(fresh)net.pipes.push(p);update()});$('fields').oninput=e=>e.target.setCustomValidity?.('')}
+function endConnect(){connecting=false;first=''}
+$('addNode').onclick=()=>{endConnect();draw();editNode()};$('connect').onclick=()=>{if(net.nodes.length<2){$('hint').textContent='Add two nodes before connecting a pipe.';return}connecting=!connecting;first='';draw()};
+$('fluid').innerHTML=opts(Object.keys(liquids),fluid);$('fluid').onchange=e=>{fluid=e.target.value;update()};$('run').onclick=update;
+$('example').onclick=()=>confirmAction('Load example?','Replace the current network with the five-node example.',()=>{net=example();fluid='Water';$('fluid').value=fluid;endConnect();resetView();update()});
+$('clear').onclick=()=>confirmAction('Clear network?','Remove all nodes and pipes from the workspace.',()=>{net={nodes:[],pipes:[]};endConnect();resetView();update()});
+function projected(n,z=n.z){if(!three)return [n.x,n.y];const c=Math.cos(yaw),s=Math.sin(yaw);return [c*n.x-s*n.y,(s*n.x+c*n.y)*Math.sin(pitch)-z*4*Math.cos(pitch)]}
+function screen(n,z=n.z){const [x,y]=projected(n,z);return [x*scale+pan[0],y*scale+pan[1]]}
+function resetView(){pan=[0,0];scale=1;yaw=-.32;pitch=.6;fitView()}
+function fitView(){if(!net.nodes.length){scale=1;pan=[0,0];return}const pts=net.nodes.flatMap(n=>[projected(n),projected(n,0)]).filter(p=>p.every(Number.isFinite));if(!pts.length)return;const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),l=Math.min(...xs),r=Math.max(...xs),t=Math.min(...ys),b=Math.max(...ys);scale=Math.min(1.5,505/Math.max(1,r-l),190/Math.max(1,b-t));pan=[-(r+l)*scale/2,-(t+b)*scale/2]}
+function draw(){const svg=$('drawing'),colors={Inlet:'#52d5a9',Junction:'#ffbe60',Outlet:'#83c6ff'};
+ $('plan').classList.toggle('active',!three);$('space').classList.toggle('active',three);$('connect').classList.toggle('active',connecting);$('pause').textContent=paused?'Resume motion':'Pause motion';
+ $('viewLabel').textContent=three?'3D  /  ELEVATION':'2D  /  PLAN VIEW';
+ $('hint').textContent=connecting?(first?'Select an end node for the pipe from '+first+'.':'Select the pipe’s start node.'):(three?'Drag background to orbit · Shift-drag to pan · Scroll to zoom. ':'Drag background to pan · Scroll to zoom. ')+'Drag nodes to arrange. Double-click a node or pipe to edit.';
+ let parts=[];if(three){for(let i=-240;i<=240;i+=40){for(const axis of [0,1]){let pt=v=>screen({x:axis?i:v,y:axis?v:i,z:0}).join(',');parts.push('<path d="M'+pt(-240)+' L'+pt(240)+'" stroke="#43494c" stroke-width=".7"/>')}}}
+ const lookup=new Map(net.nodes.map(n=>[n.id,n])),siblings=new Map();for(const p of net.pipes){const key=[p.a,p.b].sort().join('/');if(!siblings.has(key))siblings.set(key,[]);siblings.get(key).push(p)}
+ for(const [i,p] of net.pipes.entries()){if(!lookup.has(p.a)||!lookup.has(p.b))continue;let [x,y]=screen(lookup.get(p.a)),[u,v]=screen(lookup.get(p.b));if(![x,y,u,v].every(Number.isFinite))continue;
+ const group=siblings.get([p.a,p.b].sort().join('/')),offset=(group.indexOf(p)-(group.length-1)/2)*48*(p.a<p.b?1:-1),len=Math.hypot(u-x,v-y)||1,cx=(u+x)/2-(v-y)/len*offset,cy=(v+y)/2+(u-x)/len*offset;
+ const q=solution?.details[i].q||0,reverse=q<0,dx=reverse?x-u:u-x,dy=reverse?y-v:v-y,ang=Math.atan2(dy,dx)*180/Math.PI,path='M'+x+' '+y+' Q'+cx+' '+cy+' '+u+' '+v,back='M'+u+' '+v+' Q'+cx+' '+cy+' '+x+' '+y;
+ const w=$('width').value==='flow'?2+8*Math.sqrt(Math.abs(q)/Math.max(1e-30,...(solution?.details||[]).map(d=>Math.abs(d.q)))):Math.max(2,Math.min(20,p.D*65||2));
+ const mx=(x+2*cx+u)/4,my=(y+2*cy+v)/4;
+ parts.push('<g data-p="'+p.id+'" cursor="pointer"><path d="'+path+'" stroke="transparent" stroke-width="'+Math.max(w+8,16)+'" fill="none"/><path d="'+path+'" stroke="#7c9098" stroke-width="'+w+'" fill="none" stroke-linecap="round"/><text x="'+mx+'" y="'+(my-10)+'" text-anchor="middle" fill="#d6dfe1" font-size="11" font-family="monospace" stroke="#25282c" stroke-width="4" paint-order="stroke">'+p.id+'</text>');
+ if(q){parts.push('<path d="M-5 -4 L4 0 L-5 4" stroke="white" stroke-width="2" fill="none" transform="translate('+mx+' '+my+') rotate('+ang+')"/>');for(const start of ['0s','-1.6s'])parts.push('<circle r="2.2" fill="#fff0da" pointer-events="none"><animateMotion path="'+(reverse?back:path)+'" dur="3.2s" begin="'+start+'" repeatCount="indefinite"/></circle>')}
+ parts.push('</g>')}
+ for(const n of net.nodes){const [x,y]=screen(n);if(!isFinite(x+y))continue;const c=colors[n.type];if(three){const [a,b]=screen(n,0);parts.push('<path d="M'+a+' '+b+' L'+x+' '+y+'" stroke="#929da0" stroke-dasharray="3 3"/>')}
+ parts.push('<g data-n="'+n.id+'" cursor="grab"><circle cx="'+x+'" cy="'+y+'" r="15" fill="#23292d" stroke="'+(first===n.id?'white':c)+'" stroke-width="2"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="'+c+'"/><text x="'+(x+19)+'" y="'+(y-9)+'" fill="white" font-size="12" font-weight="bold" stroke="#22272a" stroke-width="4" paint-order="stroke">'+n.id+'</text><text x="'+(x+19)+'" y="'+(y+6)+'" fill="#c1d1d2" font-size="10" stroke="#22272a" stroke-width="3" paint-order="stroke">'+(three?n.z+' m':n.type)+'</text></g>')}
+ if(!net.nodes.length)parts.push('<text text-anchor="middle" fill="#d7e0dd" font-size="16">Add a node to start your network</text>');
+ svg.innerHTML=parts.join('');if(paused)svg.pauseAnimations();else svg.unpauseAnimations()}
+$('plan').onclick=()=>{three=false;fitView();draw()};$('space').onclick=()=>{three=true;fitView();draw()};$('pause').onclick=()=>{paused=!paused;const svg=$('drawing');if(paused)svg.pauseAnimations();else svg.unpauseAnimations();$('pause').textContent=paused?'Resume motion':'Pause motion'};$('width').onchange=draw;
+function zoom(mult,x=0,y=0){const s=Math.max(.05,Math.min(20,scale*mult)),k=s/scale;pan=[x+(pan[0]-x)*k,y+(pan[1]-y)*k];scale=s;draw()}
+$('plus').onclick=()=>zoom(1.25);$('minus').onclick=()=>zoom(.8);$('fit').onclick=()=>{fitView();draw()};
+const drawing=$('drawing');function pos(e){const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(drawing.getScreenCTM().inverse());return [p.x,p.y]}
+drawing.onwheel=e=>{e.preventDefault();zoom(Math.exp(-e.deltaY*.0015),...pos(e))};
+drawing.onpointerdown=e=>{if(e.button!==0)return;const [x,y]=pos(e),g=e.target.closest('[data-n],[data-p]');gesture={x,y,sx:x,sy:y,n:g?.dataset.n,p:g?.dataset.p,moved:false,pan:e.shiftKey};drawing.setPointerCapture(e.pointerId)};
+drawing.onpointermove=e=>{if(!gesture)return;const [x,y]=pos(e),g=gesture,dx=x-g.x,dy=y-g.y;
+ if(!g.moved&&Math.hypot(x-g.sx,y-g.sy)<3)return;g.moved=true;g.x=x;g.y=y;
+ if(g.n&&!connecting){const n=net.nodes.find(n=>n.id===g.n),a=dx/scale,b=dy/scale;if(three){const t=b/Math.sin(pitch);n.x+=Math.cos(yaw)*a+Math.sin(yaw)*t;n.y+=-Math.sin(yaw)*a+Math.cos(yaw)*t}else{n.x+=a;n.y+=b}}
+ else if(!g.n&&!g.p){if(three&&!g.pan){yaw+=dx*.008;pitch=Math.min(1.45,Math.max(.12,pitch+dy*.006))}else{pan[0]+=dx;pan[1]+=dy}}draw()};
+drawing.onpointercancel=()=>{gesture=null};drawing.onpointerup=e=>{const g=gesture;gesture=null;if(!g)return;if(g.moved){if(g.n)inputs();return}
+ if(connecting&&g.n){if(!first){first=g.n;draw()}else if(first!==g.n){const a=first;endConnect();draw();editPipe(null,a,g.n)}else $('hint').textContent='Choose a different end node.';return}
+ const id=g.n||g.p;if(!id)return;if(lastTap?.id===id&&performance.now()-lastTap.t<420){lastTap=null;if(g.n)editNode(net.nodes.find(n=>n.id===id));else editPipe(net.pipes.find(p=>p.id===id))}else lastTap={id,t:performance.now()}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){endConnect();draw()}});
+function checks(){
+ const make=(zA=0,zB=0,pA=0,pB=0)=>({nodes:[node('A','Inlet',0,0,zA,pA),node('B','Outlet',1,0,zB,pB)],pipes:[pipe('T','A','B',100,.1)]});
+ const branch=()=>({nodes:[node('A','Inlet',0,0,0,.001),node('J','Junction',0,0,0),node('B','Outlet',0,0,0),node('C','Outlet',0,0,0)],pipes:[pipe('A1','A','J',100,.1),pipe('B1','J','B',100,.1),pipe('C1','J','C',100,.1)]});
+ const [rho,mu]=liquids.Water,Qhp=dp=>Math.PI*.1**4*dp/(128*mu*100),cases=[
+ ['Equal splitting','Two identical outlet branches at equal heads must each carry half the inlet flow.',()=>{const d=solve(branch(),'Water').details;return [d[1].q/d[0].q,.5,'fraction',1e-6]}],
+ ['Laminar flow','At a 1 Pa drop, compare the solved flow with Hagen–Poiseuille: Q = πD⁴Δp/(128μL).',()=>[solve(make(0,0,.001),'Water').details[0].q,Qhp(1),'m³/s',1e-11]],
+ ['Elevation-driven flow','A 10 m elevation difference between atmospheric boundaries gives the same flow as ρg × 10 m of pressure on level ground.',()=>[solve(make(10,0),'Water').details[0].q,solve(make(0,0,rho*gravity*10/1000),'Water').details[0].q,'m³/s',1e-10]],
+ ['Fixed-flow boundary','Withdraw 0.00001 m³/s at a level outlet. Check the calculated outlet gauge pressure against the laminar pressure drop.',()=>{const n=make();n.nodes[1].bc='flow';n.nodes[1].value=1e-5;return [solve(n,'Water').pressure[1],-1e-5/Qhp(1)/1000,'kPa',1e-8]}],
+ ['Reverse flow','Raise the downstream pressure by 1 Pa and compare the signed result with the negative Poiseuille flow.',()=>[solve(make(0,0,0,.001),'Water').details[0].q,-Qhp(1),'m³/s',1e-11]],
+ ['Looped network','Two equal paths from inlet to outlet form a closed loop. Each has two 100 m pipes in series and must carry half the single-pipe flow for a 1 Pa drop.',()=>{const n=branch();n.nodes[3].type='Junction';n.nodes[3].bc='balance';n.pipes=[pipe('1','A','J',100,.1),pipe('2','J','B',100,.1),pipe('3','A','C',100,.1),pipe('4','C','B',100,.1)];const s=solve(n,'Water');return [Math.max(...s.details.map(d=>Math.abs(d.q-Qhp(1)/2))),0,'m³/s max error',1e-10]}]
+ ];$('checks').innerHTML=cases.map(([name,desc,fn])=>{try{const [actual,expected,unit,tol]=fn(),pass=Math.abs(actual-expected)<=tol;return '<article><div class="top"><h3>'+name+'</h3><b class="'+(pass?'ok':'warn')+'">'+(pass?'Pass':'Fail')+'</b></div><p>'+desc+'</p><div class="formula">Expected '+fmt(expected,8)+' · Calculated '+fmt(actual,8)+' '+unit+' · Absolute tolerance '+fmt(tol)+'</div></article>'}catch(e){return '<article><h3>'+name+'</h3><p class="warn">Fail · '+e.message+'</p></article>'}}).join('')}
+function renderVelocityCheck(){
+  const rows = $('velocity-rows'), table = $('velocity-table'), note = $('checkline');
+  table.hidden = !solution;
+  rows.replaceChildren();
+  if(!solution){
+    note.textContent = 'Solve a network to check its pipe velocities.';
     return;
   }
   let flagged = 0;
-  rows.innerHTML = pipes.map(pipe => {
-    const speed = Math.abs(pipe.V);
-    const result = speed < 0.4 ? "Below range" : speed > 3.5 ? "Above range" : "Within range";
-    const outside = result !== "Within range";
-    if (outside) flagged++;
-    return `<tr><th scope="row">${esc(pipe.name)}</th><td class="num">${fmt(speed, 2)}</td>` +
-      `<td${outside ? ' class="velocity-flag"' : ""}>${result}</td></tr>`;
-  }).join("");
-  line.textContent = `${flagged} of ${pipes.length} pipes outside the simulator’s 0.4–3.5 m/s screening range.`;
+  rows.innerHTML = net.pipes.map((p, i) => {
+    const speed = Math.abs(solution.details[i].v);
+    const result = speed < 0.4 ? 'Below range' : speed > 3.5 ? 'Above range' : 'Within range';
+    if(result !== 'Within range') flagged++;
+    return '<tr><th scope="row">'+p.id+'</th><td class="num">'+speed.toFixed(2)+'</td><td class="'+(result === 'Within range' ? '' : 'velocity-flag')+'">'+result+'</td></tr>';
+  }).join('');
+  note.textContent = flagged+' of '+net.pipes.length+' pipes outside the simulator’s 0.4–3.5 m/s screening range.';
 }
-
-loadExample("refinery");
+$('retest').onclick=checks;
+fitView();
+update();
 showRoute();
-</script>
-</body>
-</html>
+
+</script></body></html>
