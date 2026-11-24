@@ -1,0 +1,43 @@
+Iteration 1 — Nov 19, 2026 (Muse, for Ian Snider)
+DONE: Python core (Fanning form, Churchill) passes 8/8 known-answer tests.
+DONE: Page solver matches Python core to ~1e-9 on preset crude and water.
+DONE: Site iteration 1: dashboard, preset 5-pipe network, node/pipe tables,
+      symbol key, equations with class tags, extension box, references R1-R7.
+DONE: Visual check desktop + phone; diagram label collisions found and fixed.
+OPEN: Push authorization for GitHub (not granted yet) — publishing waits.
+OPEN: Drew's second-model iteration (ChatGPT) — comparison log entry pending.
+OPEN: Ian's Q14 work rhythm; "what I learned" section in Ian's own words.
+NEXT: Iteration 2 — editable tables with caps + guardrails, then 3D view.
+UPDATE Nov 24, 2026 (Ian): generic engine first, refinery becomes one saved
+example in a use-case library (parallel pipes, gravity water, starved-branch
+pump case, laminar teaching case). GitHub verified connected as Ian-snider.
+Iteration 2 BUILT and checked Nov 24: generic builder with editable tables,
+guardrails, generated diagram; 5 tuned examples; four tabs (Application,
+Theory and Math, Code and Decisions, Video and Slides). Checker: Python
+19/19, JS cross-check 6/6, 5 live UI functional tests pass, screenshots of
+all tabs verified with faults fixed. Ian created the repo AI-project-
+(public, empty). First push REFUSED by GitHub: the Muse GitHub App's
+repository selection does not include AI-project- yet. Ian must add it in
+the app settings; the push then runs unchanged. Pages enablement after.
+UPDATE Nov 24, 2026 (group meeting, Granola "Ai project - first meeting",
+11:16 AM): the demo case is simplified to two source tanks filling one
+destination tank; two solve modes (target level + time -> required flow;
+flow -> fill time); top discharge above the max fill level keeps the flow
+constant. Ian pinned the arrangement in chat the same day: over-the-top
+discharge into an open tank, fill to max fill level, lift measured from
+the network to the top of the tank.
+Iteration 3 BUILT and checked Nov 24 (finalized handoff baseline):
+Example 6 (two sources -> one receiving tank, Pump L loading preset,
+fill line K 2.45 including the exit loss of 1.0) plus the tank-fill
+panel with three solve-for modes (time / required flow with a pump
+feasibility check / diameter for a target velocity). Example 6 verified
+numbers: feeds 0.0213 + 0.0075 = 0.0288 m3/s, fill velocity 1.63 m/s,
+29.7 m3 to max fill, 17.2 min. Checker: Python 22/22, JS cross-check
+7/7, live UI tests of all three fill modes plus the max-level guardrail
+pass, screenshots verified (Application, top-fill example, Theory,
+phone). FAULT FOUND AND FIXED by the screenshot check: with no URL
+hash, the tab fallback hid every tab (empty page); iteration 2's
+screenshots had all used explicit hashes, which masked it. Fixed and
+re-verified with a no-hash screenshot.
+OPEN: GitHub push still blocked on the app repository selection (above);
+Drew's second-model iteration; Ian's own-words learned section; Q14.
