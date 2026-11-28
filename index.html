@@ -487,6 +487,283 @@ a:focus-visible {
 @media(max-width:860px) { .zac-workspace .layout { grid-template-columns:minmax(0,1fr); } .zac-workspace .side { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:580px) { .zac-workspace .side,.validation-grid { grid-template-columns:minmax(0,1fr); } .zac-workspace .canvas svg { height:250px; } }
 </style>
+<style>
+:is(#sim, #dialog) {margin:0;color:#232c32;background:#f5f5f3;font:15px/1.5 "Inter",Arial,sans-serif}
+:where(#sim, #dialog) button, :where(#sim, #dialog) select, :where(#sim, #dialog) input {font:inherit;color:inherit}
+:where(#sim, #dialog) button, :where(#sim, #dialog) select {cursor:pointer}
+:where(#sim, #dialog) button {background:white;border:1px solid #c7d4d6;border-radius:6px;padding:7px 12px;font-weight:600;font-size:13px}
+:where(#sim, #dialog) button:hover {background:#eaf2ef}
+:where(#sim, #dialog) button.active, :where(#sim, #dialog) .primary {background:#aa1934;border-color:#aa1934;color:white}
+:where(#sim, #dialog) .primary:hover {background:#89122b}
+:where(#sim, #dialog) h1, :where(#sim, #dialog) h2, :where(#sim, #dialog) h3, :where(#sim, #dialog) p {margin:0}
+:where(#sim, #dialog) h1 {font-size:clamp(28px,3vw,44px);letter-spacing:-1.9px;line-height:1.15}
+:where(#sim, #dialog) h2 {font-size:20px;letter-spacing:-.65px}
+:where(#sim, #dialog) h3 {font-size:16px}
+:where(#sim, #dialog) small, :where(#sim, #dialog) .muted {color:#51666f}
+:where(#sim, #dialog) .top, :where(#sim, #dialog) .row, :where(#sim, #dialog) .cardhead, :where(#sim, #dialog) .tabs, :where(#sim, #dialog) .actions {display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+:where(#sim, #dialog) .top, :where(#sim, #dialog) .cardhead {justify-content:space-between}
+:where(#sim, #dialog) .top {margin-bottom:20px}
+:where(#sim, #dialog) .top p {margin-top:5px;color:#526870}
+:where(#sim, #dialog) .layout {display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px;align-items:start}
+:where(#sim, #dialog) .card, :where(#sim, #dialog) article {background:#fff;border:1px solid #cbd6d7;border-radius:10px;overflow:hidden}
+:where(#sim, #dialog) .cardhead, :where(#sim, #dialog) .pad, :where(#sim, #dialog) article {padding:17px 20px}
+:where(#sim, #dialog) .cardhead {border-bottom:1px solid #e0e7e6}
+:where(#sim, #dialog) .canvas {background-color:#24282d;background-image:radial-gradient(#444a50 1px,transparent 1px);background-size:18px 18px;position:relative}
+:where(#sim, #dialog) .canvas svg {width:100%;height:330px;display:block;touch-action:none;user-select:none}
+:where(#sim, #dialog) .canvas .corner {position:absolute;left:16px;top:12px;font:11px monospace;color:#bed3d9;pointer-events:none}
+:where(#sim, #dialog) .canvas .zoom {position:absolute;right:12px;bottom:12px;display:flex;gap:3px}
+:where(#sim, #dialog) .zoom button {background:#353a40;color:white;border:1px solid #48616f}
+:where(#sim, #dialog) .legend {display:flex;align-items:center;gap:14px;font-size:12px;flex-wrap:wrap}
+:where(#sim, #dialog) .dot {display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+:where(#sim, #dialog) .tools {padding:12px 16px;display:flex;gap:6px;flex-wrap:wrap}
+:where(#sim, #dialog) .bottom {padding:10px 16px;border-top:1px solid #e0e7e6}
+:where(#sim, #dialog) .side {display:grid;gap:14px}
+:where(#sim, #dialog) .side h2 {margin-bottom:12px}
+:where(#sim, #dialog) .side select {width:100%}
+:where(#sim, #dialog) label {display:grid;gap:4px;font-weight:600;font-size:13px}
+:where(#sim, #dialog) select, :where(#sim, #dialog) input {padding:7px 8px;border:1px solid #c2d0d1;border-radius:5px;background:white;min-width:0}
+:where(#sim, #dialog) input[type=number] {width:100px}
+:where(#sim, #dialog) .data {display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #e7eceb;font-size:13px}
+:where(#sim, #dialog) .data b, :where(#sim, #dialog) td.num, :where(#sim, #dialog) .mono {font-family:ui-monospace,monospace}
+:where(#sim, #dialog) .status {font-size:13px;margin-top:9px}
+:where(#sim, #dialog) .ok {color:#007361}
+:where(#sim, #dialog) .warn {color:#9b4a16}
+:where(#sim, #dialog) .section {margin-top:16px}
+:where(#sim, #dialog) .scroll {overflow:auto}
+:where(#sim, #dialog) table {width:100%;border-collapse:collapse;font-size:13px}
+:where(#sim, #dialog) th, :where(#sim, #dialog) td {text-align:left;padding:9px 14px;border-bottom:1px solid #e4eae9;white-space:nowrap}
+:where(#sim, #dialog) th {font-size:11px;letter-spacing:.5px;background:#f4f7f6;color:#50636b}
+:where(#sim, #dialog) td input, :where(#sim, #dialog) td select {font-size:13px}
+:where(#sim, #dialog) tbody tr:last-child td {border:0}
+:where(#sim, #dialog) .tabs {gap:4px}
+:where(#sim, #dialog) .tabs button {padding:5px 10px}
+:where(#sim, #dialog) .note {font-size:13px;color:#536972;margin:8px 0}
+:where(#sim, #dialog) .copy {max-width:1030px}
+:where(#sim, #dialog) .copy article {margin:14px 0}
+:where(#sim, #dialog) .copy p, :where(#sim, #dialog) details p {margin:8px 0}
+:where(#sim, #dialog) details {padding:11px 0;border-top:1px solid #dbe4e3}
+:where(#sim, #dialog) summary {cursor:pointer;font-weight:600}
+:where(#sim, #dialog) .formula {padding:12px 14px;background:#edf5f2;border-radius:5px;font:14px/1.7 ui-monospace,monospace;overflow-wrap:anywhere}
+#dialog {border:1px solid #c5d3d2;border-radius:10px;color:inherit;width:min(420px,94vw);padding:23px}
+#dialog::backdrop {background:#0c283b66}
+#dialog form {display:grid;gap:12px}
+#dialog input[type=number] {width:100%}
+:where(#sim, #dialog) .tag {font:12px monospace;background:#e6f2ec;color:#136854;padding:4px 8px;border-radius:4px}
+:where(#sim, #dialog) .warning {margin:10px 0 0;color:#934316;font-size:13px}
+:where(#sim, #dialog) button:focus-visible, :where(#sim, #dialog) summary:focus-visible {outline:3px solid #e5a12f}
+@media(max-width:840px) {
+:where(#sim, #dialog) .layout {grid-template-columns:1fr}
+:where(#sim, #dialog) .side {grid-template-columns:1fr 1fr}
+:where(#sim, #dialog) .canvas svg {height:290px}
+}
+@media(max-width:560px) {
+:where(#sim, #dialog) .side {grid-template-columns:1fr}
+:where(#sim, #dialog) .cardhead, :where(#sim, #dialog) .pad, :where(#sim, #dialog) article {padding:13px}
+:where(#sim, #dialog) .canvas svg {height:235px}
+:where(#sim, #dialog) .top {align-items:start}
+:where(#sim, #dialog) .legend {gap:8px}
+:where(#sim, #dialog) .tools {padding:8px}
+}
+:where(#sim, #dialog) .canvas {background-color:#20282d}
+:where(#sim, #dialog) .canvas svg {position:relative;height:clamp(365px,36vw,555px);z-index:1}
+:where(#sim, #dialog) .canvas canvas {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+:where(#sim, #dialog) .canvas .corner, :where(#sim, #dialog) .canvas .zoom {z-index:2}
+:where(#sim, #dialog) .canvas .corner {background:#20282ddb;border-radius:3px;padding:3px 6px}
+:where(#sim, #dialog) .tools {align-items:center}
+:where(#sim, #dialog) .tools select {font-size:13px}
+:where(#sim, #dialog) .labels-menu {border:0;padding:0;position:relative}
+:where(#sim, #dialog) .labels-menu summary {list-style:none;border:1px solid #c7d4d6;border-radius:6px;padding:6px 11px;font-size:13px}
+:where(#sim, #dialog) .labels-menu>div {position:absolute;bottom:calc(100% + 7px);left:0;z-index:5;background:white;border:1px solid #bcc8cc;padding:10px;border-radius:7px;width:160px;box-shadow:0 4px 16px #0002}
+:where(#sim, #dialog) .labels-menu label {display:flex;align-items:center;gap:8px;padding:3px}
+:where(#sim, #dialog) .value-key {display:inline-flex;gap:6px;margin-top:8px}
+:where(#sim, #dialog) .value-key b, :where(#sim, #dialog) .origin {font-size:10px;padding:2px 5px;border-radius:3px;font-weight:600}
+:where(#sim, #dialog) .given {color:#744206;background:#fff0cf}
+:where(#sim, #dialog) .solved {color:#035b51;background:#d9f3eb}
+:where(#sim, #dialog) .unknown {color:#61426e;background:#f4e7fc}
+:where(#sim, #dialog) .cellvalue {display:inline-flex;align-items:center;gap:6px}
+:where(#sim, #dialog) .name-input {width:135px}
+:where(#sim, #dialog) .scroll input[type=number] {width:88px}
+:where(#sim, #dialog) #warnings:not(:empty) {margin-top:16px;background:#fff7e7;border-left:4px solid #c1822d;padding:10px 16px}
+:where(#sim, #dialog) #warnings p {margin:3px 0;font-size:13px}
+:where(#sim, #dialog) button:disabled {opacity:.45;cursor:default}
+:where(#sim, #dialog) .sr {position:absolute;clip:rect(0,0,0,0)}
+:where(#sim, #dialog) .formula, :where(#sim, #dialog) .mathline {font:18px/1.8 Georgia,'Times New Roman',serif;background:#f4f6f5;padding:8px 12px;margin:7px 0;border-radius:5px}
+:where(#sim, #dialog) .mathline.final {border-left:3px solid #a81d37;background:#f9f0f1}
+:where(#sim, #dialog) .frac {display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.25;margin:0 3px}
+:where(#sim, #dialog) .frac>span:first-child {border-bottom:1px solid}
+:where(#sim, #dialog) .mathstep {font-size:13px;font-weight:600;margin-top:12px}
+:where(#sim, #dialog) .top .actions {gap:6px}
+:where(#sim, #dialog) .copy td {white-space:normal}
+:where(#sim, #dialog) .top select {font-size:13px}
+:where(#sim, #dialog) .layout {grid-template-columns:minmax(0,1fr) 250px}
+:where(#sim, #dialog) .card:has(.canvas) {overflow:visible}
+:where(#sim, #dialog) .card:has(.canvas) .cardhead {border-radius:10px 10px 0 0}
+:where(#sim, #dialog) #badge {display:inline-block}
+:where(#sim, #dialog) #message {line-height:1.3}
+:where(#sim, #dialog) .section {min-width:0}
+@media(max-width:900px) {
+:where(#sim, #dialog) .layout {grid-template-columns:1fr}
+:where(#sim, #dialog) .side {grid-template-columns:1fr 1fr}
+}
+@media(max-width:550px) {
+:where(#sim, #dialog) .side {grid-template-columns:1fr}
+:where(#sim, #dialog) .canvas svg {height:330px}
+:where(#sim, #dialog) .actions {max-width:100%}
+:where(#sim, #dialog) .top .actions {margin-top:5px}
+}
+@media(max-width:550px) {
+:where(#sim, #dialog) .labels-menu>div {left:auto;right:0}
+:where(#sim, #dialog) .canvas .corner {font-size:10px;left:7px;top:7px}
+}
+:where(#sim, #dialog) .mathline {overflow-wrap:anywhere}
+:where(#sim, #dialog) .scroll td .name-input:focus {width:175px}
+:where(#sim, #dialog) #modebar {display:flex;align-items:center;flex-wrap:wrap;gap:16px;padding:8px 16px;background:#f4f5f3;border-bottom:1px solid #d2d9d6}
+:where(#sim, #dialog) #modebar label {display:flex;align-items:center;gap:6px;font-size:12px}
+:where(#sim, #dialog) #modebar select {font-size:12px;padding:4px}
+:where(#sim, #dialog) .canvas.plant {background:linear-gradient(#8aafc4,#dae4e4 62%,#bec3ba)}
+:where(#sim, #dialog) #colorKey {position:absolute;z-index:3;bottom:12px;left:12px;display:grid;gap:3px;background:#19272bec;padding:10px 13px;color:white;font:12px/1.25 Arial;border-radius:5px;min-width:150px}
+:where(#sim, #dialog) #colorKey small {color:#c0d0d4}
+:where(#sim, #dialog) .colorbar {height:5px;background:linear-gradient(90deg,#3978bb,#40b6b8,#e0cd67,#e77348)}
+:where(#sim, #dialog) #screenCalc {display:none}
+body.expanded {overflow:hidden}
+body.expanded #plantPanel {position:fixed;inset:0;z-index:99;background:white;display:flex;flex-direction:column;border-radius:0}
+body.expanded #plantPanel .canvas {min-height:0;flex:1}
+body.expanded #drawing {height:100%}
+body.expanded #screenCalc {display:inline-block}
+body.expanded #plantPanel .bottom {padding:5px 14px}
+:where(#sim, #dialog) #drawing text {user-select:none}
+:where(#sim, #dialog) .canvas.plant .corner {background:#17292ed6;color:white}
+:where(#sim, #dialog) #full {margin-left:6px}
+:where(#sim, #dialog) .canvas canvas {display:block}
+:where(#sim, #dialog) .fittingType {display:block;font-size:11px;color:#54636a;margin-top:3px}
+:where(#sim, #dialog) #fittingNotice {position:fixed;right:16px;bottom:16px;z-index:105;max-width:min(470px,90vw);background:#18383d;color:white;border-radius:7px;padding:10px 16px;box-shadow:0 3px 15px #14252738}
+:where(#sim, #dialog) .fitReadout {display:block;font-weight:600}
+:where(#sim, #dialog) .fittingType {max-width:22ch;white-space:normal;font-weight:400;line-height:1.35}
+:where(#sim, #dialog) #flowInfo:not(:empty) {margin-top:12px;border-left:4px solid #52819b;background:#edf5f8;padding:10px 16px}
+:where(#sim, #dialog) #flowInfo p {margin:3px 0;font-size:13px}
+:where(#sim, #dialog) #warnings small {display:block;margin:5px 0}
+:where(#sim, #dialog) .origin.derived {color:#185e54;background:#e0f3ed}
+.v4-shell { padding-block: clamp(24px,4vw,55px); }
+#sim h2, #dialog h2 { border-bottom:0; padding-bottom:0; }
+#sim [data-topic] { scroll-margin-top:98px; }
+#sim .status { background:none; border:0; padding:0; color:inherit; border-radius:0; }
+#sim #results { min-width:0; }
+#sim :is(th,td) { border:0; border-bottom:1px solid #e4eae9; }
+#sim .tag { vertical-align:middle; }
+#dialog h2 { font-size:20px; }
+
+:where(#sim,#dialog) {
+  --console: #151e23;
+  --console-raised: #1d2a30;
+  --console-edge: #41535a;
+  --console-text: #edf2ee;
+  --console-muted: #b6c7c8;
+  --console-data: #a3e0de;
+  --console-gold: #e6d4a9;
+  color-scheme: dark;
+  color: var(--console-text);
+  background: var(--console);
+}
+#sim { padding: clamp(12px,2vw,25px); border:1px solid var(--console-edge); }
+#sim .workspace-toolbar, #sim .card {
+  border:1px solid var(--console-edge);
+  border-radius:0;
+  background:var(--console);
+  color:var(--console-text);
+}
+#sim .workspace-toolbar {
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:14px 20px;
+  padding:clamp(13px,2vw,22px); margin-bottom:14px; background:var(--console-raised);
+}
+#sim h2, #dialog h2 { color:var(--console-text); }
+#sim .workspace-toolbar p, #sim .note, #sim small, #sim .muted, #sim .fittingType, #sim .status { color:var(--console-muted); }
+#sim .workspace-actions { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:flex-end; gap:10px 17px; }
+#sim .action-set { display:flex; flex-wrap:wrap; align-items:flex-end; gap:6px; }
+#sim .preset-field { min-width:150px; }
+#sim .layout { gap:13px; }
+#sim .cardhead, #sim .bottom, #sim #modebar { background:var(--console-raised); border-color:var(--console-edge); border-radius:0; }
+#sim .tools { border-top:1px solid var(--console-edge); }
+#sim .cardhead { align-items:center; }
+#sim .side .card { border-top:2px solid #627675; }
+#sim .side .data { border-color:var(--console-edge); gap:10px; }
+#sim .data b { color:var(--console-data); text-align:right; }
+#sim :is(button,select,input:not([type="checkbox"]), .labels-menu summary),
+#dialog :is(button,select,input) {
+  color:var(--console-text); border-radius:0; border:1px solid #53666f;
+  background:#111a1f;
+}
+#sim :is(button, .labels-menu summary):hover, #dialog button:hover { background:#2b3c43; }
+#sim :is(button.active, button.primary), #dialog button.primary { color:#182023; background:var(--console-gold); border-color:var(--console-gold); }
+#sim :is(button.active, button.primary):hover, #dialog button.primary:hover { background:#f8e7bf; }
+#sim :is(button,select,input,summary):focus-visible, #dialog :is(button,select,input):focus-visible { outline:2px solid var(--console-gold); outline-offset:2px; }
+#sim #clear { border-color:#a37568; color:#ffd1c4; }
+#sim .labels-menu>div { background:var(--console-raised); border-color:var(--console-edge); border-radius:0; }
+#sim :is(.corner,#colorKey,.tag,.origin,.value-key b) { border-radius:0; }
+#sim .value-key { flex-wrap:wrap; }
+#sim .origin.given, #sim .tag.given, #sim .value-key .given { color:#f2d59a; background:#49381f; }
+#sim .origin.unknown, #sim .tag.unknown, #sim .value-key .unknown { color:#ecd4fa; background:#43354e; }
+#sim .origin.solved, #sim .tag.solved, #sim .value-key .solved { color:#bcf1df; background:#21473e; }
+#sim .origin.derived { color:#c0e8ed; background:#24434b; }
+#sim table { color:var(--console-text); }
+#sim table :is(th,td) { border-bottom-color:var(--console-edge); }
+#sim table th { background:var(--console-raised); color:#d0e3e3; }
+#sim table tbody tr:nth-child(even) { background:#19262b; }
+#sim #results td:nth-child(n+3) { color:var(--console-data); }
+#sim #warnings:not(:empty) { background:#33291f; border-left-color:#d9a759; color:#ffe3b5; }
+#sim #warnings small { color:#ecd1a2; }
+#sim #flowInfo:not(:empty) { background:#1e333d; border-left-color:#72b5cb; color:#d4edf1; }
+#sim #fittingNotice { border-radius:0; }
+#sim #calculation-breakdown { border-top:1px solid #647779; }
+#sim #work > .row { margin-bottom:6px; }
+#sim #work details { border-color:var(--console-edge); }
+#sim #work summary { color:var(--console-gold); padding-block:3px; }
+#sim #work .mathstep { color:var(--console-muted); }
+#sim #work :is(.mathline,.formula) { border-radius:0; color:#e6f3f0; background:#1c292f; }
+#sim #work .mathline.final { border-left-color:var(--console-gold); background:#27382f; }
+#dialog { border:1px solid #62757a; border-radius:0; }
+#dialog::backdrop { background:#10191bd9; }
+body.expanded #sim #plantPanel { background:var(--console); }
+body.expanded #sim #plantPanel .tools { flex-shrink:0; }
+@media(max-width:940px) {
+  #sim .workspace-toolbar { grid-template-columns:1fr; }
+  #sim .workspace-actions { justify-content:flex-start; }
+}
+@media(max-width:550px) {
+  #sim .workspace-toolbar { padding:12px; }
+  #sim .preset-field { width:100%; }
+  #sim .action-set { max-width:100%; }
+}
+.decision-grid {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;
+  padding:0; margin:16px 0 0; list-style:none;
+}
+.decision-grid li { border:1px solid #bac4bd; border-top:3px solid #5c6e69; padding:14px 15px; background:#edf0e9; }
+.decision-grid h3 { margin:0 0 7px; color:var(--ink); }
+.decision-grid p { margin:0; color:var(--muted); font-size:.88rem; }
+.iteration-list { display:grid; gap:7px; margin-top:15px; }
+.iteration { border:1px solid #bbc7c1; background:#fafbf7; }
+.iteration > summary { display:grid; grid-template-columns:6.7rem minmax(0,1fr) auto; align-items:center; gap:8px 14px; cursor:pointer; padding:12px 15px; list-style:none; }
+.iteration > summary::-webkit-details-marker { display:none; }
+.iteration > summary::after { content:'+'; color:#34565c; font:700 1.1rem var(--data-face); }
+.iteration[open] > summary { background:#e6ede7; border-bottom:1px solid #bec7c0; }
+.iteration[open] > summary::after { content:'−'; }
+.iteration > summary:focus-visible { outline:2px solid #856334; outline-offset:-3px; }
+.iteration-number { color:#3e5d5d; font:700 .73rem var(--data-face); text-transform:uppercase; }
+.iteration-title { color:var(--ink); font-weight:700; }
+.iteration-body { padding:12px 15px 14px; }
+.iteration-body p { margin:4px 0 8px; max-width:78ch; }
+.iteration-body p:last-child { margin-bottom:0; }
+@media(max-width:760px) { .decision-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:480px) {
+  .decision-grid { grid-template-columns:1fr; }
+  .iteration > summary { grid-template-columns:1fr auto; }
+  .iteration-number { grid-column:1; }
+  .iteration-title { grid-column:1; }
+  .iteration > summary::after { grid-column:2; grid-row:1 / span 2; }
+}
+
+
+</style>
 </head>
 <body>
 <header class="masthead">
@@ -507,8 +784,8 @@ a:focus-visible {
       <div class="cover-inner">
         <p class="eyebrow">University of Cincinnati · Fluid Mechanics · Fall 2026</p>
         <h1 id="home-title" tabindex="-1">Pipe Network<br>Flow Simulator</h1>
-        <p class="cover-summary">A student-directed AI project for modelling steady-state flow through pipes with pressure and flow boundaries at different elevations.</p>
-        <a class="cover-action" href="#application">Open simulator <span aria-hidden="true">↗</span></a>
+        <p class="cover-summary">A student-directed AI project that pairs a steady-state piping simulator with an interactive 3D plant.</p>
+        <a class="cover-action" href="#network-builder">Open Simulator <span aria-hidden="true">↗</span></a>
       </div>
     </div>
     <div class="cover-index">
@@ -552,15 +829,17 @@ a:focus-visible {
       </div>
     </div>
     <nav class="section-nav" aria-label="Application topics"><div class="page-width">
-      <a href="#network-builder">Network builder</a><a href="#network-results">Flow results</a><a href="#calculation-breakdown">Worked calculation</a>
+      <a href="#network-builder">Plant and workspace</a><a href="#network-inputs">Inputs</a><a href="#network-results">Results</a><a href="#calculation-breakdown">Worked calculations</a>
     </div></nav>
-    <div class="page-width section-body">
-<dl class="spec-strip spec-pair" aria-label="Workspace capabilities"><div><dt>Boundary inputs</dt><dd><small>Pressure or flow</small></dd></div><div><dt>Network visualization</dt><dd><small>2D plan and 3D elevation</small></dd></div></dl>
-<div class="zac-workspace" id="sim"><div class="top"><div><h2 id="network-builder" data-topic tabindex="-1">Network workspace</h2><p>Build a piping network and explore how pressure, elevation and friction drive flow.</p></div><div class="actions"><button id="example">Load example</button><button id="clear">Clear network</button></div></div><div class="layout"><div class="card"><div class="cardhead"><h2>Network view</h2><div class="tabs"><button id="plan">2D plan</button><button id="space">3D elevation</button></div></div><div class="canvas"><span class="corner" id="viewLabel"></span><svg id="drawing" viewBox="-330 -155 660 310" aria-label="Interactive pipe network"></svg><div class="zoom"><button id="minus" aria-label="Zoom out">−</button><button id="plus" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></div><div class="tools"><button id="addNode">+ Add Node</button><button id="connect">+ Add Pipe</button><button id="pause">Pause motion</button><select id="width" aria-label="Pipe width encoding"><option value="diameter">Width by diameter</option><option value="flow">Width by flow</option></select></div><div class="bottom"><div class="legend"><span><i class="dot" style="background:#39c4a4"></i>Inlet</span><span><i class="dot" style="background:#e8ac4f"></i>Junction</span><span><i class="dot" style="background:#6db9f3"></i>Outlet</span></div><p class="note" id="hint" aria-live="polite"></p></div></div>
+    <div class="page-width v4-shell">
+<section id="sim" hidden>
+<div class="workspace-toolbar"><div><h2 id="network-builder" data-topic tabindex="-1">Network workspace</h2><p>Set the boundary conditions, then calculate the flow through each branch.</p></div><div class="workspace-actions"><div class="action-set" role="group" aria-label="Preset controls"><label class="preset-field">Preset network<select id="preset"><option>Simple branching</option><option>Multiple inlets</option><option>Looped network</option></select></label><button id="example">Load preset</button></div><div class="action-set" role="group" aria-label="Network files and reset"><button id="save">Save JSON</button><button id="open">Import JSON</button><input type="file" id="file" accept=".json,application/json" hidden><button id="clear">Clear network</button></div></div></div><div class="layout"><div class="card" id="plantPanel"><div class="cardhead"><h2>Network view</h2><div class="tabs"><button id="plan">2D plan</button><button id="space">3D plant</button><button id="full">Full Screen 3D</button></div></div><div id="modebar"><label>View <select id="mode"><option>Realistic</option><option>Flow visualization</option><option>Engineering analysis</option></select></label><label>Camera <select id="camera"><option>Perspective</option><option>Orthographic</option></select></label><label id="metricBox">Color by <select id="metric"><option>Flow rate</option><option>Velocity</option><option>Head loss</option></select></label><label id="arrowBox"><input type="checkbox" id="arrowToggle"> Flow arrows</label></div><div class="canvas"><div id="colorKey" hidden></div><span class="corner" id="viewLabel"></span><canvas id="solid" hidden aria-hidden="true"></canvas><svg id="drawing" viewBox="-475 -225 950 450" aria-label="Interactive pipe network"></svg><div class="zoom"><button id="minus" aria-label="Zoom out">−</button><button id="plus" aria-label="Zoom in">+</button><button id="fit">Fit</button></div></div><div class="tools"><button id="addNode">+ Add Node</button><button id="connect">+ Add Pipe</button><details class="labels-menu"><summary>Labels ▾</summary><div id="labels"></div></details><button id="pause">Pause motion</button><button id="screenCalc" class="primary">Calculate Network</button></div><div class="bottom"><div class="legend"><span><i class="dot" style="background:#39c4a4"></i>Inlet</span><span><i class="dot" style="background:#e8ac4f"></i>Junction</span><span><i class="dot" style="background:#6db9f3"></i>Outlet</span></div><span class="value-key"><b class="given">Specified</b><b class="unknown">Unknown ?</b><b class="solved">Calculated</b></span><p class="note" id="hint" aria-live="polite"></p></div></div>
 <div class="side"><div class="card pad"><h2>Fluid properties</h2><label>Liquid<select id="fluid"></select></label><div id="properties"></div><small>Constant-property liquid presets</small></div><div class="card pad"><h2>Solution</h2><span id="badge" class="tag"></span><div id="summary"></div><p class="status" id="message" aria-live="polite"></p><button id="run" class="primary" style="margin-top:12px">Calculate Network</button></div></div></div>
-<div class="section card"><div class="cardhead"><h2>Network inputs</h2><div class="tabs" id="edTabs"></div></div><div class="scroll" id="editor"></div></div>
-<div class="section card"><div class="cardhead"><h2 id="network-results" data-topic tabindex="-1">Calculated results</h2><div class="tabs" id="resTabs"></div></div><div class="scroll" id="results"></div><section id="calculation-breakdown" data-topic tabindex="-1" aria-label="Worked pipe calculation"><div class="pad" id="work"></div></section></div></div>
-</div></section>
+<div id="fittingNotice" role="status" hidden></div><div id="warnings" aria-live="polite"></div><div id="flowInfo" aria-live="polite"></div><div class="section card"><div class="cardhead"><h2 id="network-inputs" data-topic tabindex="-1">Network inputs</h2><div class="tabs" id="edTabs"></div></div><div class="scroll" id="editor"></div></div>
+<div class="section card"><div class="cardhead"><h2 id="network-results" data-topic tabindex="-1">Calculated results</h2><button id="csv" disabled>Export CSV</button><div class="tabs" id="resTabs"></div></div><div class="scroll" id="results"></div></div><div class="section card" id="calculation-breakdown" data-topic tabindex="-1" aria-label="Worked calculation"><div class="pad" id="work"></div></div>
+</section>
+</div>
+</section>
 <section class="tab" id="tab-theory" aria-labelledby="theory-title">
     <div class="section-header art-theory">
       <div class="page-width section-header-inner">
@@ -574,7 +853,7 @@ a:focus-visible {
     </div></nav>
     <div class="page-width section-body reading-width">
 <h2 id="symbol-key" data-topic tabindex="-1">Symbols and units</h2>
-<p>The workspace models steady flow of a single, incompressible Newtonian liquid through full, circular pipes. All elevations use the same datum. Plan coordinates arrange the drawing. The 3D view uses the physical elevation <i>z</i>.</p>
+<p>The workspace models steady flow of a single, incompressible Newtonian liquid through full, circular pipes. All elevations use the same datum. Plan coordinates arrange the drawing. The 3D plant places junction centres and equipment nozzle reference planes at the specified hydraulic elevation <i>z</i>. Angled nozzles can extend above or below their reference planes.</p>
 <div class="scroll"><table><thead><tr><th scope="col">Symbol</th><th scope="col">Meaning</th><th scope="col">Unit</th></tr></thead><tbody>
 <tr><th scope="row"><i>H</i>, <i>z</i>, <i>h</i><sub>f</sub></th><td>Piezometric head, physical elevation, friction head-loss magnitude</td><td>m</td></tr>
 <tr><th scope="row"><i>p</i><sub>g</sub>, <i>ρ</i>, <i>g</i>, <i>μ</i></th><td>Gauge pressure, density, gravitational acceleration, dynamic viscosity</td><td>Pa, kg/m³, m/s², Pa·s</td></tr>
@@ -587,14 +866,15 @@ a:focus-visible {
 <div class="eq"><h3>Pipe resistance and sign convention</h3><p class="formula"><i>A</i> = π<i>D</i>²/4 &nbsp; · &nbsp; <i>v</i> = <i>Q</i>/<i>A</i> &nbsp; · &nbsp; Re = <i>ρ</i>|<i>v</i>|<i>D</i>/<i>μ</i><br><i>H</i><sub>a</sub> − <i>H</i><sub>b</sub> = 4<i>f</i><sub>F</sub> (<i>L</i>/<i>D</i>) <i>v</i>|<i>v</i>|/(2<i>g</i>)</p><p>Positive flow follows the entered direction from endpoint <i>a</i> to <i>b</i>. A negative result reverses the arrows. The results table reports the head-loss magnitude <i>h</i><sub>f</sub>. The model uses <i>g</i> = 9.80665 m/s² and a fixed roughness of 0.000015 m as a model input.</p></div>
 <div class="eq"><h3>Fanning friction factor</h3><p>For flowing pipes at Re below 100, the implementation uses the laminar limit <i>f</i><sub>F</sub> = 16/Re. Otherwise it evaluates Churchill’s correlation, with dimensionless intermediate quantities <i>C</i> and <i>B</i>. The Darcy factor is 4<i>f</i><sub>F</sub>.</p><p class="formula"><i>C</i> = [−2.457 ln((7/Re)<sup>0.9</sup> + 0.27<i>ε</i>/<i>D</i>)]<sup>16</sup><br><i>B</i> = (37530/Re)<sup>16</sup><br><i>f</i><sub>F</sub> = 2[(8/Re)<sup>12</sup> + (<i>C</i> + <i>B</i>)<sup>−3/2</sup>]<sup>1/12</sup></p><p>At zero flow the friction loss is zero and the factor is undefined. See <a href="https://files.engineering.com/files/85c0f3a6-a102-4a22-9d35-f15858c0dd2b/CEM_-_Friction-factor_equation_%281977%29.pdf">Churchill’s original paper</a>.</p></div>
 <h2 id="course-connections" data-topic tabindex="-1">Solver method and course connections</h2>
-<p>Bisection determines each signed flow for a trial head drop. Damped Newton iteration adjusts the unknown heads until the largest absolute continuity residual is below 10<sup>−10</sup> m³/s. The live model includes elevation and wall friction. Pump curves, fitting losses, valves, and tank-filling dynamics belong outside this workspace’s calculation scope.</p>
+<p>Bisection determines each signed flow for a trial head drop. Damped Newton iteration adjusts the unknown heads until the largest absolute continuity residual is below 10<sup>−10</sup> m³/s. The live model includes elevation and wall friction. The entered pipe length and inside diameter control the wall-friction calculation. The 3D routing, equipment dimensions, elbows, and automatically selected junction shapes are schematic. They add no minor losses. Pump curves, valves, and tank-filling dynamics are outside this solver’s scope.</p>
 <div class="scroll"><table><thead><tr><th scope="col">Course topic</th><th scope="col">Where to see it</th></tr></thead><tbody>
 <tr><td>Continuity and energy balance (Weeks 10–11)</td><td>Compare prescribed boundaries with solved junction heads and the flow residual.</td></tr>
 <tr><td>Fanning friction and laminar flow (HW4)</td><td>Compare Reynolds numbers and review the Hagen–Poiseuille validation case.</td></tr>
 <tr><td>Diameter selection (Week 12 and HW5)</td><td>Change one diameter, then compare the resulting pressure, flow, and velocity in Economics.</td></tr>
 </tbody></table></div>
+<div class="eq"><h3>Interpreting plant overlays</h3><p>Switch to Engineering analysis to color pipes by flow-rate magnitude, velocity magnitude, or friction head loss. The color key shows one solved value per pipe. Flow visualization uses relative particle speed and density to show differences between branches. Use the results table for engineering values and units.</p><p>After a hydraulic edit, Calculate Network is required to refresh solved values and exports. Appearance and plan-position edits preserve a valid solution.</p></div>
 <h2 id="verification" data-topic tabindex="-1">Validation checks</h2>
-<p>Run the six built-in cases against the same solver used by the network workspace. Each check reports the expected value, computed value, and tolerance.</p>
+<p>Run the eleven built-in cases against the same solver used by the network workspace. Each check reports the expected value, computed value, and tolerance.</p>
 <button type="button" class="section-button" id="retest">Run checks</button>
 <div class="validation-grid" id="checks" aria-live="polite"></div>
 <h2 id="theory-references" data-topic tabindex="-1">References</h2>
@@ -618,7 +898,7 @@ a:focus-visible {
     </dl>
     <div class="dark instrument-panel">
       <h2 id="velocity-screening" data-topic tabindex="-1">Velocity screening</h2>
-      <p class="panel-intro">These velocities come from the current network in <a href="#application">Application</a>.</p>
+      <p class="panel-intro">Run <strong>Calculate Network</strong> in <a href="#network-builder">Application</a> to screen the current pipe velocities.</p>
       <p id="checkline" class="panel-intro" aria-live="polite"></p>
       <table class="velocity-table" id="velocity-table" hidden>
         <thead><tr><th scope="col">Pipe</th><th scope="col" class="num">Speed (m/s)</th><th scope="col">Screening result</th></tr></thead>
@@ -634,31 +914,56 @@ a:focus-visible {
       <div class="page-width section-header-inner">
         <h1 id="project-title" tabindex="-1">Project</h1>
         <p>How the team directed the AI models, made engineering decisions, and checked the simulator.</p>
-        <a class="section-action" href="#implementation">Review implementation <span aria-hidden="true">↓</span></a>
+        <a class="section-action" href="#project-decisions">See key decisions <span aria-hidden="true">↓</span></a>
       </div>
     </div>
     <nav class="section-nav" aria-label="Project topics"><div class="page-width">
-      <a href="#team-workflow">Team and AI</a><a href="#implementation">Implementation</a><a href="#project-decisions">Decisions</a><a href="#presentation-title">Presentation</a>
+      <a href="#project-decisions">Key decisions</a><a href="#team-workflow">Team and AI</a><a href="#implementation">Implementation</a><a href="#zac-development">Development history</a><a href="#presentation-title">Presentation</a>
     </div></nav>
     <div class="page-width section-body reading-width">
+<h2 id="project-decisions" data-topic tabindex="-1">Key project decisions</h2>
+<ul class="decision-grid">
+  <li><h3>Build a reusable network solver</h3><p>The team chose an editable network over a single refinery case so students could compare different layouts, boundaries, and flow regimes using the same equations.</p></li>
+  <li><h3>Start with a concrete refinery demo</h3><p>The early build used two source tanks and one open receiving tank. An above-liquid discharge kept the backpressure fixed, making the fill-time calculation easier to explain and verify.</p></li>
+  <li><h3>Use one friction convention</h3><p>Fanning friction matches the course notation. The equations and worked results show the factor-of-four conversion from Darcy so readers can trace it.</p></li>
+  <li><h3>Make the 3D plant an engineering view</h3><p>The final Application uses Zac’s live V4 workspace. The 2D plan and 3D plant share the same network, and the rendered fittings leave the entered hydraulic inputs unchanged.</p></li>
+  <li><h3>Use velocity for screening</h3><p>The team used a roughly 2 m/s course guideline to discuss diameter selection. The live Economics page displays screening results from the solved network. Annual cost needs separate data.</p></li>
+  <li><h3>Verify the work before sharing</h3><p>The team used known-answer cases, compared implementations, and checked the browser display. The public site pairs the simulation with theory, references, and development evidence.</p></li>
+</ul>
 <h2 id="team-workflow" data-topic tabindex="-1">Team and AI workflow</h2>
 <p>The team used AI to help build and evaluate a fluid mechanics simulator. The students defined the model scope, tested the resulting calculations, and compared two approaches to the same network problem.</p>
 <ul class="project-team">
-<li><strong>Ian Snider</strong>Project lead, initial refinery build with Muse, and assistant presenter</li>
-<li><strong>Drew Corbitt</strong>Second-model comparison assignment and lead presenter</li>
-<li><strong>Perry Meredith</strong>Slide deck and video support</li>
-<li><strong>Zac Neikamp</strong>Standalone piping simulator, video production, and narration</li>
+<li><strong>Ian Snider</strong>Co-created the site, established its foundation, integrated the simulator, and refined the design and written content. Assists with the in-class presentation.</li>
+<li><strong>Zac Neikamp</strong>Co-created the site, developed the network simulator, and refined the Application workspace through successive iterations, including the interactive 3D plant.</li>
+<li><strong>Drew Corbitt</strong>Leads the in-class presentation and explains the project’s purpose, engineering approach, simulator demonstration, and conclusions to the audience.</li>
+<li><strong>Perry Meredith</strong>Produces the YouTube demonstration and prepares the presentation slides, using the team’s work to explain how the simulator developed.</li>
 </ul>
 <h2 id="implementation" data-topic tabindex="-1">Implementation comparison</h2>
-<div class="scroll"><table><thead><tr><th scope="col">Design choice</th><th scope="col">Earlier refinery build</th><th scope="col">Zac’s live workspace</th></tr></thead><tbody>
+<div class="scroll"><table><thead><tr><th scope="col">Design choice</th><th scope="col">Earlier refinery build</th><th scope="col">Zac’s live V4 workspace</th></tr></thead><tbody>
 <tr><td>Model scope</td><td>Fixed-head networks with pump-assisted transfer, pipe and fitting losses, and over-the-top fill calculations</td><td>Passive networks with wall friction, physical elevation, and pressure or flow boundaries</td></tr>
-<tr><td>Interaction</td><td>Editable tables and a generated schematic</td><td>Synchronized tables and canvas, with 2D plan and 3D elevation views</td></tr>
-<tr><td>Verification</td><td>Python reference and JavaScript cross-check</td><td>Six built-in browser checks for balances, boundaries, and limiting cases</td></tr>
+<tr><td>Interaction</td><td>Editable tables and a generated schematic</td><td>Synchronized editors, 2D plan and full-screen WebGL plant, JSON network exchange, and CSV results</td></tr>
+<tr><td>Verification</td><td>Python reference and JavaScript cross-check</td><td>Eleven built-in checks, including invariance under visual changes and limiting cases</td></tr>
 </tbody></table></div>
 <p><a href="#verification">Open the live validation checks</a></p>
-<h2 id="project-decisions" data-topic tabindex="-1">Project decisions</h2>
-<ul class="decision-list"><li><strong>Use Zac’s workspace as the live simulator.</strong> Its pressure and flow boundary controls and physical elevation views define the calculation scope.</li><li><strong>Use the Fanning convention throughout.</strong> The equations, worked calculation, and pipe results use the same friction factor.</li><li><strong>Present velocity screening as a design check.</strong> The Economics tab reads the live pipe velocities. Annual cost requires a separate model and inputs.</li></ul>
-<p>The team’s detailed comparison of prompts, model versions, and final conclusions is pending.</p>
+<h2 id="zac-development" data-topic tabindex="-1">Development and decision history</h2>
+<p>Iterations 01–07 follow Ian’s site work. Iterations 08–11 map to Zac’s four development versions, which ran as a parallel track. Iterations 12–13 cover their integration and design updates. PNFS numbers identify packaged site releases.</p>
+<div class="iteration-list">
+<details class="iteration" id="iteration-01"><summary><span class="iteration-number">Iteration 01</span><span class="iteration-title">Ian’s site foundation</span></summary><div class="iteration-body"><p>Built the original refinery dashboard, the first pipe-network case, and the theory and references. Cross-checked the browser results against the Python solver.</p></div></details>
+<details class="iteration" id="iteration-02"><summary><span class="iteration-number">Iteration 02</span><span class="iteration-title">Ian’s reusable network builder</span></summary><div class="iteration-body"><p>Generalized the engine into editable node and pipe tables. Added input guardrails, five examples, and a generated network diagram.</p></div></details>
+<details class="iteration" id="iteration-03"><summary><span class="iteration-number">Iteration 03</span><span class="iteration-title">Ian’s tank-fill demo</span></summary><div class="iteration-body"><p>Added the two-source, one-receiver example with over-the-top discharge. Introduced fill-time, required-flow and continuity diameter calculations.</p></div></details>
+<details class="iteration" id="iteration-04"><summary><span class="iteration-number">Iteration 04</span><span class="iteration-title">Ian’s elevation controls and Economics</span></summary><div class="iteration-body"><p>Made discharge elevation editable and synchronized it with the sink head. Moved the existing velocity screening into a dedicated Economics section.</p></div></details>
+<details class="iteration" id="iteration-05"><summary><span class="iteration-number">Iteration 05</span><span class="iteration-title">Ian’s title-page redesign</span></summary><div class="iteration-body"><p>Created a cinematic title page and four primary sections. Added industrial artwork and a direct path from the cover into the simulator.</p></div></details>
+<details class="iteration" id="iteration-06"><summary><span class="iteration-number">Iteration 06</span><span class="iteration-title">Ian’s technical section design</span></summary><div class="iteration-body"><p>Added full-width section banners, sticky jump links and distinct engineering panels. Displayed velocity screening for each solved pipe.</p></div></details>
+<details class="iteration" id="iteration-07"><summary><span class="iteration-number">Iteration 07</span><span class="iteration-title">Ian’s first integration of Zac’s simulator</span></summary><div class="iteration-body"><p>Integrated Zac’s first standalone workspace with the site design. Updated Theory &amp; Math and Project to describe the model visitors could run. Packaged as PNFS_07.</p></div></details>
+<details class="iteration" id="iteration-08"><summary><span class="iteration-number">Iteration 08</span><span class="iteration-title">Zac V1 · Standalone solver and editor</span></summary><div class="iteration-body"><p>Established a steady-state hydraulic solver and editable network workspace. The first model used numbered nodes and pipes, one example, automatic calculation, and a projected SVG view.</p></div></details>
+<details class="iteration" id="iteration-09"><summary><span class="iteration-number">Iteration 09</span><span class="iteration-title">Zac V2 · Boundary conditions and worked balances</span></summary><div class="iteration-body"><p>Zac’s review of the first simulator guided this revision. Both versions use the same steady-state hydraulic model, so the team can compare how the interface communicates the engineering.</p><div class="scroll"><table><thead><tr><th>Version 1</th><th>Student-directed revision</th><th>Reason</th></tr></thead><tbody><tr><td>Numbered nodes and pipes</td><td>Custom names alongside stable IDs</td><td>Connect process equipment to table rows.</td></tr><tr><td>Projected SVG elevation view</td><td>Solid pipe and equipment meshes, lighting and depth testing</td><td>Read elevation changes and distinguish overlapping branches.</td></tr><tr><td>Uniform motion markers</td><td>Velocity controls speed and flow controls density</td><td>Compare what happens in branches of different diameters.</td></tr><tr><td>Automatic solving</td><td>Explicit calculation and unknown labels</td><td>Distinguish boundary conditions from predictions.</td></tr><tr><td>Pipe-only substitutions</td><td>Worked node and pipe balances with units</td><td>Trace a displayed result back to a course equation.</td></tr><tr><td>One starting example</td><td>Three presets, JSON networks and CSV results</td><td>Reproduce and compare experiments.</td></tr></tbody></table></div></div></details>
+<details class="iteration" id="iteration-10"><summary><span class="iteration-number">Iteration 10</span><span class="iteration-title">Zac V3 · WebGL refinery visualization</span></summary><div class="iteration-body"><p>Version 1 established the hydraulic solver and network editor. Version 2 made boundary conditions, calculated values and worked balances easier to interpret. After reviewing the V2 solids, Zac requested a refinery-scale visual model for the recorded demonstration.</p><p>Version 3 uses an embedded WebGL renderer with procedural meshes, a metallic surface shader and a directional shadow map. A separate drawing route connects equipment nozzles through rounded elbows. The same hydraulic solver continues to use each pipe’s specified length and diameter. Flow particles depict relative motion and the analysis palette represents a single value per pipe.</p><p>Equipment sizes and service lanes are illustrative. Routing is heuristic and tightly packed layouts can intersect. Reflections use an analytical daylight environment. The 2D editor is available on systems without WebGL.</p><p>All ten inherited hydraulic checks and a new appearance/layout invariance check passed. V2 and V3 produced identical complete solutions for the three presets with all four liquids. Test coverage included JSON compatibility, editing and stale results. The test browser supplied no native WebGL context. Chromium UI checks and offscreen Mesa shader and scene tests were conducted separately.</p></div></details>
+<details class="iteration" id="iteration-11"><summary><span class="iteration-number">Iteration 11</span><span class="iteration-title">Zac V4 · Equipment and automatic junctions</span></summary><div class="iteration-body"><p>Zac noticed that V3 allowed a storage tank to represent an internal distribution header. In V4, inlets and outlets have four compatible equipment choices. Zac then recognized that manual junction fitting selection duplicated the automatic geometry. Both editors now show the generated fitting as a read-only value, so users can name the junction by duty and see how its physical form responds to the connected pipes.</p><p>Automatic junction geometry follows the attached pipes’ bearings, elevations, clearances and diameters. Opposed runs and separated side branches can form tees or crosses. Crowded branches use a header with individual nozzles. The solid fitting and the routed line share a flange location. Distribution and collection labels describe equipment duty. The solved heads determine flow direction.</p><p>The final revision aligns junction centres and boundary nozzle reference planes with hydraulic elevation. The node breakdown shows the Pa-to-kPa conversion and distinguishes a head derived from specified pressure from a head solved through continuity. A pipe flowing opposite its reference arrow produces an informational notice. A fixed-pressure boundary flowing opposite its inlet or outlet role produces an engineering warning.</p><p>All eleven built-in checks passed. The three presets with all four liquids matched the previous V4 results exactly. Browser tests covered both editors, legacy JSON import, the pressure conversion, direction notices, boundary warnings and the 2D fallback. Ten rendered layouts covered zero through six connections, including unequal diameters and a vertical tee. Every pipe endpoint matched its nozzle. The test browser lacked native WebGL. The 3D scenes were rendered separately with Mesa, so hardware-accelerated browser interaction was not verified end to end. Closely spaced equipment may still need repositioning.</p></div></details>
+<details class="iteration" id="iteration-12"><summary><span class="iteration-number">Iteration 12</span><span class="iteration-title">Ian and Zac · V4 site integration</span></summary><div class="iteration-body"><p>Integrated Zac’s complete V4 plant and preserved its 2D, 3D and full-screen controls. Kept the one-click homepage entry and aligned the course and project content. Packaged as PNFS_08.</p></div></details>
+<details class="iteration" id="iteration-13"><summary><span class="iteration-number">Iteration 13</span><span class="iteration-title">Ian · Application styling and project history</span></summary><div class="iteration-body"><p>Restyled the V4 workspace, separated the worked calculations, and made the team’s key decisions and development history easier to review. Packaged as PNFS_09.</p></div></details>
+</div>
+<h3>Final model comparison</h3>
+<p>Project placeholder for the team’s model names, prompts, revisions, observations and final assessment.</p>
 <h2 id="presentation-title" data-topic tabindex="-1">Presentation materials</h2>
 <div class="media-grid">
 <div class="placeholder"><h3>Presentation video</h3><p>The demonstration and its YouTube link will appear here after publication.</p></div>
@@ -673,38 +978,8 @@ a:focus-visible {
     <p>Decorative imagery generated with OpenAI ImageGen. Network diagrams come from the simulator.</p>
   </div>
 </footer>
-<dialog id="dialog" class="zac-dialog" aria-labelledby="dlgTitle"><form id="form"><h2 id="dlgTitle"></h2><div id="fields" style="display:grid;gap:10px"></div><div class="actions"><button class="primary" type="submit">Apply</button><button type="button" id="cancel">Cancel</button></div></form></dialog>
+<dialog id="dialog"><form id="form"><h2 id="dlgTitle"></h2><div id="fields" style="display:grid;gap:10px"></div><div class="actions"><button class="primary" type="submit">Apply</button><button type="button" id="cancel">Cancel</button></div></form></dialog>
 <script>
-// ---------- Section navigation ----------
-const sectionLinks = [...document.querySelectorAll("#tabbar a")];
-function showRoute(moveFocus = false) {
-  const hash = location.hash.slice(1);
-  const aliases = new Map([["video","presentation-title"],["validation","verification"],["sim","network-builder"],["ai","implementation"],["docs","team-workflow"]]);
-  const target = document.getElementById(aliases.get(hash) ?? hash);
-  const topic = target?.hasAttribute("data-topic") ? target : null;
-  const name = topic ? topic.closest(".tab").id.slice(4) : hash === "code" ? "project" : hash;
-  const current = sectionLinks.some(link => link.dataset.tab === name) ? name : "home";
-  document.getElementById("section-content").hidden = current === "home";
-  document.querySelectorAll(".tab").forEach(panel => panel.classList.toggle("active", panel.id === "tab-" + current));
-  sectionLinks.forEach(link => {
-    if (link.dataset.tab === current) link.setAttribute("aria-current", "page");
-    else link.removeAttribute("aria-current");
-  });
-  document.querySelectorAll(".section-nav a").forEach(link => {
-    if (topic && link.hash === "#" + topic.id) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
-  });
-  if (current === "theory" && !document.getElementById("checks").children.length) checks();
-  if (topic) {
-    if (moveFocus) topic.focus({ preventScroll: true });
-    topic.scrollIntoView();
-  } else if (moveFocus) {
-    document.getElementById(current + "-title").focus({ preventScroll: true });
-    window.scrollTo(0, 0);
-  }
-}
-window.addEventListener("hashchange", () => showRoute(true));
-
 
 
 const gravity=9.80665, roughness=0.000015;
@@ -760,36 +1035,70 @@ function solve(net,fluid){
  for(let t=1;t>1e-9;t/=2){const trial=h.slice();free.forEach((j,i)=>trial[j]-=t*delta[i]);if(evaluate(trial,false).norm<e.norm){trial.forEach((v,i)=>h[i]=v);accepted=true;break}}if(!accepted)break}
  throw Error('The flow balance did not converge. Check the units, boundary conditions and pipe sizes.');
 }
+function presetNetwork(which){
+ const net=example();let nn=['Supply tank','Manifold','Upper outlet','Mid outlet','Lower outlet'],pn=['Feed line','Upper branch','Mid branch','Lower branch'];
+ if(which==='Multiple inlets'){net.nodes=[node('N1','Inlet',-215,-80,5,170),node('N2','Inlet',-215,85,2,.012,'flow'),node('N3','Junction',0,0,4),node('N4','Outlet',200,-74,6,15),node('N5','Outlet',200,85,2,0)];net.pipes=[pipe('P1','N1','N3',95,.14),pipe('P2','N2','N3',85,.095),pipe('P3','N3','N4',120,.105),pipe('P4','N3','N5',145,.12)];nn=['Pressure supply','Metered supply','Blend header','Process outlet','Return tank'];pn=['Main feed','Metered feed','Process line','Return line']}
+ if(which==='Looped network'){net.nodes=[node('N1','Inlet',-230,0,3,165),node('N2','Junction',-70,-92,8),node('N3','Junction',-70,90,2),node('N4','Junction',105,0,5),node('N5','Outlet',240,0,2,0)];net.pipes=[pipe('P1','N1','N2',85,.12),pipe('P2','N1','N3',135,.09),pipe('P3','N2','N4',110,.095),pipe('P4','N3','N4',90,.12),pipe('P5','N2','N3',130,.075),pipe('P6','N4','N5',70,.16)];nn=['Feed tank','High header','Low header','Collector','Receiving tank'];pn=['North feed','South feed','High return','Low return','Cross-tie','Discharge']}
+ net.nodes.forEach((n,i)=>{n.name=nn[i];n.appearance=(which==='Simple branching'?['Vertical storage tank','Automatic junction geometry','Rectangular process equipment','Horizontal pressure vessel','Rectangular process equipment']:which==='Multiple inlets'?['Vertical storage tank','Horizontal pressure vessel','Automatic junction geometry','Rectangular process equipment','Vertical storage tank']:['Vertical storage tank','Automatic junction geometry','Automatic junction geometry','Automatic junction geometry','Vertical storage tank'])[i]});net.pipes.forEach((p,i)=>p.name=pn[i]);return net
+}
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+const nameInput=v=>'<input class="name-input" aria-label="Custom name" data-k="name" maxlength="80" value="'+esc(v.name)+'">';
+const nameField=v=>field('Custom name','<input id="customName" maxlength="80" value="'+esc(v.name)+'">');
+let state='Ready to calculate',signature='',previouslySolved=false;
+function fingerprint(){return JSON.stringify([fluid,net.nodes.map(n=>[n.id,n.type,n.z,n.bc,n.value]),net.pipes.map(p=>[p.id,p.a,p.b,p.L,p.D])])}
+function newWorkspace(value,liquid){net=value;chosen='';fluid=liquid;$('fluid').value=fluid;solution=null;error='';previouslySolved=false;state='Ready to calculate';signature='';endConnect()}
+function update(){notice(normalizeForms(net));const next=fingerprint();if(next!==signature){solution=null;error='';state=previouslySolved?'Outdated':'Ready to calculate';signature=next}refreshOutput();inputs()}
+function calculate(){try{const bad=inputProblems();if(bad.length)throw Error(bad.join(' '));solution=solve(net,fluid);previouslySolved=true;state='Converged';error=''}catch(e){solution=null;error=e.message;state='Calculation failed'}signature=fingerprint();refreshOutput()}
+function inputProblems(){
+ if(!net.nodes.length)return ['Add inlet and outlet nodes, then connect a pipe.'];
+ const hints=[],ids=new Map(net.nodes.map(n=>[n.id,n])),adj=new Map(net.nodes.map(n=>[n.id,[]]));
+ for(const n of net.nodes){if(!Number.isFinite(n.z)||!Number.isFinite(n.value)||n.bc==='flow'&&n.value<0)hints.push(n.id+' has an invalid boundary value or elevation. Enter a finite value and a nonnegative flow magnitude.')}
+ for(const p of net.pipes){if(!Number.isFinite(p.L)||!Number.isFinite(p.D)||p.L<=0||p.D<=0)hints.push(p.id+' has invalid dimensions. Enter positive length and inside diameter in metres.');
+ if(!ids.has(p.a)||!ids.has(p.b)||p.a===p.b){hints.push(p.id+' needs two different existing endpoints.');continue}adj.get(p.a).push(p.b);adj.get(p.b).push(p.a)}
+ const seen=new Set();
+ for(const n of net.nodes){if(seen.has(n.id))continue;const group=[n.id];seen.add(n.id);for(const j of group)for(const k of adj.get(j))if(!seen.has(k)){seen.add(k);group.push(k)}
+ if(group.length===1)hints.push(n.id+' is disconnected. Connect a pipe or remove the node.');else if(!group.some(j=>ids.get(j).bc==='pressure'))hints.push('No pressure reference in '+group.join(', ')+'. Set one inlet or outlet to fixed gauge pressure.')}
+ return hints
+}
+function totals(){const b=net.nodes.map((n,i)=>n.type==='Junction'?0:solution.out[i]);return [b.reduce((s,q)=>s+Math.max(0,q),0),b.reduce((s,q)=>s+Math.max(0,-q),0)]}
+function diagnostics(){
+ const warnings=inputProblems(),notices=[];let velocityFlag=false;
+ if(error&&!warnings.length)warnings.push(error);
+ if(solution){
+ // Ignore reversal below the continuity tolerance; at large throughputs also allow for cancellation roundoff.
+ const through=Object.fromEntries(net.nodes.map(n=>[n.id,0]));
+ for(const [i,p] of net.pipes.entries()){const d=solution.details[i],v=Math.abs(d.v);
+ through[p.a]+=Math.abs(d.q);through[p.b]+=Math.abs(d.q);
+ if(v>3.5){velocityFlag=true;warnings.push(p.id+' speed is '+fmt(v,3)+' m/s, above 3.5 m/s. Review diameter or driving head.')}
+ if(v<.4){velocityFlag=true;warnings.push(p.id+' speed is '+fmt(v,3)+' m/s, below 0.4 m/s. Review driving head, demand and diameter.')}
+ if(d.q< -1e-10)notices.push(p.id+' flows from '+p.b+' to '+p.a+', opposite its defined reference direction ('+p.a+' → '+p.b+').')}
+ net.nodes.forEach((n,i)=>{if(solution.pressure[i]<-1e-8)warnings.push(n.id+' has negative gauge pressure. Review the elevation and boundary heads, and check absolute pressure against the liquid’s vapor pressure.');
+ if(n.bc!=='pressure')return;
+ const q=solution.out[i],tolerance=Math.max(1e-10,64*Number.EPSILON*through[n.id]);
+ if(n.type==='Inlet'&&q< -tolerance||n.type==='Outlet'&&q>tolerance){
+ const action=n.type==='Inlet'?'receives fluid from':'supplies fluid to';
+ warnings.push(n.id+' is a pressure-specified '+n.type.toLowerCase()+' that '+action+' the network ('+fmt(Math.abs(q))+' m³/s). This can be physically valid. Check whether the specified pressures and elevations imply the intended flow.') }})}
+ return {warnings,notices,velocityFlag}
+}
 const $=id=>document.getElementById(id);
-let net=example(),fluid='Water',solution,error='',ed='Nodes',res='Pipes',selected='P1',three=false,paused=false,connecting=false,first='',scale=1,pan=[0,0],yaw=-.32,pitch=.6,gesture=null,lastTap=null;
+let net=presetNetwork('Simple branching'),fluid='Water',solution,error='',ed='Nodes',res='Pipes',selected='P1',three=true,paused=false,connecting=false,first='',scale=1,pan=[0,0],yaw=-.32,pitch=.6,gesture=null,lastTap=null;
 const fmt=(x,n=5)=>x===null?'—':x===0?'0':Math.abs(x)<1e-4?x.toExponential(3):String(+x.toPrecision(n));
 const opts=(values,v)=>values.map(x=>'<option '+(x===v?'selected':'')+'>'+x+'</option>').join('');
 const tab=(text,cb,active)=>{const b=document.createElement('button');b.textContent=text;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(!!active));b.onclick=cb;return b};
-function tabs(el,values,v,cb){$(el).replaceChildren(...values.map(k=>tab(k,()=>cb(k),k===v)))}
+function tabs(el,values,v,cb){$(el).textContent='';values.forEach(k=>$(el).append(tab(k,()=>cb(k),k===v)))}
 function table(head,rows){return '<table><thead><tr>'+head.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(x=>'<td>'+x+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
 const num=(key,v,more='')=>'<input aria-label="'+key+'" data-k="'+key+'" type="number" step="any" '+more+' value="'+v+'">';
 const sel=(key,vs,v)=>'<select aria-label="'+key+'" data-k="'+key+'">'+opts(vs,v)+'</select>';
 const bcLabel=n=>n.bc==='balance'?'Continuity':n.bc==='pressure'?'Pressure (kPa g)':'Flow (m³/s)';
 function inputs(){tabs('edTabs',['Nodes','Pipes'],ed,k=>{ed=k;inputs()});const nodes=ed==='Nodes',list=nodes?net.nodes:net.pipes,ids=net.nodes.map(n=>n.id);
  const remove='<button data-remove aria-label="Remove row">Remove</button>';
- const rows=list.map(v=>nodes?[v.id,sel('type',['Inlet','Junction','Outlet'],v.type),num('z',v.z),num('x',+v.x.toFixed(2)),num('y',+v.y.toFixed(2)),v.type==='Junction'?'Continuity':sel('bc',['Pressure (kPa g)','Flow (m³/s)'],bcLabel(v)),v.type==='Junction'?'0 m³/s':num('value',v.value),remove]:[v.id,sel('a',ids,v.a),sel('b',ids,v.b),num('L',v.L),num('D',v.D),remove]);
- $('editor').innerHTML=table(nodes?['Node','Type','Elevation (m)','Plan x (layout)','Plan y (layout)','Boundary','Boundary value','']:['Pipe','From','To','Length (m)','Diameter (m)',''],rows);
- $('editor').querySelectorAll('tbody tr').forEach((row,i)=>{const v=list[i];row.onchange=e=>{const k=e.target.dataset.k;if(!k)return;const val=e.target.type==='number'?e.target.valueAsNumber:e.target.value;
- if(k==='type'){v.type=val;v.bc=val==='Junction'?'balance':'pressure';v.value=0}else if(k==='bc'){v.bc=val.startsWith('Flow')?'flow':'pressure';v.value=0}else if((k==='x'||k==='y')&&!Number.isFinite(val)){e.target.value=v[k];return}else v[k]=val;update()};
+ const rows=list.map(v=>nodes?[v.id,nameInput(v),sel('type',['Inlet','Junction','Outlet'],v.type),equipmentField(v),num('z',v.z),num('x',+v.x.toFixed(2)),num('y',+v.y.toFixed(2)),v.type==='Junction'?'Continuity':sel('bc',['Pressure (kPa g)','Flow (m³/s)'],bcLabel(v)),v.type==='Junction'?'0 m³/s':num('value',v.value),remove]:[v.id,nameInput(v),sel('a',ids,v.a),sel('b',ids,v.b),num('L',v.L),num('D',v.D),remove]);
+ $('editor').innerHTML=table(nodes?['Node','Name','Type','Equipment / fitting','Hydraulic elevation (m)','Plan x (layout)','Plan y (layout)','Boundary','Boundary value','']:['Pipe','Name','From','To','Length (m)','Diameter (m)',''],rows);
+ $('editor').querySelectorAll('tbody tr').forEach((row,i)=>{const v=list[i];row.oninput=e=>{if(['z','value','D','L'].includes(e.target.dataset.k)&&solution){solution=null;state='Outdated';error='';refreshOutput()}};row.onchange=e=>{const k=e.target.dataset.k;if(!k)return;const val=e.target.type==='number'?e.target.valueAsNumber:e.target.value;
+ if(k==='type'){const wasJunction=v.type==='Junction';v.type=val;if(val==='Junction'||wasJunction){v.bc=val==='Junction'?'balance':'pressure';v.value=0}}else if(k==='bc'){v.bc=val.startsWith('Flow')?'flow':'pressure';v.value=0}else if((k==='x'||k==='y')&&!Number.isFinite(val)){e.target.value=v[k];return}else v[k]=k==='name'?val.trim():val;update()};
  row.querySelector('[data-remove]').onclick=()=>{const act=()=>{list.splice(i,1);if(nodes)net.pipes=net.pipes.filter(p=>p.a!==v.id&&p.b!==v.id);endConnect();update()};confirmAction('Remove '+v.id+'?',nodes?'Connected pipes will also be removed.':'Remove this pipe from the network.',act)}})}
 function data(k,v){return '<div class="data"><span>'+k+'</span><b>'+v+'</b></div>'}
-function update(){try{solution=solve(net,fluid);error=''}catch(e){solution=null;error=e.message}
- $('properties').innerHTML=data('Density, ρ',liquids[fluid][0]+' kg/m³')+data('Viscosity, μ',liquids[fluid][1]+' Pa·s');
- $('badge').textContent=solution?'●  Balanced':'○  Awaiting solution';$('badge').style.background=solution?'':'#563a22';
- $('summary').innerHTML=data('Network',net.nodes.length+' nodes · '+net.pipes.length+' pipes')+(solution?data('Total supply',fmt(solution.out.reduce((s,q)=>s+Math.max(0,q),0))+' m³/s')+data('Max. residual',fmt(solution.error)+' m³/s'):'');
- const reversed=solution&&net.pipes.filter((p,i)=>solution.details[i].q<0).map(p=>p.id);
- $('message').textContent=error||(reversed.length?'Reverse flow in '+reversed.join(', ')+'. The arrows follow the solved head gradient.':'Flow and pressure update when inputs change.');$('message').className='status '+(error?'warn':'');inputs();results();draw();renderVelocityCheck()}
-function results(){tabs('resTabs',['Pipes','Nodes'],res,k=>{res=k;results()});if(!solution){$('results').innerHTML='';$('work').textContent=error;return}
- const s=solution;if(res==='Pipes')$('results').innerHTML=table(['Pipe','Reference','Q (m³/s)','v (m/s)','Re','Regime','Fanning f','Loss (m)'],net.pipes.map((p,i)=>{const d=s.details[i];return [p.id,p.a+' → '+p.b,fmt(d.q),fmt(d.v),fmt(d.re),d.regime,fmt(d.f),fmt(d.loss)]}));else $('results').innerHTML=table(['Node','Type','z (m)','Head (m)','Pressure (kPa g)','Net supply (+) / draw (−), m³/s'],net.nodes.map((n,i)=>[n.id,n.type,n.z,fmt(s.h[i]),fmt(s.pressure[i]),fmt(s.out[i])]));
- if(!net.pipes.some(p=>p.id===selected))selected=net.pipes[0].id;const i=net.pipes.findIndex(p=>p.id===selected),p=net.pipes[i],d=s.details[i],[rho,mu]=liquids[fluid],head=id=>fmt(s.h[net.nodes.findIndex(n=>n.id===id)]);
- $('work').innerHTML='<div class="row"><h3>Calculation breakdown</h3><select aria-label="Worked pipe" id="worked">'+opts(net.pipes.map(p=>p.id),selected)+'</select></div><p class="note">'+p.a+' → '+p.b+' · L = '+p.L+' m · D = '+p.D+' m · ε = '+roughness+' m · '+fluid+'</p><details><summary>Governing equations</summary><p class="formula">H = z + p/(ρg) · A = πD²/4 · v = Q/A · Re = ρ|v|D/μ<br>hꜰ = 4 fꜰ (L/D) v²/(2g) · Hₐ − Hᵦ = sign(Q) hꜰ</p></details><details><summary>Substitute network values</summary><p class="formula">ΔH = '+head(p.a)+' − ('+head(p.b)+') = '+fmt(Math.sign(d.q)*d.loss)+' m<br>A = π × '+p.D+'² / 4 = '+fmt(d.area)+' m²<br>v = '+fmt(d.q)+' / '+fmt(d.area)+' = '+fmt(d.v)+' m/s<br>Re = '+rho+' × '+fmt(Math.abs(d.v))+' × '+p.D+' / '+mu+' = '+fmt(d.re)+'<br>ε/D = '+fmt(roughness/p.D)+' · fꜰ = '+fmt(d.f)+'<br>'+(d.q?'hꜰ = 4 × '+fmt(d.f)+' × ('+p.L+'/'+p.D+') × '+fmt(d.v)+'² / (2 × '+gravity+') = '+fmt(d.loss)+' m':'At rest, hꜰ = 0 m.')+'</p></details>';
- $('worked').onchange=e=>{selected=e.target.value;results()}}
-function newId(prefix,list){let i=1;while(list.some(v=>v.id===prefix+i))i++;return prefix+i}
+function newId(prefix,list){let i=1;while(net.nodes.concat(net.pipes).some(v=>v.id===prefix+i))i++;return prefix+i}
 function modal(title,html,fn){$('dlgTitle').textContent=title;$('fields').innerHTML=html;$('dialog').showModal();$('form').onsubmit=e=>{e.preventDefault();if(fn()!==false)$('dialog').close()}}
 function confirmAction(t,msg,fn){modal(t,'<p>'+msg+'</p>',fn)}
 $('cancel').onclick=()=>$('dialog').close();
@@ -797,56 +1106,464 @@ const field=(label,html)=>'<label>'+label+html+'</label>';
 const input=(name,value,min='')=>'<input required type="number" step="any" id="'+name+'" value="'+(Number.isFinite(value)?value:'')+'" '+(min?'min="'+min+'"':'')+'>';
 function editNode(n){const fresh=!n;
  if(fresh){let x=0,y=0;for(let k=1;net.nodes.some(v=>Math.hypot(v.x-x,v.y-y)<35);k++){x=Math.cos(k*2.4)*35*Math.sqrt(k);y=Math.sin(k*2.4)*35*Math.sqrt(k)}n=node(newId('N',net.nodes),'Junction',x,y,0)}
- modal((fresh?'Add ':'Edit ')+n.id,field('Node type','<select id="nt">'+opts(['Inlet','Junction','Outlet'],n.type)+'</select>')+field('Elevation (m)',input('nz',n.z))+field('Boundary','<select id="nb">'+opts(['Pressure (kPa g)','Flow (m³/s)'],bcLabel(n))+'</select>')+field('Boundary value',input('nv',n.value)),()=>{
- n.type=$('nt').value;n.z=$('nz').valueAsNumber;n.bc=n.type==='Junction'?'balance':$('nb').value.startsWith('Flow')?'flow':'pressure';n.value=n.bc==='balance'?0:$('nv').valueAsNumber;if(fresh)net.nodes.push(n);update()});
+ modal((fresh?'Add ':'Edit ')+n.id,nameField(n)+field('Node type','<select id="nt">'+opts(['Inlet','Junction','Outlet'],n.type)+'</select>')+'<label id="equipmentField"></label>'+field('Hydraulic elevation, z (m)',input('nz',n.z))+field('Boundary','<select id="nb">'+opts(['Pressure (kPa g)','Flow (m³/s)'],bcLabel(n))+'</select>')+field('Boundary value',input('nv',n.value)),()=>{
+ n.appearance=$('nt').value==='Junction'?automatic:$('appearance').value;n.name=$('customName').value.trim();n.type=$('nt').value;n.z=$('nz').valueAsNumber;n.bc=n.type==='Junction'?'balance':$('nb').value.startsWith('Flow')?'flow':'pressure';n.value=n.bc==='balance'?0:$('nv').valueAsNumber;if(fresh)net.nodes.push(n);update()});
  function mode(){const jun=$('nt').value==='Junction';for(const id of ['nb','nv']){$(id).disabled=jun;$(id).parentElement.hidden=jun}if($('nb').value.startsWith('Flow'))$('nv').min='0';else $('nv').removeAttribute('min')}
- $('nt').onchange=mode;$('nb').onchange=()=>{$('nv').value=0;mode()};mode()}
+ function showEquipment(){const type=$('nt').value,z=$('nz').valueAsNumber;
+ const draft={...n,type,z:Number.isFinite(z)?z:n.z,appearance:$('appearance')?.value||n.appearance};
+ $('equipmentField').innerHTML=(type==='Junction'?'Generated junction geometry':'Equipment appearance')+equipmentField(draft,true)}
+ $('nt').onchange=()=>{if($('nt').value!=='Junction'&&$('nb').disabled){$('nb').selectedIndex=0;$('nv').value=0}showEquipment();mode()};
+ $('nz').oninput=()=>{if($('nt').value==='Junction')showEquipment()};$('nb').onchange=()=>{$('nv').value=0;mode()};showEquipment();mode()}
 function editPipe(p,a,b){const fresh=!p;p=p||pipe(newId('P',net.pipes),a,b,100,.1);const ids=net.nodes.map(n=>n.id);
- modal((fresh?'Connect ':'Edit ')+p.id,field('From node','<select id="pa">'+opts(ids,p.a)+'</select>')+field('To node','<select id="pb">'+opts(ids,p.b)+'</select>')+field('Pipe length (m)',input('pl',p.L))+field('Internal diameter (m)',input('pd',p.D)),()=>{
+ modal((fresh?'Connect ':'Edit ')+p.id,nameField(p)+field('From node','<select id="pa">'+opts(ids,p.a)+'</select>')+field('To node','<select id="pb">'+opts(ids,p.b)+'</select>')+field('Pipe length (m)',input('pl',p.L))+field('Internal diameter (m)',input('pd',p.D)),()=>{
  for(const id of ['pl','pd'])if(!($(id).valueAsNumber>0)){$(id).setCustomValidity('Enter a positive value.');$(id).reportValidity();return false}
  if($('pa').value===$('pb').value){$('pb').setCustomValidity('Choose different endpoints.');$('pb').reportValidity();return false}
- Object.assign(p,{a:$('pa').value,b:$('pb').value,L:$('pl').valueAsNumber,D:$('pd').valueAsNumber});if(fresh)net.pipes.push(p);update()});$('fields').oninput=e=>e.target.setCustomValidity?.('')}
+ Object.assign(p,{name:$('customName').value.trim(),a:$('pa').value,b:$('pb').value,L:$('pl').valueAsNumber,D:$('pd').valueAsNumber});if(fresh)net.pipes.push(p);update()});$('fields').oninput=e=>e.target.setCustomValidity?.('')}
 function endConnect(){connecting=false;first=''}
 $('addNode').onclick=()=>{endConnect();draw();editNode()};$('connect').onclick=()=>{if(net.nodes.length<2){$('hint').textContent='Add two nodes before connecting a pipe.';return}connecting=!connecting;first='';draw()};
-$('fluid').innerHTML=opts(Object.keys(liquids),fluid);$('fluid').onchange=e=>{fluid=e.target.value;update()};$('run').onclick=update;
-$('example').onclick=()=>confirmAction('Load example?','Replace the current network with the five-node example.',()=>{net=example();fluid='Water';$('fluid').value=fluid;endConnect();resetView();update()});
-$('clear').onclick=()=>confirmAction('Clear network?','Remove all nodes and pipes from the workspace.',()=>{net={nodes:[],pipes:[]};endConnect();resetView();update()});
-function projected(n,z=n.z){if(!three)return [n.x,n.y];const c=Math.cos(yaw),s=Math.sin(yaw);return [c*n.x-s*n.y,(s*n.x+c*n.y)*Math.sin(pitch)-z*4*Math.cos(pitch)]}
-function screen(n,z=n.z){const [x,y]=projected(n,z);return [x*scale+pan[0],y*scale+pan[1]]}
-function resetView(){pan=[0,0];scale=1;yaw=-.32;pitch=.6;fitView()}
-function fitView(){if(!net.nodes.length){scale=1;pan=[0,0];return}const pts=net.nodes.flatMap(n=>[projected(n),projected(n,0)]).filter(p=>p.every(Number.isFinite));if(!pts.length)return;const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),l=Math.min(...xs),r=Math.max(...xs),t=Math.min(...ys),b=Math.max(...ys);scale=Math.min(1.5,505/Math.max(1,r-l),190/Math.max(1,b-t));pan=[-(r+l)*scale/2,-(t+b)*scale/2]}
-function draw(){const svg=$('drawing'),colors={Inlet:'#52d5a9',Junction:'#ffbe60',Outlet:'#83c6ff'};
+$('fluid').innerHTML=opts(Object.keys(liquids),fluid);$('fluid').onchange=e=>{fluid=e.target.value;update()};$('run').onclick=calculate;
+$('clear').onclick=()=>confirmAction('Clear network?','Remove all nodes and pipes from the workspace.',()=>{newWorkspace({nodes:[],pipes:[]},fluid);endConnect();resetView();update()});
+// All lengths in this scene are drawing units. Hydraulic inputs never use these routes.
+const boundaryForms=['Vertical storage tank','Horizontal pressure vessel','Rectangular process equipment','Simple pipe connection'];
+const automatic='Automatic junction geometry',tee='Tee connection',crossForm='Cross connection',simple=boundaryForms[3];
+const forms=[...boundaryForms,automatic];
+function defaultForm(type){return type==='Junction'?automatic:type==='Inlet'?boundaryForms[0]:boundaryForms[2]}
+function appearance(n){return n.type==='Junction'?automatic:boundaryForms.includes(n.appearance)?n.appearance:defaultForm(n.type)}
+function attachments(n,network){const pipes=network.pipes.filter(p=>(p.a===n.id||p.b===n.id)&&p.a!==p.b),ends=[];
+ for(const p of pipes){const other=network.nodes.find(v=>v.id===(p.a===n.id?p.b:p.a));if(!other)continue;
+ const vec=sub(world(other),world(n)),dist=norm(vec);ends.push({id:p.id,other:other.id,r:Number.isFinite(p.D)&&p.D>0?pipeRad(p):1,dir:dist>.001?mul(vec,1/dist):[1,0,0],dist})}return ends}
+function analyzeFitting(n,network){const ends=attachments(n,network),count=ends.length;
+ const maxR=Math.max(.65,...ends.map(b=>b.r)),reach=Math.max(6,2.7*maxR);
+ let cosine=1,pair=[];for(let i=0;i<count;i++)for(let j=i+1;j<count;j++){const c=dot(ends[i].dir,ends[j].dir);if(c<cosine){cosine=c;pair=[i,j]}}
+ const dirs=ends.map(e=>e.dir.slice());let kind=count>=5?'Multi-branch manifold':'Compact manifold';
+ if(count===0)kind='Unconnected point';
+ else if(count===1)kind='Capped stub';
+ else if(count===2){kind=cosine<-.93?'Inline coupling':cosine<.78?'Elbow':'Offset connection';
+ if(kind==='Inline coupling'){dirs[0]=unit(sub(dirs[0],dirs[1]));dirs[1]=mul(dirs[0],-1)}}
+ else if((count===3||count===4)&&cosine<-.83&&ends.every(e=>e.dist>reach+e.r)&&Math.min(...ends.map(e=>e.r))/maxR>.17){
+ const [i,j]=pair,axis=unit(sub(dirs[i],dirs[j])),side=ends.map((e,k)=>k).filter(k=>k!==i&&k!==j);
+ if(side.every(k=>Math.abs(dot(axis,dirs[k]))<.54)&&(count===3||dot(dirs[side[0]],dirs[side[1]])<-.85)){
+ kind=count===3?tee:crossForm;dirs[i]=axis;dirs[j]=mul(axis,-1);
+ const v=count===3?dirs[side[0]]:sub(dirs[side[0]],dirs[side[1]]);dirs[side[0]]=unit(sub(v,mul(axis,dot(v,axis))));if(count===4)dirs[side[1]]=mul(dirs[side[0]],-1)}}
+ return {ends,dirs,kind,count,maxR,reach}}
+function equipmentField(n,dialog=false){
+ if(n.type==='Junction')return '<output class="fitReadout" data-fitting="'+esc(n.id)+'" aria-label="Generated junction geometry">'+analyzeFitting(n,net).kind+'</output><small class="fittingType">Automatically determined from connected pipes.</small>';
+ return '<select aria-label="Equipment appearance" '+(dialog?'id="appearance"':'data-k="appearance"')+'>'+opts(boundaryForms,appearance(n))+'</select>'
+}
+function normalizeForms(network){
+ const messages=[];for(const n of network.nodes){const old=n.appearance;n.appearance=appearance(n);
+ if(old!=null&&old!==n.appearance)messages.push(n.id+' now uses '+n.appearance.toLowerCase()+'.')}return messages
+}
+function notice(messages){if(!messages.length)return;const el=$('fittingNotice');el.textContent=messages.join(' ');el.hidden=false;clearTimeout(notice.timer);notice.timer=setTimeout(()=>{el.hidden=true},9500)}
+function fittingPlan(n,network){
+ const {ends,dirs,count,maxR,kind}=analyzeFitting(n,network),center=world(n);
+ const header=['Multi-branch manifold','Compact manifold','Offset connection'].includes(kind),bodyRadius=maxR*(header?1.28:1.035);
+ const plan={kind,center,header,bodyRadius,ports:{},temporary:count<2};
+ if(header){
+ // Orient the barrel across the dominant approach line, treating opposing flows identically.
+ let xx=0,xy=0;for(const e of ends){const [x,y]=e.dir;xx+=e.r*(x*x-y*y);xy+=e.r*(2*x*y)}
+ const theta=Math.atan2(xy,xx)*.5,side=[Math.cos(theta),Math.sin(theta),0],axis=[-side[1],side[0],0];
+ const ordered=ends.slice().sort((a,b)=>dot(a.dir,axis)-dot(b.dir,axis)||a.id.localeCompare(b.id));let pos=0;
+ const slots=ordered.map((e,i)=>{if(i)pos+=Math.max(5,1.85*(e.r+ordered[i-1].r)+2);return pos});const half=pos/2+Math.max(4,bodyRadius*1.6);
+ Object.assign(plan,{axis,half});ordered.forEach((e,i)=>{const offset=slots[i]-pos/2,d=mul(side,dot(e.dir,side)>=0?1:-1),base=vadd(center,mul(axis,offset));
+ const start=vadd(base,mul(d,bodyRadius*.79)),p=vadd(base,mul(d,bodyRadius+Math.max(4,e.r*2)));
+ plan.ports[e.id]={base:start,d,p,r:e.r,neck:Math.min(bodyRadius,e.r*1.24)}})}
+ else{
+ const reach=Math.max(6,maxR*(kind==='Elbow'?4.5:3));
+ ends.forEach((e,i)=>{const d=dirs[i],base=vadd(center,mul(d,kind==='Elbow'?reach:.95*maxR)),p=vadd(center,mul(d,reach+Math.max(2.5,maxR*1.3)));plan.ports[e.id]={d,base,p,r:e.r,neck:bodyRadius}});
+ if(kind==='Elbow')plan.elbow=[plan.ports[ends[0].id].base,center,plan.ports[ends[1].id].base]}
+ return plan
+}
+function boundaryPlan(n,network){
+ const ends=attachments(n,network),f=appearance(n),center=world(n),ports={};
+ // Allocate separate nozzle stations around the shell, including parallel branches.
+ const ordered=ends.map(e=>({...e,angle:Math.atan2(e.dir[1],e.dir[0])})).sort((a,b)=>a.angle-b.angle||a.id.localeCompare(b.id));
+ if(ordered.length>1){let gap=-1,cut=0;for(let i=0;i<ordered.length;i++){const j=(i+1)%ordered.length,g=ordered[j].angle+(j===0?2*Math.PI:0)-ordered[i].angle;if(g>gap){gap=g;cut=j}}
+ const seq=ordered.slice(cut).concat(ordered.slice(0,cut));let first=seq[0].angle,prev=first;const angles=seq.map((e,i)=>{const wanted=e.angle<first?e.angle+2*Math.PI:e.angle;prev=i?Math.max(wanted,prev+Math.min(2*Math.PI/seq.length,(e.r+seq[i-1].r+3)/(f===simple?7:17))):wanted;return prev});
+ const drift=angles.reduce((s,v,i)=>s+v-(seq[i].angle<first?seq[i].angle+2*Math.PI:seq[i].angle),0)/seq.length;seq.forEach((e,i)=>e.angle=angles[i]-drift)}
+ for(const e of ordered){const d=f===simple&&ends.length===1?e.dir:[Math.cos(e.angle),Math.sin(e.angle),0];let radius=3.3;
+ if(f===boundaryForms[0])radius=25;
+ else if(f===boundaryForms[1]){const y=Math.abs(d[1]),x=Math.abs(d[0]);if(y>0.00001&&10*x/y<=20)radius=10/y;else{const A=x*x/36+y*y/100,B=-40*x/36,C=400/36-1;radius=(-B+Math.sqrt(Math.max(0,B*B-4*A*C)))/(2*A)}}
+ else if(f===boundaryForms[2])radius=Math.min(17/Math.max(1e-9,Math.abs(d[0])),11/Math.max(1e-9,Math.abs(d[1])));
+ const base=vadd(center,mul(d,radius-.5)),p=vadd(center,mul(d,radius+Math.max(e.r*2.3,5)));ports[e.id]={d,base,p,r:e.r,neck:e.r*1.17}}
+ return {center,ports}
+}
+const vadd=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),mul=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],norm=a=>Math.hypot(...a),unit=a=>mul(a,1/(norm(a)||1)),mix=(a,b,t)=>vadd(a,mul(sub(b,a),t));
+const world=n=>[n.x,n.y,Number.isFinite(n.z)?4*n.z:0],zv=(p,z)=>[p[0],p[1],p[2]+z],Z=[0,0,1];
+const pipeRad=p=>Math.max(.01,p.D*24||1);
+const bend=(p,a,b)=>{const group=net.pipes.filter(q=>p.a===q.a&&p.b===q.b||p.a===q.b&&p.b===q.a),k=group.indexOf(p)-(group.length-1)/2;return k?vadd(mix(a,b,.5),mul(unit([a[1]-b[1],b[0]-a[0],0]),k*45*(p.a<p.b?1:-1))):null};
+let sceneMode='Realistic',cameraMode='Perspective',metric='Flow rate',arrows=false,chosen='',center=[0,0,0],scene=null,meshKey='',graphics=null,glMessage='',raf=0;
+function viewAxes(){const c=Math.cos(yaw),s=Math.sin(yaw),t=Math.cos(pitch),u=Math.sin(pitch);return [[c,-s,0],[-s*u,-c*u,t],[s*t,c*t,u]]}
+function cameraPoint(v){const a=viewAxes(),p=sub(v,center),d=dot(p,a[2]),factor=cameraMode==='Perspective'?640/Math.max(4,640/scale-d):scale;return [dot(p,a[0])*factor+pan[0],-dot(p,a[1])*factor+pan[1],d]}
+function groundPoint(x,y,height){const a=viewAxes(),dist=640/scale,p=vadd(center,mul(a[2],dist)),off=vadd(mul(a[0],(x-pan[0])/640),mul(a[1],-(y-pan[1])/640));const origin=cameraMode==='Perspective'?p:vadd(p,mul(off,dist)),dir=cameraMode==='Perspective'?sub(off,a[2]):mul(a[2],-1);return vadd(origin,mul(dir,(height-origin[2])/(Math.abs(dir[2])>.001?dir[2]:-.001)))}
+function fitView(){pan=[0,0];if(!net.nodes.length){center=[0,0,0];scale=1;return}
+const pts=net.nodes.map(world),bounds=[0,1,2].map(j=>[Math.min(...pts.map(p=>p[j])),Math.max(...pts.map(p=>p[j]))]);center=bounds.map(([l,r])=>(l+r)/2);center[2]+=3;
+if(!three){const w=bounds[0][1]-bounds[0][0],h=bounds[1][1]-bounds[1][0];scale=Math.min(1.7,680/Math.max(1,w),270/Math.max(1,h));pan=[-center[0]*scale,-center[1]*scale];return}
+scale=1;const a=viewAxes();let dist=170;for(const p of pts){for(const h of [-23,55]){const q=sub(zv(p,h),center);dist=Math.max(dist,dot(q,a[2])+Math.max((Math.abs(dot(q,a[0]))+42)*640/365,(Math.abs(dot(q,a[1]))+22)*640/167))}}scale=640/dist}
+function resetView(){yaw=-.42;pitch=.48;fitView()}
+const materials={
+ chrome:[.72,.78,.8,.92,.22],shell:[.64,.71,.72,.78,.32],ivory:[.82,.84,.79,.48,.38],rail:[.94,.62,.13,.45,.34],steel:[.25,.32,.34,.73,.36],dark:[.095,.13,.14,.45,.54],concrete:[.65,.63,.58,.01,.89],pad:[.71,.69,.65,.02,.83],seam:[.39,.42,.4,.67,.46],blue:[.29,.48,.55,.6,.35],ground:[.66,.65,.60,0,.95],stripe:[.88,.78,.52,.01,.8],far:[.57,.62,.62,.6,.45]};
+const geometryCache=new Map();
+function buildScene(){
+ const chunks=[],shells=[],liveKeys=new Set();let pipeVertices=0;
+ function cached(id,sig){liveKeys.add(id);const v=geometryCache.get(id);return v&&v.sig===sig?v:null}
+ function stash(id,sig,withPipe=false){const entry={sig,solid:new Float32Array(solid),pipe:withPipe?new Float32Array(pipes):null};geometryCache.set(id,entry);solid.length=0;pipes.length=0;return entry}
+ const solid=[],pipes=[],routes=[],objects=[null];let target=solid,key=0;
+ const addOwner=(o)=>{key=objects.push(o)-1;return key};
+ function vertex(p,n,m){target.push(p[0],p[1],p[2],n[0],n[1],n[2],m[0],m[1],m[2],m[3],m[4],key)}
+ function tri(a,b,c,n,m){vertex(a,n,m);vertex(b,n,m);vertex(c,n,m)}
+ function face(a,b,c,d,m){const n=unit(cross(sub(b,a),sub(c,a)));tri(a,b,c,n,m);tri(a,c,d,n,m)}
+ function box(c,h,m){const pts=Array.from({length:8},(_,i)=>vadd(c,h.map((r,k)=>r*((i>>k)&1?1:-1))));for(const f of [[0,2,3,1],[4,5,7,6],[0,1,5,4],[2,6,7,3],[0,4,6,2],[1,3,7,5]])face(...f.map(i=>pts[i]),m)}
+ function frame(axis){const u=unit(cross(axis,Math.abs(axis[2])>.9?[1,0,0]:Z));return [u,cross(axis,u)]}
+ function tube(a,b,r,m,seg=16,r2=r){const D=sub(b,a),L=norm(D);if(L<.0001)return;const axis=mul(D,1/L),[i,j]=frame(axis);
+ let old=i;for(let k=1;k<=seg;k++){const t=2*Math.PI*k/seg,d=vadd(mul(i,Math.cos(t)),mul(j,Math.sin(t))),a0=vadd(a,mul(old,r)),b0=vadd(b,mul(old,r2)),a1=vadd(a,mul(d,r)),b1=vadd(b,mul(d,r2)),n0=unit(vadd(old,mul(axis,(r-r2)/L))),n1=unit(vadd(d,mul(axis,(r-r2)/L)));
+ vertex(a0,n0,m);vertex(a1,n1,m);vertex(b1,n1,m);vertex(a0,n0,m);vertex(b1,n1,m);vertex(b0,n0,m);tri(a,a1,a0,mul(axis,-1),m);tri(b,b0,b1,axis,m);old=d}}
+ function ring(a,axis,rad,width,m,seg=28){tube(vadd(a,mul(axis,-width/2)),vadd(a,mul(axis,width/2)),rad,m,seg)}
+ function flange(a,axis,r){const [i,j]=frame(axis);for(const off of [-.62,.62])ring(vadd(a,mul(axis,off)),axis,r*1.56,.98,materials.chrome);
+ for(let k=0;k<8;k++){const t=k*Math.PI/4,d=vadd(mul(i,Math.cos(t)),mul(j,Math.sin(t))),p=vadd(a,mul(d,r*1.29));ring(p,axis,Math.max(.28,r*.12),3,materials.dark,6)}}
+ function rail(a,b){tube(a,b,.52,materials.rail,8);tube(zv(a,-2.8),zv(b,-2.8),.37,materials.rail,8);const count=Math.ceil(norm(sub(b,a))/13);for(let k=0;k<=count;k++){const p=mix(a,b,k/(count||1));tube(zv(p,-6.3),p,.4,materials.rail,8)}}
+ const coords=net.nodes.map(world),min=(j)=>Math.min(0,...coords.map(p=>p[j])),max=j=>Math.max(0,...coords.map(p=>p[j])),floor=min(2)-Math.max(18,...net.pipes.map(p=>Number.isFinite(p.D)?2.5*pipeRad(p)+3:0));
+ const left=min(0)-70,right=max(0)+70,back=min(1)-75,front=max(1)+65;
+ function column(x,y,top){if(top<floor+3)return;box([x,y,floor+1.5],[4,4,1.5],materials.pad);box([x,y,floor+3.2],[2.6,2.6,.35],materials.steel);const h=(top-floor-3)/2,z=top-h;box([x,y,z],[.42,1.9,h],materials.steel);for(let v of [-1.7,1.7])box([x,y+v,z],[1.8,.32,h],materials.steel)}
+ let span=Math.max(150,right-left),steps=Math.min(10,Math.ceil(span/91));
+ const envSig=[left,right,back,front,floor].join('/');let env=cached('env',envSig);if(!env){
+ box([(left+right)/2,(front+back)/2,floor-2],[(right-left)/2+2600,(front-back)/2+2600,2],materials.ground);
+
+ // A service rack and distillation column form a subdued background behind the active plot.
+
+ for(let j=0;j<=steps;j++){let x=left+span*j/steps;for(const off of [-11,10])column(x,back+off,floor+31);box([x,back,floor+31],[1.8,14,1.5],materials.steel);
+ if(j<steps)tube([x,back-11,floor+5],[x+span/steps,back-11,floor+28],.8,materials.steel,6)}
+ for(let j=0;j<4;j++){const y=back-8+5*j,z=floor+34+(j%2);tube([left-23,y,z],[right+23,y,z],1.35+j*.18,materials.far,16)}
+ const tower=[left+28,back-48,floor];towerBody(tower,7,98);towerBody([left+52,back-61,floor],4.8,71);
+ function towerBody(p,r,h){box(zv(p,2),[r+4,r+4,2],materials.pad);tube(zv(p,4),zv(p,h),r,materials.far,28);tube(zv(p,h),zv(p,h+3),r,materials.far,28,1);
+ for(let z=22;z<h;z+=23){ring(zv(p,z),Z,r+2.2,1.3,materials.steel);for(let k=0;k<14;k++){const t=2*Math.PI*k/14,u=2*Math.PI*(k+1)/14;const pt=a=>vadd(zv(p,z+3.4),[(r+2)*Math.cos(a),(r+2)*Math.sin(a),0]);tube(pt(t),pt(u),.26,materials.rail,6);if(k%2===0)tube(zv(pt(t),-3),pt(t),.26,materials.rail,6)}}}
+ // Maintenance aisle, drainage grates and face piping on the background columns.
+ for(const y of [back+22,back+37])box([(left+right)/2,y,floor+.05],[(right-left)/2,.42,.05],materials.stripe);
+ for(let j=0;j<steps;j++){const x=left+span*(j+.5)/steps;box([x,back+29,floor+.1],[8,2,.1],materials.dark);for(let k=-7;k<=7;k+=1.2)box([x+k,back+29,floor+.26],[.28,1.9,.12],materials.steel)}
+ for(const [off,hh,rr] of [[28,98,7],[52,71,4.8]]){const x=left+off,y=back-(off===28?48:61);tube([x+rr+1,y,floor+3],[x+rr+1,y,floor+hh-8],.85,materials.chrome);
+ for(let zz=10;zz<hh-6;zz+=13){tube([x,y,floor+zz],[x+rr+1,y,floor+zz],.6,materials.far);tube([x,y+rr-1,floor+zz],[x,y+rr+2,floor+zz],1.5,materials.steel)}}
+ // A utility skid on the far side of the aisle gives the plot an industrial horizon.
+ const ux=right-42,uy=back-78;for(const x of [-22,22])for(const y of [-11,11])column(ux+x,uy+y,floor+28);
+ box([ux,uy,floor+28],[25,14,1],materials.steel);rail([ux-24,uy+13,floor+35],[ux+24,uy+13,floor+35]);
+ for(const x of [-13,12]){const pp=[ux+x,uy,floor];tube(zv(pp,4),zv(pp,65),6,materials.far,24);tube(zv(pp,65),zv(pp,68),6,materials.far,24,2);
+ for(let z=13;z<65;z+=12)ring(zv(pp,z),Z,6.25,.65,materials.steel);
+ const elbow=[ux+x+8,uy,floor+61];tube(zv(pp,61),elbow,1.2,materials.shell,12);tube(elbow,[elbow[0],elbow[1],floor+7],1.2,materials.shell,12)}
+ env=stash('env',envSig)}chunks.push(env.solid);
+ function makeNozzle(port){const {base,p,d,r,neck}=port,len=norm(sub(p,base)),end=vadd(p,mul(d,-Math.min(len*.35,Math.max(.8,r*.48))));
+ tube(base,end,neck,materials.shell,24,r);tube(end,p,r,materials.chrome,24);
+ // Mating faces straddle the shared node/pipe endpoint.
+ flange(p,d,r)}
+ function curvedBody(controls,r){const [a,b,c]=controls;let last=null;
+ for(let i=0;i<=16;i++){const t=i/16,point=mix(mix(a,b,t),mix(b,c,t),t),direction=unit(mix(sub(b,a),sub(c,b),t)),normal=unit(cross(sub(b,a),sub(c,b))),radial=cross(direction,normal);
+ const rim=Array.from({length:24},(_,j)=>{const angle=j*Math.PI/12,n=vadd(mul(normal,Math.cos(angle)),mul(radial,Math.sin(angle)));return [vadd(point,mul(n,r)),n]});
+ if(last)for(let j=0;j<24;j++){const k=(j+1)%24;for(const v of [last[j],last[k],rim[k],last[j],rim[k],rim[j]])vertex(...v,materials.chrome)}last=rim}}
+ function makeJunction(j){const {center:c,bodyRadius:r,ports,kind}=j,ps=Object.values(ports);
+ function stand(point){const z=point[2]-r;column(point[0],point[1],z-.6);box([point[0],point[1],z-.5],[Math.max(1.7,r*.8),Math.max(1.7,r*.8),.7],materials.steel)}
+ if(j.header){const h=j.half,d=j.axis,end=k=>vadd(c,mul(d,k));tube(end(-h),end(h),r,materials.chrome,32);
+ for(const sign of [-1,1]){ring(end(sign*h),d,r*1.12,1.1,materials.seam,32);stand(end(sign*h*.7))}}
+ else if(!ps.length){stand(c);tube(zv(c,-2.6),zv(c,1.3),3.2,materials.steel,24);ring(zv(c,1.7),Z,3.7,1.3,materials.rail)}
+ else if(j.elbow){curvedBody(j.elbow,r);const [a,b,e]=j.elbow;stand(mix(mix(a,b,.5),mix(b,e,.5),.5))}
+ else{stand(c);if(ps.length===1){const d=ps[0].d,end=vadd(c,mul(d,-3*r));tube(end,c,r,materials.shell);ring(end,d,r*1.3,1.1,materials.rail)}
+ for(const port of ps)tube(vadd(c,mul(port.d,-.12*r)),port.base,r,materials.chrome,24);
+ if(ps.length>=3){for(let k=0;k<10;k++){const a=(k/10-.5)*Math.PI,b=((k+1)/10-.5)*Math.PI;tube(zv(c,r*Math.sin(a)),zv(c,r*Math.sin(b)),r*Math.cos(a),materials.chrome,24,r*Math.cos(b))}}}
+ for(const port of ps)makeNozzle(port)}
+ const layouts=new Map(net.nodes.map(n=>[n.id,n.type==='Junction'?fittingPlan(n,net):boundaryPlan(n,net)]));
+ for(const n of net.nodes){addOwner({n:n.id});const f=appearance(n),p=zv(world(n),f===boundaryForms[1]?-16:-15),pos=(x,y,z)=>vadd(p,[x,y,z]),h=p[2]-floor;
+ const layout=layouts.get(n.id),cacheId='node/'+n.id,cacheSig=JSON.stringify([key,f,p,floor,layout]),prev=cached(cacheId,cacheSig);if(prev){chunks.push(prev.solid);continue}
+ const plinth=(x,y)=>{if(h<8){box([p[0],p[1],floor+h/2+1],[x,y,Math.max(1,h/2+1)],materials.pad);return}
+ box(pos(0,0,0),[x,y,1.5],materials.pad);for(const xx of [-x+3,x-3])for(const yy of [-y+3,y-3])column(p[0]+xx,p[1]+yy,p[2]-1.5);
+ for(const yy of [-y+2,y-2]){box(pos(0,yy,-2.3),[x,1.4,1.4],materials.steel);tube(pos(-x+3,yy,-h+4),pos(x-3,yy,-3),.7,materials.steel,7)}
+ if(h>15){const ns=Math.min(22,Math.ceil(h/3.2));for(let i=0;i<ns;i++)box(pos(-x-2.1*(i+1),y-4,-i*h/ns),[1.2,3.6,.45],materials.steel);
+ tube(pos(-x,y-.5,5),pos(-x-ns*2.1,y-.5,-h+6),.44,materials.rail,8)}};
+ if(n.type==='Junction'){makeJunction(layout)}else if(f===forms[0]){plinth(29,29);tube(pos(0,0,1),pos(0,0,48),25,materials.ivory,52);ring(pos(0,0,44),Z,25.18,2.15,[.39,.17,.14,.39,.42],52);tube(pos(0,0,48),pos(0,0,54),25,materials.shell,52,2);
+ for(const z of [2,13,25,37,48])ring(pos(0,0,z),Z,25.3,.46,materials.seam,52);
+ for(const x of [-2.1,2.1])tube(pos(x,25.7,2),pos(x,25.7,53),.62,materials.steel,8);for(let z=4;z<53;z+=3)tube(pos(-2.1,25.7,z),pos(2.1,25.7,z),.34,materials.chrome,8);
+ for(let k=0;k<26;k++){const t=k*Math.PI/13,u=(k+1)*Math.PI/13,P=(a,z)=>pos(24.8*Math.cos(a),24.8*Math.sin(a),z);tube(P(t,53),P(u,53),.42,materials.rail,7);if(k%2===0)tube(P(t,48),P(t,53),.44,materials.rail,7)}
+ ring(pos(0,0,55),Z,3,2,materials.dark);tube(pos(-9,0,52),pos(-9,0,57),1.4,materials.steel);tube(pos(-9,0,57),pos(-9,0,58.6),2.6,materials.chrome,20,.8)}
+ else if(f===forms[1]){plinth(29,13);for(const x of [-16,16]){box(pos(x,0,4),[3.3,10,3],materials.steel);box(pos(x,0,8),[2.4,7,3],materials.blue)}
+ tube(pos(-20,0,16),pos(20,0,16),10,materials.shell,36);
+ for(const sign of [-1,1])for(let k=0;k<8;k++){const t=k*Math.PI/16,u=(k+1)*Math.PI/16;tube(pos(sign*(20+6*Math.sin(t)),0,16),pos(sign*(20+6*Math.sin(u)),0,16),10*Math.cos(t),materials.shell,32,10*Math.cos(u))}
+ for(const x of [-18,0,18])ring(pos(x,0,16),[1,0,0],10.2,.55,materials.seam);tube(pos(-9,0,25),pos(-9,0,30),2.6,materials.chrome);flange(pos(-9,0,29),Z,2.6);
+ box(pos(0,-12,12),[19,3,.6],materials.steel);rail(pos(-19,-15,18),pos(19,-15,18))}
+ else if(f===forms[2]){plinth(21,16);box(pos(0,0,3),[21,15,2],materials.steel);box(pos(0,0,16),[17,11,11],materials.blue);box(pos(0,0,27.6),[18,12,.8],materials.shell);for(let j=0;j<9;j++)box(pos(-12+j*2.8,11.4,17),[.62,.7,6],materials.dark);box(pos(0,14,5),[21,3,.7],materials.steel);rail(pos(-21,16,11),pos(21,16,11))}
+ else{const sockets=Object.values(layout.ports),c=layout.center,r=Math.max(2.8,...sockets.map(s=>s.r)),d=sockets.length===1?sockets[0].d:[0,1,0];
+ const axis=unit(norm(cross(d,Z))>.2?cross(d,Z):[1,0,0]),side=mul(axis,Math.max(8,r*3.2)),foot=vadd(c,side),seat=zv(foot,-r-1);
+ if(Math.abs(d[2])>.7&&h>12){const sideStand=vadd(c,mul(axis,Math.max(16,5*r)));column(sideStand[0],sideStand[1],seat[2]);tube(zv(sideStand,-r-1),zv(c,-r*.75),.95,materials.steel,12)}
+ else{column(foot[0],foot[1],seat[2]);tube(seat,zv(c,-r*.7),1,materials.steel,12)}
+ if(sockets.length===1){const end=vadd(c,mul(d,-r*1.65));tube(end,vadd(c,mul(d,3.5)),r,materials.chrome,24);ring(end,d,r*1.16,1.15,materials.seam)}
+ else{tube(zv(c,-r),zv(c,r),Math.max(3.4,r),materials.chrome,24);ring(zv(c,r),Z,r*1.25,1,materials.seam)}}
+ if(n.type!=='Junction')Object.values(layout.ports).forEach(makeNozzle);
+ chunks.push(stash(cacheId,cacheSig).solid)}
+ function rounded(points){
+ const pts=points.filter((p,i)=>!i||norm(sub(p,points[i-1]))>.001);const out=[pts[0]];
+ for(let j=1;j<pts.length-1;j++){const c=pts[j],d1=sub(pts[j-1],c),d2=sub(pts[j+1],c),a=unit(d1),b=unit(d2),r=Math.min(8,norm(d1)*.42,norm(d2)*.42);
+ if(Math.abs(dot(a,b))>.999){out.push(c);continue}const u=vadd(c,mul(a,r)),v=vadd(c,mul(b,r));for(let k=0;k<=8;k++){const t=k/8;out.push(mix(mix(u,c,t),mix(c,v,t),t))}}
+ out.push(pts[pts.length-1]);return out.filter((p,i)=>!i||norm(sub(p,out[i-1]))>.0001)}
+ const dict=new Map(net.nodes.map(n=>[n.id,n]));
+ for(let i=0;i<net.pipes.length;i++){const p=net.pipes[i],a=dict.get(p.a),b=dict.get(p.b);if(!a||!b||a===b||!(p.D>0))continue;const owner=addOwner({p:p.id}),A=layouts.get(a.id).ports[p.id],B=layouts.get(b.id).ports[p.id],R=pipeRad(p);
+ const lead=Math.min(19,norm(sub(B.p,A.p))*.24,Math.max(4,norm(sub(B.p,A.p))*.12));
+ function stepOut(port,other){const tip=vadd(port.p,mul(port.d,lead));return Math.abs(port.d[2])>.6?vadd(tip,mul(unit([other.p[0]-tip[0]||1,other.p[1]-tip[1],0]),lead)):tip}
+ const E=stepOut(A,B),F=stepOut(B,A),level=Math.max(E[2],F[2],floor+21)+(i%4)*5;
+ let lane=(E[1]+F[1])/2;const peers=net.pipes.filter(q=>(q.a===p.a&&q.b===p.b)||(q.a===p.b&&q.b===p.a));lane+=(peers.indexOf(p)-(peers.length-1)/2)*19;
+ // Select a clear service lane around other equipment where a straight crossing would hit it.
+ for(const n of net.nodes)if(n!==a&&n!==b&&n.x>Math.min(E[0],F[0])-20&&n.x<Math.max(E[0],F[0])+20&&Math.abs(n.y-lane)<30)lane=n.y+(lane>=n.y?36:-36);
+ const ab=sub(B.p,A.p),direction=unit(ab),distance=norm(ab);
+ const clear=dot(A.d,direction)>.986&&dot(B.d,direction)<-.986&&!net.nodes.some(n=>{
+ if(n===a||n===b)return false;const c=world(n),along=dot(sub(c,A.p),direction);
+ return along>0&&along<distance&&norm(sub(c,vadd(A.p,mul(direction,along))))<(n.type==='Junction'?8:26)});
+ const points=clear&&peers.length===1?rounded([A.p,vadd(A.p,mul(A.d,lead)),vadd(B.p,mul(B.d,lead)),B.p]):rounded([A.p,vadd(A.p,mul(A.d,lead)),E,[E[0],E[1],level],[E[0],lane,level],[F[0],lane,level],[F[0],F[1],level],F,vadd(B.p,mul(B.d,lead)),B.p]);const lengths=[0];for(let j=1;j<points.length;j++)lengths.push(lengths[j-1]+norm(sub(points[j],points[j-1])));
+ routes[i]={points,lengths,total:lengths[lengths.length-1],key:owner};
+ const id='pipe/'+p.id,sig=JSON.stringify([owner,R,floor,points]),old=cached(id,sig);routes[i].start=pipeVertices;if(old){chunks.push(old.solid);shells.push(old.pipe);routes[i].count=old.pipe.length/12;pipeVertices+=routes[i].count;continue}
+ // Sweep a continuous circular shell along the centerline with a transported normal frame.
+ target=pipes;let prev=null,u=null;
+ for(let j=0;j<points.length;j++){const tangent=unit(sub(points[Math.min(j+1,points.length-1)],points[Math.max(0,j-1)]));u=u?unit(sub(u,mul(tangent,dot(u,tangent)))):frame(tangent)[0];if(norm(u)<.5)u=frame(tangent)[0];const v=cross(tangent,u),rim=[];
+ for(let k=0;k<18;k++){const angle=k*Math.PI/9,n=vadd(mul(u,Math.cos(angle)),mul(v,Math.sin(angle)));rim.push([vadd(points[j],mul(n,R)),n])}
+ if(prev)for(let k=0;k<18;k++){const l=(k+1)%18;for(const vert of [prev[k],prev[l],rim[l],prev[k],rim[l],rim[k]])vertex(...vert,materials.chrome)}prev=rim}
+ routes[i].count=pipes.length/12;target=solid;
+ for(let j=1;j<points.length;j++){const from=points[j-1],to=points[j],d=sub(to,from),len=norm(d);if(len<31||Math.abs(d[2])>.1)continue;
+ const count=Math.max(1,Math.ceil(len/83));for(let k=0;k<count;k++){const at=mix(from,to,(k+.5)/count);key=0;column(at[0],at[1],at[2]-R-1.3);box(zv(at,-R-1),[4,4,.8],materials.steel);key=owner;ring(at,unit(d),R*1.06,.7,materials.seam)}}
+ const entry=stash(id,sig,true);chunks.push(entry.solid);shells.push(entry.pipe);pipeVertices+=routes[i].count}
+ for(const id of geometryCache.keys())if(!liveKeys.has(id))geometryCache.delete(id);
+ const solidCount=chunks.reduce((n,a)=>n+a.length/12,0),count=solidCount+pipeVertices,verts=new Float32Array(count*12);let cursor=0;for(const a of chunks.concat(shells)){verts.set(a,cursor);cursor+=a.length}
+ return {verts,solidCount,count,objects,routes,shadowCenter:[(left+right)/2,(front+back)/2,(floor+35)],extent:Math.max(span,front-back,130)*.74}
+}
+function sampleRoute(r,t){const s=Math.max(0,Math.min(1,t))*r.total;let i=1;while(i<r.lengths.length-1&&r.lengths[i]<s)i++;return mix(r.points[i-1],r.points[i],(s-r.lengths[i-1])/(r.lengths[i]-r.lengths[i-1]||1))}
+const vertexSource=`
+precision highp float;
+attribute vec3 position,normal,color;attribute vec2 material;attribute float objectID;
+uniform vec3 focus,across,up,eyeAxis,shadowFocus;
+uniform vec2 offset,viewport;
+uniform float zoomScale,perspective,pass,extent,pointSize;
+varying vec3 W,N,C,S;varying vec2 M;varying float ID;
+const vec3 sun=vec3(-.45,-.40,.798436);
+vec3 shadowSpace(vec3 p){vec3 h=normalize(cross(vec3(0.,0.,1.),sun));return vec3(dot(p,h),dot(p,cross(sun,h)),-dot(p,sun))/extent;}
+void main(){W=position;N=normal;C=color;M=material;ID=objectID;S=shadowSpace(position-shadowFocus);
+ if(pass==1.){gl_Position=vec4(S,1.);return;}
+ vec3 q=position-focus;float d=640./zoomScale-dot(q,eyeAxis);float w=perspective>.5?d:640./zoomScale;
+ vec2 scr=vec2(dot(q,across),dot(q,up))*640.+vec2(offset.x,-offset.y)*w;
+ gl_Position=vec4(scr*viewport,perspective>.5?w-2.*max(.2,26./zoomScale):clamp(-dot(q,eyeAxis)/(extent*8.+3000.),-.999,.999)*w,w);
+ gl_PointSize=clamp(pointSize*640./w,2.,12.);}`;
+const fragmentSource=`
+precision highp float;
+varying vec3 W,N,C,S;varying vec2 M;varying float ID;
+uniform vec3 eye,tint;uniform float pass,chosenID,alpha,tinted,points,shadowPx;
+uniform sampler2D shadowTex;
+const vec3 sun=vec3(-.45,-.40,.798436);
+float noise(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+vec3 env(vec3 r,float rough){float h=smoothstep(-.22,.6,r.z);
+ vec3 base=mix(vec3(.25,.24,.21),mix(vec3(.87,.91,.92),vec3(.16,.37,.62),max(r.z,0.)),h);
+ float horizon=exp(-abs(r.z+.03)*mix(16.,4.,rough));float bays=.5+.5*sin(atan(r.y,r.x)*23.);
+ base*=1.-horizon*(.35+.45*smoothstep(.35,.6,bays));base+=vec3(.7,.84,.95)*.95*exp(-abs(r.z-.32)*12.)*smoothstep(-.85,.75,r.y);base+=vec3(1.,.87,.65)*pow(max(dot(r,sun),0.),mix(130.,10.,rough))*2.3;
+ return base;}
+float shadow(vec3 n){vec3 uv=S*.5+.5;if(max(abs(S.x),abs(S.y))>.996||abs(S.z)>.999)return 1.;
+ float s=0.;float bias=.0007+.0015*(1.-max(dot(n,sun),0.));
+ for(int x=-1;x<=1;x++)for(int y=-1;y<=1;y++){vec3 enc=texture2D(shadowTex,uv.xy+vec2(float(x),float(y))*shadowPx*1.35).rgb;
+ float z=dot(enc,vec3(1.,1./255.,1./65025.));s+=step(uv.z-bias,z);}return s/9.;}
+void main(){
+ if(pass==1.){float z=clamp(gl_FragCoord.z,0.,.999999);vec3 e=fract(z*vec3(1.,255.,65025.));e.xy-=e.yz/255.;gl_FragColor=vec4(e,1.);return;}
+ if(pass==2.){float k=floor(ID+.5);gl_FragColor=vec4(mod(k,256.)/255.,mod(floor(k/256.),256.)/255.,floor(k/65536.)/255.,1.);return;}
+ if(points>.5){float d=length(gl_PointCoord-.5)*2.;if(d>1.)discard;gl_FragColor=vec4(mix(vec3(.09,.75,.91),vec3(.88,1.,1.),1.-d),1.);return;}
+ vec3 n=normalize(N),v=normalize(eye-W),l=sun,h=normalize(l+v);float nv=max(dot(n,v),.01),nl=max(dot(n,l),0.),nh=max(dot(n,h),0.),vh=max(dot(v,h),0.);
+ vec3 base=tinted>.5?tint:C;float metal=tinted>.5?.22:M.x,r=max(.13,M.y),sh=shadow(n);
+ if(M.x<.04){float grit=noise(floor(W.xy*.6));base*=.97+.035*grit;
+ if(M.y>.93&&n.z>.9){vec2 tile=abs(fract(W.xy/48.)-.5);float seam=smoothstep(.483,.498,max(tile.x,tile.y));base*=1.-.17*seam;}}
+ vec3 F0=mix(vec3(.04),base,metal),F=F0+(1.-F0)*pow(1.-vh,5.);
+ float a2=pow(r,4.),D=a2/(3.14159*pow(nh*nh*(a2-1.)+1.,2.)),k=(r+1.)*(r+1.)/8.;
+ float G=nv*nl/((nv*(1.-k)+k)*(nl*(1.-k)+k));
+ vec3 spec=D*G*F/max(.04,4.*nv*nl);vec3 direct=((1.-F)*(1.-metal)*base*.75+spec)*vec3(1.24,1.15,.97)*nl*sh;
+ vec3 reflectance=env(reflect(-v,n),r)*mix(F0,vec3(1.),pow(1.-nv,5.))*(1.-.25*r);
+ vec3 ambient=base*(1.-metal)*(.20+.32*(.5+.5*n.z))+base*.12*max(dot(n,normalize(vec3(.5,.45,.7))),0.);
+ vec3 lit=ambient+reflectance+direct;if(chosenID>.5&&abs(ID-chosenID)<.25)lit=mix(lit,vec3(.97,.61,.14),.27+.28*pow(1.-nv,2.));
+ lit=pow(lit/(lit+.61),vec3(.64));lit=clamp((lit-.46)*1.34+.46,0.,1.);lit=mix(lit,vec3(.73,.81,.84),smoothstep(740.,2350.,length(eye-W))*.80);
+ gl_FragColor=vec4(lit,alpha);}`;
+function initGL(){
+ const canvas=$('solid'),gl=canvas.getContext('webgl',{antialias:true,alpha:true,premultipliedAlpha:false,preserveDrawingBuffer:true});
+ if(!gl)throw Error('WebGL is unavailable in this browser. The 2D simulator is active.');
+ function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}
+ const prog=gl.createProgram();gl.attachShader(prog,shader(gl.VERTEX_SHADER,vertexSource));gl.attachShader(prog,shader(gl.FRAGMENT_SHADER,fragmentSource));gl.linkProgram(prog);if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(prog));gl.useProgram(prog);
+ const U={},A={};for(const name of 'focus across up eyeAxis shadowFocus offset viewport zoomScale perspective pass extent pointSize eye tint chosenID alpha tinted points shadowPx shadowTex'.split(' '))U[name]=gl.getUniformLocation(prog,name);
+ for(const name of ['position','normal','color','material','objectID'])A[name]=gl.getAttribLocation(prog,name);
+ function target(w,h){const f=gl.createFramebuffer(),tex=gl.createTexture(),rb=gl.createRenderbuffer();gl.bindTexture(gl.TEXTURE_2D,tex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,w,h,0,gl.RGBA,gl.UNSIGNED_BYTE,null);for(const p of [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER])gl.texParameteri(gl.TEXTURE_2D,p,gl.NEAREST);for(const p of [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T])gl.texParameteri(gl.TEXTURE_2D,p,gl.CLAMP_TO_EDGE);gl.bindRenderbuffer(gl.RENDERBUFFER,rb);gl.renderbufferStorage(gl.RENDERBUFFER,gl.DEPTH_COMPONENT16,w,h);gl.bindFramebuffer(gl.FRAMEBUFFER,f);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,tex,0);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,rb);if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('Framebuffer unavailable');return {f,tex,rb,w,h}}
+ const shadow=target(1024,1024),buf=gl.createBuffer(),dots=gl.createBuffer();return {gl,prog,A,U,buf,dots,target,shadow,picking:null}
+}
+const palettes=[[.1,.29,.61],[.07,.65,.73],[.88,.82,.36],[.91,.30,.13]];
+function ramp(t){const x=Math.max(0,Math.min(2.999,t*3)),j=Math.floor(x);return mix(palettes[j],palettes[j+1],x-j)}
+function measure(d){return metric==='Velocity'?Math.abs(d.v):metric==='Head loss'?d.loss:Math.abs(d.q)}
+function bindMesh(buf){const {gl,A}=graphics;gl.bindBuffer(gl.ARRAY_BUFFER,buf);for(const [name,size,k] of [['position',3,0],['normal',3,3],['color',3,6],['material',2,9],['objectID',1,11]]){gl.enableVertexAttribArray(A[name]);gl.vertexAttribPointer(A[name],size,gl.FLOAT,false,48,k*4)}}
+function renderSolids(picking=false,animate=false){
+ const can=$('solid');if(!graphics){try{graphics=initGL()}catch(e){glMessage=e.message;three=false;fitView();return}}
+ const {gl,U,buf,shadow}=graphics,rect=$('drawing').getBoundingClientRect(),ratio=Math.min(window.devicePixelRatio||1,1.6),w=Math.max(1,Math.round(rect.width*ratio)),h=Math.max(1,Math.round(rect.height*ratio)),k=Math.min(w/950,h/450);
+ if(can.width!==w||can.height!==h){can.width=w;can.height=h}
+ const key=animate?meshKey:JSON.stringify([net.nodes.map(n=>[n.id,n.type,n.x,n.y,n.z,appearance(n)]),net.pipes.map(p=>[p.id,p.a,p.b,p.D])]);
+ const rebuild=!scene||key!==meshKey;if(rebuild){meshKey=key;scene=buildScene();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,scene.verts,gl.STATIC_DRAW)}
+ const a=viewAxes(),v3=(u,v)=>gl.uniform3fv(U[u],v),f=(u,v)=>gl.uniform1f(U[u],v);
+ bindMesh(buf);v3('focus',center);v3('across',a[0]);v3('up',a[1]);v3('eyeAxis',a[2]);v3('eye',vadd(center,mul(a[2],640/scale)));v3('shadowFocus',scene.shadowCenter);gl.uniform2f(U.viewport,2*k/w,2*k/h);gl.uniform2f(U.offset,pan[0],pan[1]);f('perspective',cameraMode==='Perspective'?1:0);f('extent',scene.extent);f('zoomScale',scale);f('points',0);f('alpha',1);f('tinted',0);
+ f('chosenID',scene.objects.findIndex(o=>o&&(o.n||o.p)===chosen));f('shadowPx',1/shadow.w);
+ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.depthMask(true);gl.disable(gl.BLEND);gl.disable(gl.DITHER);gl.activeTexture(gl.TEXTURE0);gl.uniform1i(U.shadowTex,0);
+ if(rebuild){gl.bindTexture(gl.TEXTURE_2D,null);gl.bindFramebuffer(gl.FRAMEBUFFER,shadow.f);gl.viewport(0,0,shadow.w,shadow.h);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);f('pass',1);gl.drawArrays(gl.TRIANGLES,36,scene.count-36)}
+ let dest=null;
+ if(picking){let t=graphics.picking;if(!t||t.w!==w||t.h!==h){if(t){gl.deleteFramebuffer(t.f);gl.deleteTexture(t.tex);gl.deleteRenderbuffer(t.rb)}t=graphics.picking=graphics.target(w,h)}dest=t.f}
+ gl.bindFramebuffer(gl.FRAMEBUFFER,dest);gl.bindTexture(gl.TEXTURE_2D,shadow.tex);gl.viewport(0,0,w,h);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);f('pass',picking?2:0);
+ gl.drawArrays(gl.TRIANGLES,0,scene.solidCount);
+ if(picking){gl.drawArrays(gl.TRIANGLES,scene.solidCount,scene.count-scene.solidCount);return}
+ const isFlow=sceneMode==='Flow visualization',analysis=sceneMode==='Engineering analysis'&&solution;
+ const vals=solution?solution.details.map(measure):[],lo=Math.min(...vals),hi=Math.max(...vals);
+ if(isFlow){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);f('alpha',.22)}
+ if(analysis){f('tinted',1);scene.routes.forEach((r,i)=>{v3('tint',ramp((vals[i]-lo)/(hi-lo||1)));gl.drawArrays(gl.TRIANGLES,scene.solidCount+r.start,r.count)})}
+ else gl.drawArrays(gl.TRIANGLES,scene.solidCount,scene.count-scene.solidCount);
+ gl.depthMask(true);gl.disable(gl.BLEND);f('tinted',0);f('alpha',1);
+ if(isFlow&&solution){const qb=Math.max(...solution.details.map(d=>Math.abs(d.q)),1e-30),vb=Math.max(...solution.details.map(d=>Math.abs(d.v)),1e-30),data=[],time=((paused?pauseStamp:performance.now())-animationStart)/1000;
+ scene.routes.forEach((r,i)=>{const d=solution.details[i];if(!d.q||!r.total)return;const count=Math.max(1,Math.min(160,Math.round(r.total/14*Math.abs(d.q)/qb)));for(let j=0;j<count;j++){let t=(time*45*Math.abs(d.v)/vb/r.total+j/count)%1;if(d.q<0)t=1-t;data.push(...sampleRoute(r,t),0,0,1,1,1,1,0,1,0)}});
+ if(data.length){bindMesh(graphics.dots);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.DYNAMIC_DRAW);f('points',1);f('pointSize',4*k);gl.drawArrays(gl.POINTS,0,data.length/12);f('points',0);if(!paused&&!raf&&!$('sim').hidden)raf=requestAnimationFrame(()=>{raf=0;if(three&&sceneMode==='Flow visualization'&&solution&&!paused&&!$('sim').hidden)renderSolids(false,true)})}}
+}
+function pick(x,y){if(!graphics||!scene)return null;renderSolids(true);const {gl,picking:t}=graphics,k=Math.min(t.w/950,t.h/450),v=new Uint8Array(4);gl.readPixels(Math.floor(t.w/2+x*k),Math.floor(t.h/2-y*k),1,1,gl.RGBA,gl.UNSIGNED_BYTE,v);gl.bindFramebuffer(gl.FRAMEBUFFER,null);return scene.objects[v[0]+256*v[1]+65536*v[2]]}
+const flags={Names:true,IDs:false,Pressure:true,'Flow rate':true,Elevation:false,Velocity:false};
+const tones={given:'#ffcd81',unknown:'#dfb1ed',solved:'#8be5cc',title:'#f3f6f7'};
+const flowAt=(n,i)=>n.type==='Junction'?[0,'given']:n.bc==='flow'?[n.value*(n.type==='Outlet'?-1:1),'given']:solution?[solution.out[i],'solved']:[null,'unknown'];
+const pressureAt=(n,i)=>n.bc==='pressure'?[n.value,'given']:solution?[solution.pressure[i],'solved']:[null,'unknown'];
+const valLine=(prefix,[v,s],u)=>[prefix+': '+(v===null||!Number.isFinite(v)?'?':fmt(v,4)+' '+u),tones[s]];
+function labelLines(n,i,isNode){const rows=[];
+ if(flags.Names||flags.IDs)rows.push([[flags.IDs?n.id:'',flags.Names&&n.name?(n.name.length>26?n.name.slice(0,25)+'…':n.name):''].filter(Boolean).join(' · ')||(flags.Names?'Unnamed '+(isNode?'node':'pipe'):''),tones.title]);
+ if(isNode){if(flags.Pressure)rows.push(valLine('P',pressureAt(n,i),'kPa g'));if(flags['Flow rate'])rows.push(valLine(n.type==='Junction'?'Net ext. Q':'Q ext.',flowAt(n,i),'m³/s'));if(flags.Elevation)rows.push(valLine('z',[n.z,'given'],'m'))}
+ else {const d=solution?.details[i],s=d?'solved':'unknown';if(flags['Flow rate'])rows.push(valLine('Q',[d?Math.abs(d.q):null,s],'m³/s'));if(flags.Velocity)rows.push(valLine('v',[d?Math.abs(d.v):null,s],'m/s'))}return rows}
+let animationStart=0,pauseStamp=0;
+function setPaused(on){if(paused===on)return;const t=performance.now();if(on)pauseStamp=t;else animationStart+=t-pauseStamp;paused=on}
+function placeLabels(items){const used=[],out=[];
+ const obstacles=[];if(three&&scene){for(const n of net.nodes){const c=cameraPoint(zv(world(n),appearance(n)===forms[0]?23:14)),r=appearance(n)===forms[0]?29:20;obstacles.push({x:c[0]-r*scale,y:c[1]-r*scale,w:2*r*scale,h:2*r*scale})}
+ for(const route of scene.routes){if(!route)continue;for(const t of [.2,.4,.6,.8]){const c=cameraPoint(sampleRoute(route,t));obstacles.push({x:c[0]-5,y:c[1]-4,w:10,h:8})}}}
+ for(const it of items){if(!it.rows.length)continue;const w=Math.max(...it.rows.map(r=>[...r[0]].length))*6.15+13,h=it.rows.length*14+7;
+ const candidates=[[15,-h-7],[15,5],[-w-15,-h-7],[-w-15,6],[-w/2,-h-21],[-w/2,21],[22,-h/2],[-w-22,-h/2],[-w/2,-h-44],[-w/2,40],[40,-h-30],[-w-37,18]];
+ let best,bestscore=Infinity;for(const [dx,dy] of candidates){const x=Math.max(-472,Math.min(472-w,it.x+dx)),y=Math.max(-222,Math.min(222-h,it.y+dy));let score=.01*(Math.abs(x-it.x)+Math.abs(y-it.y));for(const o of obstacles)score+=.8*Math.max(0,Math.min(x+w,o.x+o.w)-Math.max(x,o.x))*Math.max(0,Math.min(y+h,o.y+o.h)-Math.max(y,o.y));for(const o of used)score+=3*Math.max(0,Math.min(x+w,o.x+o.w)-Math.max(x,o.x))*Math.max(0,Math.min(y+h,o.y+o.h)-Math.max(y,o.y));if(score<bestscore){bestscore=score;best={x,y,w,h}}}
+ if(it.x<-480||it.x>480||it.y<-225||it.y>225)continue;used.push(best);const {x,y}=best;
+ out.push('<g data-'+it.key+'="'+it.id+'" cursor="pointer"><path d="M'+it.x+' '+it.y+' L'+Math.max(x,Math.min(it.x,x+w))+' '+Math.max(y,Math.min(it.y,y+h))+'" stroke="#7b8a8f" stroke-width=".8"/><rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="4" fill="#172025" fill-opacity=".92" stroke="#435257" stroke-width=".7"/>');
+ if(three&&it.key==='n'){const node=net.nodes.find(n=>n.id===it.id),t={Inlet:'#5dd2ac',Outlet:'#8ccaff',Junction:'#f0b358'}[node.type];out.push('<path d="M'+(x+1)+' '+(y+4)+'v'+(h-8)+'" stroke="'+t+'" stroke-width="2"/>')}
+ it.rows.forEach(([line,color],j)=>out.push('<text x="'+(x+6)+'" y="'+(y+13+j*14)+'" fill="'+color+'" font-family="Arial,sans-serif" font-size="11">'+esc(line)+'</text>'));out.push('</g>')}
+ return out.join('')}
+function draw(){const svg=$('drawing');$('solid').hidden=!three;if(three)renderSolids();$('solid').hidden=!three;svg.parentElement.classList.toggle('plant',three);viewTools();
  $('plan').classList.toggle('active',!three);$('space').classList.toggle('active',three);$('connect').classList.toggle('active',connecting);$('pause').textContent=paused?'Resume motion':'Pause motion';
- $('viewLabel').textContent=three?'3D  /  ELEVATION':'2D  /  PLAN VIEW';
- $('hint').textContent=connecting?(first?'Select an end node for the pipe from '+first+'.':'Select the pipe’s start node.'):(three?'Drag background to orbit · Shift-drag to pan · Scroll to zoom. ':'Drag background to pan · Scroll to zoom. ')+'Drag nodes to arrange. Double-click a node or pipe to edit.';
- let parts=[];if(three){for(let i=-240;i<=240;i+=40){for(const axis of [0,1]){let pt=v=>screen({x:axis?i:v,y:axis?v:i,z:0}).join(',');parts.push('<path d="M'+pt(-240)+' L'+pt(240)+'" stroke="#43494c" stroke-width=".7"/>')}}}
- const lookup=new Map(net.nodes.map(n=>[n.id,n])),siblings=new Map();for(const p of net.pipes){const key=[p.a,p.b].sort().join('/');if(!siblings.has(key))siblings.set(key,[]);siblings.get(key).push(p)}
- for(const [i,p] of net.pipes.entries()){if(!lookup.has(p.a)||!lookup.has(p.b))continue;let [x,y]=screen(lookup.get(p.a)),[u,v]=screen(lookup.get(p.b));if(![x,y,u,v].every(Number.isFinite))continue;
- const group=siblings.get([p.a,p.b].sort().join('/')),offset=(group.indexOf(p)-(group.length-1)/2)*48*(p.a<p.b?1:-1),len=Math.hypot(u-x,v-y)||1,cx=(u+x)/2-(v-y)/len*offset,cy=(v+y)/2+(u-x)/len*offset;
- const q=solution?.details[i].q||0,reverse=q<0,dx=reverse?x-u:u-x,dy=reverse?y-v:v-y,ang=Math.atan2(dy,dx)*180/Math.PI,path='M'+x+' '+y+' Q'+cx+' '+cy+' '+u+' '+v,back='M'+u+' '+v+' Q'+cx+' '+cy+' '+x+' '+y;
- const w=$('width').value==='flow'?2+8*Math.sqrt(Math.abs(q)/Math.max(1e-30,...(solution?.details||[]).map(d=>Math.abs(d.q)))):Math.max(2,Math.min(20,p.D*65||2));
- const mx=(x+2*cx+u)/4,my=(y+2*cy+v)/4;
- parts.push('<g data-p="'+p.id+'" cursor="pointer"><path d="'+path+'" stroke="transparent" stroke-width="'+Math.max(w+8,16)+'" fill="none"/><path d="'+path+'" stroke="#7c9098" stroke-width="'+w+'" fill="none" stroke-linecap="round"/><text x="'+mx+'" y="'+(my-10)+'" text-anchor="middle" fill="#d6dfe1" font-size="11" font-family="monospace" stroke="#25282c" stroke-width="4" paint-order="stroke">'+p.id+'</text>');
- if(q){parts.push('<path d="M-5 -4 L4 0 L-5 4" stroke="white" stroke-width="2" fill="none" transform="translate('+mx+' '+my+') rotate('+ang+')"/>');for(const start of ['0s','-1.6s'])parts.push('<circle r="2.2" fill="#fff0da" pointer-events="none"><animateMotion path="'+(reverse?back:path)+'" dur="3.2s" begin="'+start+'" repeatCount="indefinite"/></circle>')}
- parts.push('</g>')}
- for(const n of net.nodes){const [x,y]=screen(n);if(!isFinite(x+y))continue;const c=colors[n.type];if(three){const [a,b]=screen(n,0);parts.push('<path d="M'+a+' '+b+' L'+x+' '+y+'" stroke="#929da0" stroke-dasharray="3 3"/>')}
- parts.push('<g data-n="'+n.id+'" cursor="grab"><circle cx="'+x+'" cy="'+y+'" r="15" fill="#23292d" stroke="'+(first===n.id?'white':c)+'" stroke-width="2"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="'+c+'"/><text x="'+(x+19)+'" y="'+(y-9)+'" fill="white" font-size="12" font-weight="bold" stroke="#22272a" stroke-width="4" paint-order="stroke">'+n.id+'</text><text x="'+(x+19)+'" y="'+(y+6)+'" fill="#c1d1d2" font-size="10" stroke="#22272a" stroke-width="3" paint-order="stroke">'+(three?n.z+' m':n.type)+'</text></g>')}
- if(!net.nodes.length)parts.push('<text text-anchor="middle" fill="#d7e0dd" font-size="16">Add a node to start your network</text>');
- svg.innerHTML=parts.join('');if(paused)svg.pauseAnimations();else svg.unpauseAnimations()}
-$('plan').onclick=()=>{three=false;fitView();draw()};$('space').onclick=()=>{three=true;fitView();draw()};$('pause').onclick=()=>{paused=!paused;const svg=$('drawing');if(paused)svg.pauseAnimations();else svg.unpauseAnimations();$('pause').textContent=paused?'Resume motion':'Pause motion'};$('width').onchange=draw;
+ $('viewLabel').textContent=three?'REFINERY  /  '+sceneMode.toUpperCase():'2D  /  PLAN VIEW';
+ $('hint').textContent=connecting?(first?'Select an end node for '+first+'.':'Select the start node, then the end node.'):(three?'Drag background to orbit · Shift-drag to pan. ':'Drag background to pan. ')+'Scroll to zoom. Drag a node to move it horizontally. Double-click a part to edit.';
+ if(!three&&glMessage)$('hint').textContent=glMessage+' '+$('hint').textContent;
+ if(three)$('hint').textContent+=' Schematic 3D layout. Node z sets the hydraulic reference elevation. Equipment dimensions, nozzle offsets and foundations are illustrative. The solve uses the entered pipe lengths and adds no routing or fitting losses.';
+ const nodes=new Map(net.nodes.map(n=>[n.id,n])),parts=[],markers=[],labels=[],pipeLabels=[],maxQ=Math.max(1e-30,...(solution?.details||[]).map(d=>Math.abs(d.q))),maxV=Math.max(1e-30,...(solution?.details||[]).map(d=>Math.abs(d.v)));
+ const project=v=>three?cameraPoint(v):[v[0]*scale+pan[0],v[1]*scale+pan[1],0],coord=p=>p[0]+' '+p[1];
+ for(const [i,p] of net.pipes.entries()){
+ if(!nodes.has(p.a)||!nodes.has(p.b)||p.a===p.b)continue;const a=world(nodes.get(p.a)),b=world(nodes.get(p.b)),m=bend(p,a,b),route=three?scene?.routes[i]:null,pts=(route?route.points:[a,...m?[m]:[],b]).map(project);
+ const path='M'+pts.map(coord).join(' L'),length=pts.slice(1).reduce((s,v,j)=>s+Math.hypot(v[0]-pts[j][0],v[1]-pts[j][1]),0);
+ const mid=route?project(sampleRoute(route,.5)):m?pts[1]:mul(vadd(pts[0],pts[1]),.5),d=solution?.details[i],q=d?.q||0;
+ if(!three){const width=Math.max(2,Math.min(25,p.D*70||2));parts.push('<g data-p="'+p.id+'" cursor="pointer"><path d="'+path+'" fill="none" stroke="transparent" stroke-width="'+Math.max(17,width+6)+'"/><path d="'+path+'" fill="none" stroke="#9eabb1" stroke-width="'+width+'" stroke-linecap="round" stroke-linejoin="round"/></g>')}
+ if(q&&length>1&&(!three||sceneMode==='Flow visualization'||arrows)){
+ const sequence=q<0?pts.slice().reverse():pts,track='M'+sequence.map(coord).join(' L'),next=route?project(sampleRoute(route,q<0?.48:.52)):null,dx=next?next[0]-mid[0]:sequence[1][0]-sequence[0][0],dy=next?next[1]-mid[1]:sequence[1][1]-sequence[0][1],arrow=!route&&sequence.length===3?mul(vadd(sequence[0],sequence[1]),.5):mid;
+ markers.push('<path data-p="'+p.id+'" d="M-5 -4 L3 0 L-5 4" fill="none" stroke="#ffda8d" stroke-width="2.1" transform="translate('+coord(arrow)+') rotate('+Math.atan2(dy,dx)*180/Math.PI+')"/>');
+ // Uniform display scale across all branches; normalizing to the fastest speed keeps motion readable.
+ const count=Math.max(1,Math.min(48,Math.round(length/28*Math.abs(q)/maxQ))),duration=length/(72*Math.abs(d.v)/maxV*scale);
+ if(!three)for(let j=0;j<count;j++)markers.push('<circle r="2" fill="#f5ffff" pointer-events="none"><animateMotion path="'+track+'" dur="'+duration+'s" begin="'+(-j*duration/count)+'s" repeatCount="indefinite" calcMode="paced"/></circle>')}
+ pipeLabels.push({key:'p',id:p.id,x:mid[0],y:mid[1],rows:labelLines(p,i,false)})}
+ for(const [i,n] of net.nodes.entries()){const [x,y]=project(three?zv(world(n),appearance(n)===forms[0]?30:appearance(n)===forms[2]?13:2):world(n)),c={Inlet:'#5dd2ac',Outlet:'#8ccaff',Junction:'#f0b358'}[n.type];if(!three)parts.push('<g data-n="'+n.id+'" cursor="grab"><title>'+esc(n.type==='Junction'?fittingPlan(n,net).kind:appearance(n))+'</title><circle cx="'+x+'" cy="'+y+'" r="14" fill="#263438" stroke="'+c+'" stroke-width="2"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="'+c+'"/></g>');if(first===n.id)parts.push('<circle cx="'+x+'" cy="'+y+'" r="20" fill="none" stroke="white" stroke-dasharray="3 2"/>');
+ labels.push({key:'n',id:n.id,x,y,rows:labelLines(n,i,true)})}
+ if(!net.nodes.length)parts.push('<text text-anchor="middle" fill="white">Add a node to start your network</text>');
+ svg.innerHTML=parts.join('')+markers.join('')+placeLabels(labels.concat(pipeLabels));if(svg.setCurrentTime){svg.setCurrentTime(((paused?pauseStamp:performance.now())-animationStart)/1000);if(paused)svg.pauseAnimations();else svg.unpauseAnimations()}}
+$('plan').onclick=()=>{three=false;fitView();draw()};$('space').onclick=()=>{three=true;fitView();draw()};$('pause').onclick=()=>{setPaused(!paused);draw()};
 function zoom(mult,x=0,y=0){const s=Math.max(.05,Math.min(20,scale*mult)),k=s/scale;pan=[x+(pan[0]-x)*k,y+(pan[1]-y)*k];scale=s;draw()}
 $('plus').onclick=()=>zoom(1.25);$('minus').onclick=()=>zoom(.8);$('fit').onclick=()=>{fitView();draw()};
 const drawing=$('drawing');function pos(e){const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(drawing.getScreenCTM().inverse());return [p.x,p.y]}
 drawing.onwheel=e=>{e.preventDefault();zoom(Math.exp(-e.deltaY*.0015),...pos(e))};
-drawing.onpointerdown=e=>{if(e.button!==0)return;const [x,y]=pos(e),g=e.target.closest('[data-n],[data-p]');gesture={x,y,sx:x,sy:y,n:g?.dataset.n,p:g?.dataset.p,moved:false,pan:e.shiftKey};drawing.setPointerCapture(e.pointerId)};
+drawing.onpointerdown=e=>{if(e.button!==0)return;const [x,y]=pos(e),g=e.target.closest('[data-n],[data-p]');const item=three&&!g?pick(x,y):null;gesture={x,y,sx:x,sy:y,n:g?.dataset.n||item?.n,p:g?.dataset.p||item?.p,moved:false,pan:e.shiftKey};if(e.isTrusted!==false)drawing.setPointerCapture(e.pointerId)};
 drawing.onpointermove=e=>{if(!gesture)return;const [x,y]=pos(e),g=gesture,dx=x-g.x,dy=y-g.y;
  if(!g.moved&&Math.hypot(x-g.sx,y-g.sy)<3)return;g.moved=true;g.x=x;g.y=y;
- if(g.n&&!connecting){const n=net.nodes.find(n=>n.id===g.n),a=dx/scale,b=dy/scale;if(three){const t=b/Math.sin(pitch);n.x+=Math.cos(yaw)*a+Math.sin(yaw)*t;n.y+=-Math.sin(yaw)*a+Math.cos(yaw)*t}else{n.x+=a;n.y+=b}}
+ if(g.n&&!connecting){const n=net.nodes.find(n=>n.id===g.n),a=dx/scale,b=dy/scale;if(three){const z=world(n)[2],s=groundPoint(x-dx,y-dy,z),t=groundPoint(x,y,z);n.x+=t[0]-s[0];n.y+=t[1]-s[1]}else{n.x+=a;n.y+=b}
+ const affected=new Set([n.id]);for(const p of net.pipes){if(p.a===n.id)affected.add(p.b);if(p.b===n.id)affected.add(p.a)}
+ for(const out of $('editor').querySelectorAll('[data-fitting]'))if(affected.has(out.dataset.fitting)){const hub=net.nodes.find(v=>v.id===out.dataset.fitting);out.textContent=analyzeFitting(hub,net).kind}}
  else if(!g.n&&!g.p){if(three&&!g.pan){yaw+=dx*.008;pitch=Math.min(1.45,Math.max(.12,pitch+dy*.006))}else{pan[0]+=dx;pan[1]+=dy}}draw()};
-drawing.onpointercancel=()=>{gesture=null};drawing.onpointerup=e=>{const g=gesture;gesture=null;if(!g)return;if(g.moved){if(g.n)inputs();return}
+drawing.onpointercancel=()=>{gesture=null;notice(normalizeForms(net));inputs();draw()};drawing.onpointerup=e=>{const g=gesture;gesture=null;if(!g)return;if(g.moved){if(g.n){notice(normalizeForms(net));inputs();draw()}return}
  if(connecting&&g.n){if(!first){first=g.n;draw()}else if(first!==g.n){const a=first;endConnect();draw();editPipe(null,a,g.n)}else $('hint').textContent='Choose a different end node.';return}
- const id=g.n||g.p;if(!id)return;if(lastTap?.id===id&&performance.now()-lastTap.t<420){lastTap=null;if(g.n)editNode(net.nodes.find(n=>n.id===id));else editPipe(net.pipes.find(p=>p.id===id))}else lastTap={id,t:performance.now()}};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){endConnect();draw()}});
+ const id=g.n||g.p;if(!id)return;chosen=id;draw();if(lastTap?.id===id&&performance.now()-lastTap.t<420){lastTap=null;if(g.n)editNode(net.nodes.find(n=>n.id===id));else editPipe(net.pipes.find(p=>p.id===id))}else lastTap={id,t:performance.now()}};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('sim').hidden){endConnect();draw()}});
+const frac=(a,b)=>'<span class="frac"><span>'+a+'</span><span>'+b+'</span></span>';
+const subscript=(s,k)=>s+'<sub>'+k+'</sub>';
+const origin=(s)=>'<small class="origin '+s+'">'+(s==='given'?'Specified':s==='solved'?'Calculated':s==='derived'?'From specified pressure and z':'Unknown')+'</small>';
+const cell=(v,s)=>'<span class="cellvalue">'+(v===null?'?':fmt(v))+' '+origin(s)+'</span>';
+const direction=(p,q)=>q>0?p.a+' → '+p.b:q<0?p.b+' → '+p.a:'No flow';
+function refreshOutput(){
+ $('properties').innerHTML=data('Density, ρ',liquids[fluid][0]+' kg/m³')+data('Viscosity, μ',liquids[fluid][1]+' Pa·s');
+ $('badge').textContent=state;$('badge').className='tag '+(solution?'solved':state==='Outdated'?'unknown':'given');
+ const t=solution?totals():null;$('summary').innerHTML=data('Network',net.nodes.length+' nodes · '+net.pipes.length+' pipes')+data('Total inflow',t?fmt(t[0])+' m³/s':'—')+data('Total outflow',t?fmt(t[1])+' m³/s':'—')+data('Maximum residual',solution?fmt(solution.error,3)+' m³/s':'—');
+ $('message').textContent=solution?'Converged in '+solution.iter+' head iterations.':state==='Outdated'?'Engineering inputs changed. Calculate again to update results.':error?'Review the warnings and calculate again.':'Calculate to resolve unknown pressure and flow.';
+ const {warnings,notices,velocityFlag}=diagnostics();$('warnings').innerHTML=warnings.length?'<strong>Engineering warnings</strong>'+(velocityFlag?'<small>Velocity thresholds of 0.4 and 3.5 m/s are general screening guidelines. Appropriate operating speeds depend on the liquid and service.</small>':'')+warnings.map(w=>'<p>'+esc(w)+'</p>').join(''):'';
+ $('flowInfo').innerHTML=notices.length?'<strong>Flow direction information</strong>'+notices.map(t=>'<p>'+esc(t)+'</p>').join(''):'';
+ $('csv').disabled=!solution;results();draw();renderVelocityCheck()
+}
+function results(){
+ tabs('resTabs',['Pipes','Nodes'],res,k=>{res=k;results()});const s=solution;
+ const rows=res==='Pipes'?net.pipes.map((p,i)=>{const d=s?.details[i];return [p.id,esc(p.name)||'—',...(!d?Array(7).fill('?'):[fmt(Math.abs(d.q)),direction(p,d.q),fmt(Math.abs(d.v)),fmt(d.re),d.regime,d.f===null?'Undefined at rest':fmt(d.f),fmt(d.loss)])]}):net.nodes.map((n,i)=>[n.id,esc(n.name)||'—',n.type,cell(n.z,'given'),n.bc==='pressure'&&!s?'Pending '+origin('derived'):cell(s?s.h[i]:null,n.bc==='pressure'?'derived':s?'solved':'unknown'),cell(...pressureAt(n,i)),cell(...flowAt(n,i))]);
+ $('results').innerHTML=table(res==='Pipes'?['Pipe ID','Name','Flow (m³/s)','Actual direction','Speed (m/s)','Re','Regime','Fanning f','Head loss (m)']:['Node ID','Name','Type','Elevation (m)','Head (m)','Gauge pressure (kPa)','Net external flow (m³/s)'],rows);
+ $('results').insertAdjacentHTML('afterbegin','<p class="note" style="padding:0 14px">'+(res==='Pipes'?'IDs and names identify each pipe. All hydraulic values in this table are calculated.':'Net external flow is positive into the network and negative at withdrawals. A junction has zero external flow.')+'</p>');
+ const items=[...net.pipes,...net.nodes];if(!items.length){$('work').innerHTML='';return}if(!items.some(v=>v.id===selected))selected=items[0].id;
+ const options=list=>list.map(v=>'<option value="'+v.id+'" '+(v.id===selected?'selected':'')+'>'+v.id+(v.name?' · '+esc(v.name):'')+'</option>').join('');
+ $('work').innerHTML='<div class="row"><h3>Calculation breakdown</h3><select id="worked" aria-label="Network element"><optgroup label="Pipes">'+options(net.pipes)+'</optgroup><optgroup label="Nodes">'+options(net.nodes)+'</optgroup></select></div>'+breakdown(selected);
+ $('worked').onchange=e=>{selected=e.target.value;results()}}
+const math=(t,final=false)=>'<div class="mathline'+(final?' final':'')+'">'+t+'</div>';
+const step=(n,t)=>'<div class="mathstep">'+n+' · '+t+'</div>';
+const section=(title,body)=>'<details><summary>'+title+'</summary>'+body+'</details>';
+const fSymbol='<i>f</i><sub>F</sub>',deltaH='<i>H</i><sub>a</sub> − <i>H</i><sub>b</sub>';
+const churchEq='C = [−2.457 ln((7/Re)<sup>0.9</sup> + 0.27 ε/D)]<sup>16</sup>, &nbsp; B = (37530/Re)<sup>16</sup><br>'+fSymbol+' = 2 [(8/Re)<sup>12</sup> + (C + B)<sup>−3/2</sup>]<sup>1/12</sup>';
+function breakdown(id){
+ const i=net.pipes.findIndex(p=>p.id===id),s=solution,[rho,mu]=liquids[fluid];let governing,worked='';
+ if(i>=0){const p=net.pipes[i],d=s?.details[i];
+ governing=math('A = '+frac('πD²','4')+' &emsp; v = '+frac('Q','A')+' &emsp; Re = '+frac('ρ |v| D','μ'))+math(churchEq)+math(deltaH+' = sgn(Q) h<sub>f</sub> &emsp; h<sub>f</sub> = 4 '+fSymbol+' '+frac('L','D')+' '+frac('v²','2g'));
+ if(s){const a=net.nodes.findIndex(n=>n.id===p.a),b=net.nodes.findIndex(n=>n.id===p.b);
+ worked=step(1,'Find the driving head from '+p.a+' to '+p.b)+math(deltaH+' = '+fmt(s.h[a])+' m − ('+fmt(s.h[b])+' m) = '+fmt(s.h[a]-s.h[b])+' m')+step(2,'Use the solved signed flow to find mean velocity')+math('A = '+frac('π ('+p.D+' m)²','4')+' = '+fmt(d.area)+' m² &emsp; v = '+frac(fmt(d.q)+' m³/s',fmt(d.area)+' m²')+' = '+fmt(d.v)+' m/s')+step(3,'Determine regime and wall friction')+math('Re = '+frac(rho+' kg/m³ × '+fmt(Math.abs(d.v))+' m/s × '+p.D+' m',mu+' Pa·s')+' = '+fmt(d.re)+' &nbsp; ('+d.regime.toLowerCase()+')');
+ if(!d.q)worked+=math('At rest, '+fSymbol+' is undefined and h<sub>f</sub> = 0 m.');
+ else if(d.re<100)worked+=math(fSymbol+' = 16 / '+fmt(d.re)+' = '+fmt(d.f));
+ else{const C=(-2.457*Math.log((7/d.re)**.9+.27*roughness/p.D))**16,B=(37530/d.re)**16;worked+=math('ε/D = '+frac(roughness+' m',p.D+' m')+' = '+fmt(roughness/p.D)+'<br>C = [−2.457 ln((7/'+fmt(d.re)+')<sup>0.9</sup> + 0.27 × '+fmt(roughness/p.D)+')]<sup>16</sup> = '+fmt(C)+'<br>B = (37530/'+fmt(d.re)+')<sup>16</sup> = '+fmt(B)+'<br>'+fSymbol+' = 2 [(8/'+fmt(d.re)+')<sup>12</sup> + ('+fmt(C)+' + '+fmt(B)+')<sup>−3/2</sup>]<sup>1/12</sup> = '+fmt(d.f))}
+ worked+=step(4,'Check the energy balance')+(d.q?math('h<sub>f</sub> = 4 × '+fmt(d.f)+' × '+frac(p.L+' m',p.D+' m')+' × '+frac('('+fmt(d.v)+' m/s)²','2 × '+gravity+' m/s²')+' = '+fmt(d.loss)+' m'):'')+math(deltaH+' = sgn(Q) h<sub>f</sub> ≈ '+fmt(Math.sign(d.q)*d.loss)+' m')+math('<b>|Q| = '+fmt(Math.abs(d.q))+' m³/s</b> &emsp; '+direction(p,d.q)+' &emsp; h<sub>f</sub> = '+fmt(d.loss)+' m',true)}}
+ else{
+ const j=net.nodes.findIndex(n=>n.id===id),n=net.nodes[j],fixed=n.bc==='pressure';
+ governing=math('H = z + '+frac('P (Pa)','ρg'))+math('P (Pa) = ρg (H − z) &emsp; P (kPa) = '+frac('ρg (H − z)','1000'))+math('Q<sub>external</sub> = ∑ Q<sub>leaving</sub> − ∑ Q<sub>entering</sub>');
+ if(s){
+ const q=flowAt(n,j)[0],head=s.h[j],pascal=(head-n.z)*rho*gravity,terms=[],pipeTerms=[];
+ const roundedHead=fmt(head,9),displayHead=Math.abs(Number(roundedHead)-head)<=Math.abs(head-n.z)*1e-8?roundedHead:String(head);
+ net.pipes.forEach((p,i)=>{if(p.a===id||p.b===id){const term=(p.a===id?1:-1)*s.details[i].q;pipeTerms.push('q<sub>'+p.id+'</sub>');terms.push('<span title="Signed flow leaving this node through '+p.id+'">'+(terms.length?(term<0?' − ':' + '):(term<0?'−':''))+fmt(Math.abs(term))+'</span>')}});
+ worked=step(1,fixed?'Derive head from specified gauge pressure and elevation':'Apply continuity to solve for head')+
+ (fixed?math('H = '+n.z+' m + '+frac('('+n.value+' kPa) × (1000 Pa/kPa)',rho+' kg/m³ × '+gravity+' m/s²')+' = '+displayHead+' m'):
+ math('Q<sub>external, specified</sub> = '+fmt(q)+' m³/s &emsp; H<sub>solved</sub> = '+displayHead+' m'))+
+ step(2,fixed?'Check the specified gauge pressure':'Calculate gauge pressure')+
+ math('P (Pa) = ('+rho+' kg/m³) × ('+gravity+' m/s²) × ('+displayHead+' m − ('+n.z+' m)) ≈ '+fmt(pascal,9)+' Pa')+
+ math('P (kPa) = '+frac('('+rho+' kg/m³) × ('+gravity+' m/s²) × ('+displayHead+' m − ('+n.z+' m))','1000 Pa/kPa')+' ≈ '+fmt(s.pressure[j],9)+' kPa')+
+ step(3,'Sum the signed pipe flows leaving this node')+math(pipeTerms.join(' + ')+' = ('+terms.join('')+') m³/s ≈ '+fmt(s.out[j])+' m³/s')+
+ math('P = <b>'+fmt(pressureAt(n,j)[0])+' kPa g</b> '+origin(fixed?'given':'solved')+' &emsp; Q<sub>external</sub> = <b>'+fmt(q)+' m³/s</b> '+origin(fixed?'solved':'given'),true);
+ if(!fixed)worked+=math('|Residual| = |'+fmt(s.out[j],10)+' − ('+fmt(q,10)+')| ≈ '+fmt(Math.abs(s.out[j]-q))+' m³/s')}}
+ return section('Governing equations',governing)+section('Substituted network values',worked||'<p>Press Calculate Network to see the substituted values.</p>')}
+function serialize(){if(net.nodes.some(n=>![n.x,n.y,n.z,n.value].every(Number.isFinite))||net.pipes.some(p=>![p.L,p.D].every(Number.isFinite)))throw Error('Complete the numeric fields before saving.');const text=JSON.stringify({format:'piping-network',version:4,visualization:readView(),fluid,nodes:net.nodes,pipes:net.pipes},null,2);decode(text);return text}
+function decode(text){
+ const x=JSON.parse(text);if(!x||x.format!=='piping-network'||![2,3,4].includes(x.version)||!Object.prototype.hasOwnProperty.call(liquids,x.fluid)||!Array.isArray(x.nodes)||!Array.isArray(x.pipes))throw Error('Choose a Version 2, 3 or 4 piping-network JSON file.');
+ const ids=new Set(),finite=Number.isFinite;
+ function base(o){if(!o||typeof o.id!=='string'||!/^[A-Za-z][A-Za-z0-9_-]{0,31}$/.test(o.id)||ids.has(o.id))throw Error('Each node and pipe needs a unique alphanumeric ID.');ids.add(o.id);
+ if(o.name!==undefined&&(typeof o.name!=='string'||o.name.length>80))throw Error('Custom names must be text of up to 80 characters.');return {id:o.id,name:o.name||''}}
+ const nodes=x.nodes.map(o=>{const v=base(o);if(!['Inlet','Outlet','Junction'].includes(o.type)||![o.x,o.y,o.z,o.value].every(finite)||(o.type==='Junction'?o.bc!=='balance'||o.value!==0:!['flow','pressure'].includes(o.bc))||o.bc==='flow'&&o.value<0)throw Error('Check node coordinates, type and boundary values.');return {...v,appearance:o.appearance,type:o.type,x:o.x,y:o.y,z:o.z,value:o.value,bc:o.bc}});
+ const known=new Set(nodes.map(n=>n.id));const pipes=x.pipes.map(o=>{const v=base(o);if(!known.has(o.a)||!known.has(o.b)||o.a===o.b||![o.L,o.D].every(t=>finite(t)&&t>0))throw Error('Each pipe needs two different existing endpoints and positive dimensions.');return {...v,a:o.a,b:o.b,L:o.L,D:o.D}});
+ const network={nodes,pipes},corrections=normalizeForms(network);return {net:network,corrections,fluid:x.fluid,view:x.visualization}
+}
+function download(filename,type,body){const url=URL.createObjectURL(new Blob([body],{type})),a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function csvText(){if(!solution)throw Error('Calculate the network before exporting results.');const s=solution,t=totals();
+ const rows=[['Fluid',fluid],['Convergence',state],['Total inflow (m³/s)',t[0]],['Total outflow (m³/s)',t[1]],['Maximum residual (m³/s)',s.error],[],['Pipe ID','Custom name','Flow (m³/s)','Actual direction','Velocity magnitude (m/s)','Re','Regime','Fanning friction factor','Frictional head loss (m)']];
+ net.pipes.forEach((p,i)=>{const d=s.details[i];rows.push([p.id,p.name,Math.abs(d.q),direction(p,d.q),Math.abs(d.v),d.re,d.regime,d.f??'',d.loss])});
+ rows.push([],['Node ID','Custom name','Type','Elevation (m), specified','Hydraulic head (m)','Head source','Gauge pressure (kPa)','Pressure source','Net external flow (m³/s)','Flow source']);
+ net.nodes.forEach((n,i)=>rows.push([n.id,n.name,n.type,n.z,s.h[i],n.bc==='pressure'?'Derived from specified gauge pressure and elevation':'Solved by continuity',pressureAt(n,i)[0],n.bc==='pressure'?'Specified':'Calculated',flowAt(n,i)[0],n.bc==='pressure'?'Calculated':'Specified']));
+ return rows.map(row=>row.map(v=>{let str=String(v??'');if(typeof v==='string'&&/^[\s]*[=+@-]/.test(str))str="'"+str;return '"'+str.replace(/"/g,'""')+'"'}).join(',')).join('\r\n')}
+$('example').onclick=()=>confirmAction('Load preset?','Replace the current network with the selected preset.',()=>{newWorkspace(presetNetwork($('preset').value),'Water');resetView();update()});
+$('save').onclick=()=>{try{download('piping-network.json','application/json',serialize())}catch(e){$('message').textContent=e.message}};
+$('open').onclick=()=>$('file').click();$('file').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const value=decode(await file.text());confirmAction('Import network?','Replace the current network with the selected file.',()=>{newWorkspace(value.net,value.fluid);restoreView(value.view);resetView();update();notice(value.corrections)})}catch(e){$('message').textContent='Import failed. '+e.message}finally{$('file').value=''}};
+$('csv').onclick=()=>{if(solution)download('piping-results.csv','text/csv;charset=utf-8','\uFEFF'+csvText())};
+function extraChecks(){
+ const staticNet=()=>({nodes:[node('A','Inlet',0,0,5,0),node('B','Outlet',0,0,5,0)],pipes:[pipe('T','A','B',50,.1)]});
+ return [
+ ['Visual independence','Change the equipment and drawing positions, then compare every pipe flow with the original network.',()=>{const net=presetNetwork('Looped network'),ref=solve(net,'Water');net.nodes.forEach((n,i)=>{n.appearance=forms[(i+1)%forms.length];n.x+=40*i;n.y-=23*i});const next=solve(net,'Water');return [Math.max(...ref.details.map((d,i)=>Math.abs(d.q-next.details[i].q))),0,'m³/s',0]}],
+ ['Zero driving head','Equal piezometric heads give zero flow, velocity and head loss.',()=>{const d=solve(staticNet(),'Water').details[0];return [Math.abs(d.q)+d.loss,0,'zero flow and loss',0]}],
+ ['Multiple inlets','A fixed-flow inlet supplies 0.012 m³/s alongside a pressure inlet.',()=>[solve(presetNetwork('Multiple inlets'),'Water').out[1],.012,'m³/s',1e-10]],
+ ['Turbulent reference','For water at Re = 100000 and ε/D = 0.00015, compare Churchill’s Fanning factor with an independently evaluated reference.',()=>[fanning(100000,.1),0.004684551126293617,'Fanning factor',2e-10]],
+ ['Hydrostatic pressure','A zero-demand junction 5 m below an atmospheric reservoir gains ρg × 5 m in pressure.',()=>{const n=staticNet();n.nodes[1]=node('B','Junction',0,0,0);return [solve(n,'Water').pressure[1],liquids.Water[0]*gravity*5/1000,'kPa',1e-7]}]
+ ]}
 function checks(){
  const make=(zA=0,zB=0,pA=0,pB=0)=>({nodes:[node('A','Inlet',0,0,zA,pA),node('B','Outlet',1,0,zB,pB)],pipes:[pipe('T','A','B',100,.1)]});
  const branch=()=>({nodes:[node('A','Inlet',0,0,0,.001),node('J','Junction',0,0,0),node('B','Outlet',0,0,0),node('C','Outlet',0,0,0)],pipes:[pipe('A1','A','J',100,.1),pipe('B1','J','B',100,.1),pipe('C1','J','C',100,.1)]});
@@ -857,27 +1574,109 @@ function checks(){
  ['Fixed-flow boundary','Withdraw 0.00001 m³/s at a level outlet. Check the calculated outlet gauge pressure against the laminar pressure drop.',()=>{const n=make();n.nodes[1].bc='flow';n.nodes[1].value=1e-5;return [solve(n,'Water').pressure[1],-1e-5/Qhp(1)/1000,'kPa',1e-8]}],
  ['Reverse flow','Raise the downstream pressure by 1 Pa and compare the signed result with the negative Poiseuille flow.',()=>[solve(make(0,0,0,.001),'Water').details[0].q,-Qhp(1),'m³/s',1e-11]],
  ['Looped network','Two equal paths from inlet to outlet form a closed loop. Each has two 100 m pipes in series and must carry half the single-pipe flow for a 1 Pa drop.',()=>{const n=branch();n.nodes[3].type='Junction';n.nodes[3].bc='balance';n.pipes=[pipe('1','A','J',100,.1),pipe('2','J','B',100,.1),pipe('3','A','C',100,.1),pipe('4','C','B',100,.1)];const s=solve(n,'Water');return [Math.max(...s.details.map(d=>Math.abs(d.q-Qhp(1)/2))),0,'m³/s max error',1e-10]}]
- ];$('checks').innerHTML=cases.map(([name,desc,fn])=>{try{const [actual,expected,unit,tol]=fn(),pass=Math.abs(actual-expected)<=tol;return '<article><div class="top"><h3>'+name+'</h3><b class="'+(pass?'ok':'warn')+'">'+(pass?'Pass':'Fail')+'</b></div><p>'+desc+'</p><div class="formula">Expected '+fmt(expected,8)+' · Calculated '+fmt(actual,8)+' '+unit+' · Absolute tolerance '+fmt(tol)+'</div></article>'}catch(e){return '<article><h3>'+name+'</h3><p class="warn">Fail · '+e.message+'</p></article>'}}).join('')}
-function renderVelocityCheck(){
-  const rows = $('velocity-rows'), table = $('velocity-table'), note = $('checkline');
+ ,...extraChecks()];$('checks').innerHTML=cases.map(([name,desc,fn])=>{try{const [actual,expected,unit,tol]=fn(),pass=Math.abs(actual-expected)<=tol;return '<article><div class="top"><h2>'+name+'</h2><b class="'+(pass?'ok':'warn')+'">'+(pass?'Pass':'Fail')+'</b></div><p>'+desc+'</p><div class="formula">Expected '+fmt(expected,8)+' · Calculated '+fmt(actual,8)+' '+unit+' · Absolute tolerance '+fmt(tol)+'</div></article>'}catch(e){return '<article><h2>'+name+'</h2><p class="warn">Fail · '+e.message+'</p></article>'}}).join('')}
+$('labels').innerHTML=Object.entries(flags).map(([k,on])=>'<label><input type="checkbox" data-label="'+k+'" '+(on?'checked':'')+'>'+k+'</label>').join('');
+$('labels').onchange=e=>{flags[e.target.dataset.label]=e.target.checked;draw()};
+$('retest').onclick=checks;
+function readView(){return {mode:sceneMode,camera:cameraMode,metric,arrows,labels:{...flags},paused,view:three?'3D':'2D'}}
+function restoreView(v){if(!v||typeof v!=='object')return;
+ if(['Realistic','Flow visualization','Engineering analysis'].includes(v.mode))sceneMode=v.mode;
+ if(['Orthographic','Perspective'].includes(v.camera))cameraMode=v.camera;
+ if(['Flow rate','Velocity','Head loss'].includes(v.metric))metric=v.metric;
+ if(typeof v.arrows==='boolean')arrows=v.arrows;if(typeof v.paused==='boolean')setPaused(v.paused);
+ if(v.view==='2D'||v.view==='3D')three=v.view==='3D';
+ for(const k of Object.keys(flags))if(typeof v.labels?.[k]==='boolean')flags[k]=v.labels[k];
+ $('labels').querySelectorAll('input').forEach(x=>x.checked=flags[x.dataset.label])}
+function viewTools(){
+ $('mode').value=sceneMode;$('camera').value=cameraMode;$('metric').value=metric;$('arrowToggle').checked=arrows;
+ $('modebar').hidden=!three;$('metricBox').hidden=sceneMode!=='Engineering analysis';$('arrowBox').hidden=sceneMode!=='Realistic';
+ const legend=$('colorKey');legend.hidden=!three||sceneMode!=='Engineering analysis';
+ if(!legend.hidden){const vs=solution?.details.map(measure)||[],unit=metric==='Velocity'?'m/s':metric==='Head loss'?'m':'m³/s';
+ legend.innerHTML='<b>'+metric+' · '+unit+'</b><span class="colorbar"></span>'+(vs.length?fmt(Math.min(...vs),3)+' – '+fmt(Math.max(...vs),3):'Calculate to display range')+'<small>Pipe-level values</small>'}
+ $('screenCalc').textContent=state==='Outdated'?'Recalculate network':'Calculate Network';
+ $('full').textContent=document.body.classList.contains('expanded')?'Exit full screen':'Full Screen 3D';
+}
+function expanded(on){document.body.classList.toggle('expanded',on);if(on&&!three){three=true;fitView()}draw();requestAnimationFrame(draw)}
+$('full').onclick=()=>expanded(!document.body.classList.contains('expanded'));$('screenCalc').onclick=calculate;
+$('mode').onchange=e=>{sceneMode=e.target.value;draw()};$('metric').onchange=e=>{metric=e.target.value;draw()};$('camera').onchange=e=>{cameraMode=e.target.value;draw()};$('arrowToggle').onchange=e=>{arrows=e.target.checked;draw()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('dialog').open&&document.body.classList.contains('expanded'))expanded(false)});
+$('solid').addEventListener('webglcontextlost',e=>{e.preventDefault();graphics=null;scene=null;meshKey='';glMessage='WebGL context lost. Use 2D or reopen the 3D view after recovery.';three=false;fitView();draw()});
+$('solid').addEventListener('webglcontextrestored',()=>{glMessage='';draw()});
+
+const resize=new ResizeObserver(()=>{if(!$('sim').hidden)draw()});resize.observe($('drawing'));
+
+function renderVelocityCheck() {
+  const table = $('velocity-table'), rows = $('velocity-rows'), note = $('checkline');
   table.hidden = !solution;
   rows.replaceChildren();
-  if(!solution){
-    note.textContent = 'Solve a network to check its pipe velocities.';
+  if (!solution) {
+    note.textContent = state === 'Outdated'
+      ? 'Inputs changed. Calculate Network again to update velocity screening.'
+      : 'Calculate the network to see its pipe velocities.';
     return;
   }
   let flagged = 0;
   rows.innerHTML = net.pipes.map((p, i) => {
     const speed = Math.abs(solution.details[i].v);
-    const result = speed < 0.4 ? 'Below range' : speed > 3.5 ? 'Above range' : 'Within range';
-    if(result !== 'Within range') flagged++;
-    return '<tr><th scope="row">'+p.id+'</th><td class="num">'+speed.toFixed(2)+'</td><td class="'+(result === 'Within range' ? '' : 'velocity-flag')+'">'+result+'</td></tr>';
+    const result = speed < .4 ? 'Below range' : speed > 3.5 ? 'Above range' : 'Within range';
+    const outside = result !== 'Within range';
+    if (outside) flagged++;
+    const label = p.name ? p.id + ' · ' + esc(p.name) : p.id;
+    return '<tr><th scope="row">' + label + '</th><td class="num">' + speed.toFixed(2) +
+      '</td><td' + (outside ? ' class="velocity-flag"' : '') + '>' + result + '</td></tr>';
   }).join('');
-  note.textContent = flagged+' of '+net.pipes.length+' pipes outside the simulator’s 0.4–3.5 m/s screening range.';
+  note.textContent = flagged + ' of ' + net.pipes.length + ' pipes outside the simulator’s 0.4–3.5 m/s screening range.';
 }
-$('retest').onclick=checks;
-fitView();
-update();
-showRoute();
+// ---------- Section navigation ----------
+let workspaceStarted = false;
+const sectionLinks = [...document.querySelectorAll("#tabbar a")];
+function showRoute(moveFocus = false) {
+  const hash = location.hash.slice(1);
+  const aliases = new Map([["video","presentation-title"],["validation","verification"],["sim","network-builder"],["ai","zac-development"],["docs","team-workflow"]]);
+  const target = document.getElementById(aliases.get(hash) ?? hash);
+  const topic = target?.hasAttribute("data-topic") ? target : null;
+  const name = topic ? topic.closest(".tab").id.slice(4) : hash === "code" ? "project" : hash;
+  const current = sectionLinks.some(link => link.dataset.tab === name) ? name : "home";
+  document.getElementById("section-content").hidden = current === "home";
+  document.querySelectorAll(".tab").forEach(panel => panel.classList.toggle("active", panel.id === "tab-" + current));
+  const sim = $('sim');
+  sim.hidden = current !== "application";
+  if (!sim.hidden) {
+    if (!workspaceStarted) {
+      workspaceStarted = true;
+      resetView();
+      update();
+    } else {
+      draw();
+    }
+  } else {
+    document.body.classList.remove("expanded");
+    if ($('dialog').open) $('dialog').close();
+  }
+  sectionLinks.forEach(link => {
+    if (link.dataset.tab === current) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  document.querySelectorAll(".section-nav a").forEach(link => {
+    if (topic && link.hash === "#" + topic.id) link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
+  if (current === "theory" && !document.getElementById("checks").children.length) checks();
+  if (topic) {
+    if (moveFocus) topic.focus({ preventScroll: true });
+    topic.scrollIntoView();
+  } else if (moveFocus) {
+    document.getElementById(current + "-title").focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  }
+}
+window.addEventListener("hashchange", () => showRoute(true));
 
-</script></body></html>
+
+
+
+renderVelocityCheck();
+showRoute();
+</script>
+</body>
+</html>
